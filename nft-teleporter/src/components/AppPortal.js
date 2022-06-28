@@ -31,11 +31,11 @@ function AppPortal() {
   return (
     <div>
         <div className='lhs-inner'>
-            <div><img src={logo}/></div>
+            <div><img alt='NFT Teleporter Logo' src={logo}/></div>
             <div><a onClick={stepTwo} className='button' href='#'>Create Your Collection</a></div>
         </div>
         <div className='lhs-inner-two'>
-            <div><img src={logo}/></div>
+            <div><img alt='NFT Teleporter Logo' src={logo}/></div>
             <div className='lhs-inner-two-text'>
                 <div><h2>NFT Data</h2></div>
                 <div><input className='input-field' placeholder='Collection Name' label="Collection Name"></input></div>
@@ -45,7 +45,7 @@ function AppPortal() {
             </div>
         </div>
         <div className='lhs-inner-three'>
-            <div><img src={logo}/></div>
+            <div><img alt='NFT Teleporter Logo' src={logo}/></div>
             <div className='lhs-inner-two-text'>
                 <div><h2>Digital Assets</h2></div>
                 <div>Which assets would you like to include?</div>
