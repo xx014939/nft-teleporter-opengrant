@@ -34,10 +34,26 @@ code {
   width: 100%;
   height: 100%;
   border-radius: 20px;
-  padding: 25vh 10vh 25vh 10vh;
+  padding: 20vh 10vh 20vh 10vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+  min-height: 150px;
+}
+
+.lhs-inner-two {
+  display: none;
+  background: #1E1E1E;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  padding: 5vh 10vh 20vh 5vh;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  min-height: 360px;
+  min-width: 320px;
 }
 
 .rhs-container {
@@ -52,4 +68,5 @@ code {
   color: #000000;
   font-size: 14px;
   text-decoration: none;
+  margin-top: 50px;
 }
