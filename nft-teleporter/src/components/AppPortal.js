@@ -12,7 +12,7 @@ function stepThree () {
     document.querySelector('.lhs-inner-two').style.display = 'none'
     document.querySelector('.lhs-inner-three').style.display = 'flex'
 
-    // Checkbox Functionality 
+    // Checkbox Functionality (Steps 3 & 4)
     let checkboxArray = document.querySelectorAll('.checkbox-box')
     checkboxArray.forEach(checkbox => checkbox.addEventListener('click', () => {
         if (checkbox.classList.contains('checkbox-box-selected')) {
