@@ -1,13 +1,13 @@
 import multimedia from './multimedia.svg'
 import './App.css';
-import AppPortal from './components/AppPortal';
+import LoginPortal from './components/LoginPortal';
 import './fonts/MODERNA_.TTF'
 
 function App() {
   return (
     <div className="container">
       <div className='lhs-container'>
-        <AppPortal/>
+        <LoginPortal/>
       </div>
       <div className='rhs-container'>
         <img src={multimedia}/>

@@ -17,7 +17,7 @@ function accountView () {
 }
 
 
-function AppPortal() {
+function LoginPortal() {
   return (
     <div>
         <div className='lhs-inner'>
@@ -50,4 +50,4 @@ function AppPortal() {
   );
 }
 
-export default AppPortal;
+export default LoginPortal;
