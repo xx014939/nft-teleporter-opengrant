@@ -1,6 +1,7 @@
 import multimedia from './multimedia.svg'
 import './App.css';
 import AppPortal from './components/AppPortal';
+import './fonts/MODERNA_.TTF'
 
 function App() {
   return (

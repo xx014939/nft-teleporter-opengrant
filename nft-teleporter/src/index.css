@@ -1,10 +1,24 @@
+@font-face {
+  font-family: "Moderna";
+  src: local("MODERNA_.TTF"),
+   url("./fonts/MODERNA_.TTF") format("truetype");
+  font-weight: normal;
+  }
+  
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Moderna', 'Roboto';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+p {
+  font-size: 14px;
+}
+
+h2 {
+  font-size: 35px;
 }
 
 code {
@@ -70,11 +84,33 @@ code {
   min-width: 320px;
 }
 
+.lhs-inner-four {
+  display: none;
+  background: #1E1E1E;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  padding: 5vh 10vh 20vh 5vh;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  min-height: 360px;
+  min-width: 320px;
+}
+
 .lhs-inner-two-text {
   width: 100%;
 }
 
 .lhs-inner-two-text div {
+  width: 100%;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
   width: 100%;
 }
 
