@@ -1,7 +1,8 @@
-import multimedia from './multimedia.svg'
 import './App.css';
-import LoginPortal from './components/LoginPortal';
 import './fonts/MODERNA_.TTF'
+import multimedia from './multimedia.svg'
+import LoginPortal from './components/LoginPortal';
+
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <img src={multimedia}/>
       </div>
     </div>
+    
   );
 }
 

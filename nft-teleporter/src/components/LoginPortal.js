@@ -33,7 +33,7 @@ function LoginPortal() {
                 <div><h2>Login</h2></div>
                 <div><input className='input-field' placeholder='Username' label="Username"></input></div>
                 <div><input className='input-field' placeholder='Password' label="Password"></input></div>
-                <div><a href='#' className='button' onClick={accountView}>Login</a></div>
+                <div><a href='/account' className='button' onClick={accountView}>Login</a></div>
             </div>
         </div>
         <div className='lhs-inner-three'>
@@ -43,7 +43,7 @@ function LoginPortal() {
                 <div><input className='input-field' placeholder='Email' label="Email"></input></div>
                 <div><input className='input-field' placeholder='Username' label="Username"></input></div>
                 <div><input className='input-field' placeholder='Password' label="Password"></input></div>
-                <div><a href='#' className='button' onClick={accountView}>Register</a></div>
+                <div><a href='/account' className='button' onClick={accountView}>Register</a></div>
             </div>
         </div>
     </div>
