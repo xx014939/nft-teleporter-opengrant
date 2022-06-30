@@ -1,7 +1,9 @@
+import Header from "./Header";
+
 function AccountPage () {
  return (
      <div>
-         HELLO WORLD!!!
+         <Header/>
      </div>
  );
 }
