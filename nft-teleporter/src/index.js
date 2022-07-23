@@ -46,7 +46,8 @@ function ShowLogin(props) {
 }
 
 function ShowRegister(props) {
-  <div className='lhs-inner-three'>
+  return (
+    <div className='lhs-inner-three'>
       <div><img alt='NFT Teleporter Logo' src={logo}/></div>
       <div className='lhs-inner-two-text'>
           <div><h2>Register</h2></div>
@@ -55,7 +56,8 @@ function ShowRegister(props) {
           <div><input className='input-field' placeholder='Password' label="Password"></input></div>
           <div><a href='/account' className='button' onClick={accountView}>Register</a></div>
       </div>
-  </div>
+    </div>
+  )
 }
 
 function LoginPortal(props) {
@@ -119,8 +121,8 @@ function accountView () {
 
 function StartPage() {
   return (
-      root.render(<LoginPortal stateCount={1}/>)
-  );
+    <LoginPortal stateCount={1}/>
+  )
 }
 
 root.render(
