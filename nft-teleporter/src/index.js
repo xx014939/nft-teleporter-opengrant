@@ -61,11 +61,44 @@ function ShowRegister(props) {
 function LoginPortal(props) {
   const stateCount = props.stateCount;
   if(stateCount === 1) {
-      return <RegisterOrLogin/>
+      return (
+        <>
+        <div className="container">
+          <div className='lhs-container'>
+          <RegisterOrLogin/>
+          </div>
+          <div className='rhs-container'>
+            <img src={multimedia}/>
+          </div>
+        </div>
+        </>
+      )
   } else if (stateCount === 2) {
-      return <ShowLogin/>
+    return (
+      <>
+      <div className="container">
+        <div className='lhs-container'>
+        <ShowLogin/>
+        </div>
+        <div className='rhs-container'>
+          <img src={multimedia}/>
+        </div>
+      </div>
+      </>
+    )
   } else {
-      <ShowRegister/>
+    return (
+      <>
+      <div className="container">
+        <div className='lhs-container'>
+        <ShowRegister/>
+        </div>
+        <div className='rhs-container'>
+          <img src={multimedia}/>
+        </div>
+      </div>
+      </>
+    )
   }
 }
 
@@ -84,20 +117,9 @@ function accountView () {
 }
 
 
-root.render(<LoginPortal stateCount={1}/>)
-
 function StartPage() {
   return (
-    <div className="container">
-      <div className='lhs-container'>
-        <LoginPortal/>
-      </div>
-      <div className='rhs-container'>
-        <img src={multimedia}/>
-      </div>
-      
-    </div>
-    
+      root.render(<LoginPortal stateCount={1}/>)
   );
 }
 
