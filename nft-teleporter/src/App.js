@@ -1,6 +1,7 @@
 import './App.css';
 import './fonts/MODERNA_.TTF'
 import multimedia from './multimedia.svg'
+import rhsImage from './rhsImage.png'
 import LoginPortal from './components/LoginPortal';
 
 
