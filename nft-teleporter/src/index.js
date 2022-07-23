@@ -5,7 +5,6 @@ import multimedia from './multimedia.svg'
 import './index.css';
 import App from './App';
 import './App.css';
-//import LoginPortal from './components/LoginPortal';
 import AccountPage from './components/AccountPage';
 import reportWebVitals from './reportWebVitals';
 import {
