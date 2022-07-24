@@ -1,10 +1,7 @@
 import logo from '../logo.svg';
+import multimedia from '../multimedia.svg'
 import '../App.css';
 import ReactDOM from 'react-dom/client';
-
-// const root = ReactDOM.createRoot(
-//     document.getElementById('adjacent')
-//   );
 
 function RegisterOrLogin(props) {
     return (
@@ -16,9 +13,9 @@ function RegisterOrLogin(props) {
             </div>
         </div>
     )
-}
-
-function ShowLogin(props) {
+  }
+  
+  function ShowLogin(props) {
     return (
         <div className='lhs-inner-two'>
             <div><img alt='NFT Teleporter Logo' src={logo}/></div>
@@ -30,10 +27,11 @@ function ShowLogin(props) {
             </div>
         </div>
     )
-}
-
-function ShowRegister(props) {
-    <div className='lhs-inner-three'>
+  }
+  
+  function ShowRegister(props) {
+    return (
+      <div className='lhs-inner-three'>
         <div><img alt='NFT Teleporter Logo' src={logo}/></div>
         <div className='lhs-inner-two-text'>
             <div><h2>Register</h2></div>
@@ -42,35 +40,72 @@ function ShowRegister(props) {
             <div><input className='input-field' placeholder='Password' label="Password"></input></div>
             <div><a href='/account' className='button' onClick={accountView}>Register</a></div>
         </div>
-    </div>
-}
-
-function LoginPortal(props) {
+      </div>
+    )
+  }
+  
+  function LoginPortal(props) {
     const stateCount = props.stateCount;
     if(stateCount === 1) {
-        return <RegisterOrLogin/>
+        return (
+          <>
+          <div className="container">
+            <div className='lhs-container'>
+            <RegisterOrLogin/>
+            </div>
+            <div className='rhs-container'>
+              <img src={multimedia}/>
+            </div>
+          </div>
+          </>
+        )
     } else if (stateCount === 2) {
-        return <ShowLogin/>
+      return (
+        <>
+        <div className="container">
+          <div className='lhs-container'>
+          <ShowLogin/>
+          </div>
+          <div className='rhs-container'>
+            <img src={multimedia}/>
+          </div>
+        </div>
+        </>
+      )
     } else {
-        <ShowRegister/>
+      return (
+        <>
+        <div className="container">
+          <div className='lhs-container'>
+          <ShowRegister/>
+          </div>
+          <div className='rhs-container'>
+            <img src={multimedia}/>
+          </div>
+        </div>
+        </>
+      )
     }
-}
+  }
+  
 
-
-
-function loginView() {
+  const container = document.getElementById('root')
+  const root = ReactDOM.createRoot(container);
+  
+  
+  function loginView() {
+    // ReactDOM.render(<LoginPortal stateCount={2}/>, document.getElementById('root'));
     root.render(<LoginPortal stateCount={2}/>)
-}
-
-function registerView () {
+  }
+  
+  function registerView () {
+    // ReactDOM.render(<LoginPortal stateCount={3}/>, document.getElementById('root'));
     root.render(<LoginPortal stateCount={3}/>)
-}
-
-function accountView () {
+  }
+  
+  function accountView () {
     console.log('Go to account')
-}
-
-
-root.render(<LoginPortal stateCount={1}/>)
+  }
+  
 
 export default LoginPortal;
