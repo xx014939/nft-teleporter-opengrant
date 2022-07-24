@@ -1,5 +1,7 @@
 import logo from '../logo.svg';
-import multimedia from '../multimedia.svg'
+import multimedia from '../multimedia.svg';
+import rhsImage from '../rhsImage.svg';
+import starryBG from '../starryBG.svg'
 import '../App.css';
 import ReactDOM from 'react-dom/client';
 
@@ -18,7 +20,7 @@ function RegisterOrLogin(props) {
   function ShowLogin(props) {
     return (
         <div className='lhs-inner-two'>
-            <div><img alt='NFT Teleporter Logo' src={logo}/></div>
+            <div><img alt='NFT Teleporter Logo' src={logo}  style={{marginLeft: '-20px'}}/></div>
             <div className='lhs-inner-two-text'>
                 <div><h2>Login</h2></div>
                 <div><input className='input-field' placeholder='Username' label="Username"></input></div>
@@ -32,8 +34,8 @@ function RegisterOrLogin(props) {
   function ShowRegister(props) {
     return (
       <div className='lhs-inner-three'>
-        <div><img alt='NFT Teleporter Logo' src={logo}/></div>
-        <div className='lhs-inner-two-text'>
+        <div><img alt='NFT Teleporter Logo' src={logo} style={{marginLeft: '-40px'}}/></div>
+        <div className='lhs-inner-three-text'>
             <div><h2>Register</h2></div>
             <div><input className='input-field' placeholder='Email' label="Email"></input></div>
             <div><input className='input-field' placeholder='Username' label="Username"></input></div>
@@ -49,7 +51,7 @@ function RegisterOrLogin(props) {
     if(stateCount === 1) {
         return (
           <>
-          <div className="container">
+          <div className="container" style={{backgroundImage: `url(${starryBG})`}}>
             <div className='lhs-container'>
             <RegisterOrLogin/>
             </div>
@@ -62,7 +64,7 @@ function RegisterOrLogin(props) {
     } else if (stateCount === 2) {
       return (
         <>
-        <div className="container">
+        <div className="container" style={{backgroundImage: `url(${starryBG})`}}>
           <div className='lhs-container'>
           <ShowLogin/>
           </div>
@@ -75,7 +77,7 @@ function RegisterOrLogin(props) {
     } else {
       return (
         <>
-        <div className="container">
+        <div className="container" style={{backgroundImage: `url(${starryBG})`}}>
           <div className='lhs-container'>
           <ShowRegister/>
           </div>
