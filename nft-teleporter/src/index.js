@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import './App.css';
 import AccountPage from './components/AccountPage';
+import CreateCollectionPage from './components/CreateCollectionPage';
 import reportWebVitals from './reportWebVitals';
 import LoginPortal from './components/LoginPortal';
 import {
@@ -28,6 +29,7 @@ root.render(
     <Routes>
       <Route path="/" element={<StartPage />} />
       <Route path="account" element={<AccountPage />} />
+      <Route path="create-collection" element={<CreateCollectionPage />} />
     </Routes>
   </BrowserRouter>
 );
