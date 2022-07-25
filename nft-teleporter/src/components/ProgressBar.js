@@ -1,7 +1,14 @@
 function ProgressBar () {
  return (
-     <div>
-         <h1>HELLOW WORLD</h1>
+     <div className="progress-bar-container">
+         <div className="progress-bar-step">
+            <div className="progress-bar-element">1</div>
+            <div className="progress-bar-text">Basic Info</div>
+         </div>
+         <div className="progress-bar-step">
+            <div className="progress-bar-element">2</div>
+            <div className="progress-bar-text">Digital Assets</div>
+         </div>
      </div>
  );
 }
