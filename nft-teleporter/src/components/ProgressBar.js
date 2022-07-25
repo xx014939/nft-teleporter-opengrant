@@ -1,5 +1,19 @@
 import '../styles/ProgressBar.css';
 
+let counter = 1;
+
+function updateCount () {
+    counter = counter + 1;
+}
+
+function updateElement () {
+    let elementArray = document.querySelectorAll('.progress-bar-element')
+    for (let i = 0; i < counter; i++) {
+        elementArray[i].style.background = 'blue'
+    }
+}
+
+
 function ProgressBar () {
  return (
      <div className="progress-bar-container">
@@ -22,6 +36,7 @@ function ProgressBar () {
             <div className="progress-bar-element">4</div>
             <div className="progress-bar-text">Smart Contract</div>
          </div>
+         <button onClick={() => { updateCount(); updateElement();}}>CLICK ME</button>
      </div>
  );
 }
