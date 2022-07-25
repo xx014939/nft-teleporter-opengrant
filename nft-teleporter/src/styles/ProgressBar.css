@@ -25,3 +25,12 @@
     justify-content: center;
     margin: auto;
 }
+
+.progress-bar-element::after {
+    /* content: "";
+    display: block;
+    width: 130px;
+    height: 2px;
+    background: #ffffff;
+    margin-left: 38px; */
+}
