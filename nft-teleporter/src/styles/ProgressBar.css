@@ -1,0 +1,27 @@
+.progress-bar-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    width: 650px;
+    margin: auto;
+}
+
+.progress-bar-step {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.progress-bar-element {
+    border: 1px solid white;
+    padding: 10px;
+    border-radius: 50% ;
+    height: 41px;
+    width: 41px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+}
