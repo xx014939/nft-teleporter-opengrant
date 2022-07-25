@@ -1,6 +1,6 @@
 import '../styles/ProgressBar.css';
 
-let counter = 1;
+let counter = 0;
 
 function updateCount () {
     counter = counter + 1;
