@@ -15,7 +15,6 @@
 }
 
 .progress-bar-element {
-    border: 1px solid white;
     padding: 10px;
     border-radius: 50% ;
     height: 41px;
@@ -24,6 +23,10 @@
     flex-direction: column;
     justify-content: center;
     margin: auto;
+    background: linear-gradient(180deg, #439CFB 0%, #F187FB 100%);
+    color: black;
+    margin-bottom: 15px;
+    cursor: pointer;
 }
 
 .progress-bar-element::after {
