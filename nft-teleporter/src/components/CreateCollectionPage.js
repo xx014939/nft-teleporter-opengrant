@@ -1,9 +1,15 @@
 import Header from "./Header";
+import ProgressBar from "./ProgressBar";
 
 function CreateCollectionPage () {
  return (
-     <div>
+     <div className="create-collection-container">
+         <div>
          <Header/>
+         </div>
+         <div>
+         <ProgressBar/>
+         </div>
      </div>
  );
 }

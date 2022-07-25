@@ -186,3 +186,12 @@ code {
 .checkbox-box-selected {
   background: linear-gradient(180deg, #439CFB 0%, #F187FB 100%)
 }
+
+.create-collection-container {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #000000;
+  color: white;
+}
