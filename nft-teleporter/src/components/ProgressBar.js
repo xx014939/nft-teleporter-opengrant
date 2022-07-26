@@ -1,4 +1,5 @@
 import '../styles/ProgressBar.css';
+import StepOne from './StepOne.js'
 
 let counter = 0;
 
@@ -15,7 +16,8 @@ function updateElement () {
 
 function ProgressBar () {
  return (
-     <div className="progress-bar-container">
+    <div>
+        <div className="progress-bar-container">
          <div className="progress-bar-step">
             <div className="progress-bar-element">1</div>
             <div className="progress-bar-text">Basic Info</div>
@@ -35,8 +37,12 @@ function ProgressBar () {
             <div className="progress-bar-element">4</div>
             <div className="progress-bar-text">Smart Contract</div>
          </div>
-         <button onClick={() => { updateCount(); updateElement();}}>CLICK ME</button>
-     </div>
+        </div>
+        <div>
+            <StepOne/>
+            <button onClick={() => { updateCount(); updateElement();}}>CLICK ME</button>
+        </div>
+    </div>
  );
 }
 
