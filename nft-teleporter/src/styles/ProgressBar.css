@@ -5,6 +5,8 @@
     justify-content: space-between;
     width: 650px;
     margin: auto;
+    font-family: 'Gilroy';
+    font-size: 14px;
 }
 
 .progress-bar-step {
@@ -12,6 +14,7 @@
     flex-direction: column;
     justify-content: center;
     text-align: center;
+    color: gray;
 }
 
 .progress-bar-element {
@@ -23,10 +26,19 @@
     flex-direction: column;
     justify-content: center;
     margin: auto;
-    background: linear-gradient(180deg, #439CFB 0%, #F187FB 100%);
-    color: black;
+    background-color:  #2A2A2A;
+    color: gray;
     margin-bottom: 15px;
     cursor: pointer;
+}
+
+.active-element {
+    background: linear-gradient(180deg, #439CFB 0%, #F187FB 100%);
+    color: #000000;
+}
+
+.active-element + div {
+    color: #ffffff;
 }
 
 .progress-bar-element::after {

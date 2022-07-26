@@ -9,10 +9,9 @@ function updateCount () {
 function updateElement () {
     let elementArray = document.querySelectorAll('.progress-bar-element')
     for (let i = 0; i < counter; i++) {
-        elementArray[i].style.background = 'blue'
+        elementArray[i].classList.add('active-element')
     }
 }
-
 
 function ProgressBar () {
  return (
@@ -27,9 +26,9 @@ function ProgressBar () {
             <div className="progress-bar-text">Digital Assets</div>
          </div>
          <div style={{width: '100%', height: "2px", background: "#ffffff", marginTop: "30px"}}></div>
-         <div className="progress-bar-step">
+         <div className="progress-bar-step" style={{marginBottom: '16px', marginRight: '-8px', marginLeft: '-8px'}}>
             <div className="progress-bar-element">3</div>
-            <div className="progress-bar-text">Blockchains kkk</div>
+            <div className="progress-bar-text">Blockchains</div>
          </div>
          <div style={{width: '100%', height: "2px", background: "#ffffff", marginTop: "30px"}}></div>
          <div className="progress-bar-step">
