@@ -1,7 +1,7 @@
 import '../styles/ProgressBar.css';
 import StepOne from './StepOne.js'
 
-let counter = 0;
+let counter = 1;
 
 function updateCount () {
     counter = counter + 1;
@@ -19,7 +19,7 @@ function ProgressBar () {
     <div>
         <div className="progress-bar-container">
          <div className="progress-bar-step">
-            <div className="progress-bar-element">1</div>
+            <div className="progress-bar-element active-element">1</div>
             <div className="progress-bar-text">Basic Info</div>
          </div>
          <div style={{width: '100%', height: "2px", background: "#ffffff", marginTop: "30px"}}></div>
@@ -40,7 +40,7 @@ function ProgressBar () {
         </div>
         <div>
             <StepOne/>
-            <button onClick={() => { updateCount(); updateElement();}}>CLICK ME</button>
+            <button onClick={() => { updateCount(); updateElement();}}>Continue</button>
         </div>
     </div>
  );
