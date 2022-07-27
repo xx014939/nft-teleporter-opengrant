@@ -7,8 +7,28 @@
     align-items: center;
 }
 
+.step-one-container input[type=text] {
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 10px;
+    width: 455px;
+    padding: 15px;
+    margin-top: 15px;
+    color: #ffffff;
+    background-color: #000000;
+    font-family: 'Gilroy';
+}
+
 .step-one-container h2 {
     margin-top: 90px;
+}
+
+.step-one-input-label {
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFFFFF;
 }
 
 .continue-button-container {
