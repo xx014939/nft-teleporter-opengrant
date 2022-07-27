@@ -40,7 +40,9 @@ function ProgressBar () {
         </div>
         <div>
             <StepOne/>
-            <button className="continue-button" onClick={() => { updateCount(); updateElement();}}>Continue</button>
+            <div className='continue-button-container'>
+                <button className="continue-button" onClick={() => { updateCount(); updateElement();}}>Continue</button>
+            </div>
         </div>
     </div>
  );
