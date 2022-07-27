@@ -7,6 +7,10 @@
     align-items: center;
 }
 
+.step-one-container h2 {
+    margin-top: 90px;
+}
+
 .continue-button-container {
     width: 100%;
     display: flex;
