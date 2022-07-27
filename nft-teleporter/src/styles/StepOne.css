@@ -9,13 +9,18 @@
 
 .step-one-container input[type=text] {
     border: 1px solid rgba(255, 255, 255, 0.16);
-    border-radius: 10px;
+    border-radius: 0px 10px 10px 0px;
+    border-left: none;
     width: 455px;
     padding: 15px;
     margin-top: 15px;
     color: #ffffff;
     background-color: #000000;
     font-family: 'Gilroy';
+}
+
+.step-one-container input[type=text]:focus {
+    outline-width: 0;
 }
 
 .step-one-container h2 {
@@ -36,7 +41,29 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    position: absolute;
+    bottom: 10%;
 }
+
+.step-one-input-subcontainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.step-one-input-subcontainer div:first-child{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 15px;
+    padding-left: 15px;
+    height: 46px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 10px 0px 0px 10px;
+    border-right: none;
+}
+
+
 
 .continue-button {
     font-family: "Moderna";
@@ -46,3 +73,4 @@
     padding: 15px 85px;
     cursor: pointer;
 }
+
