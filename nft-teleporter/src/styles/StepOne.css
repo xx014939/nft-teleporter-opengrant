@@ -74,3 +74,23 @@
     cursor: pointer;
 }
 
+.step-one-buttons-container {
+    display: flex;
+}
+
+.step-one-single-button-container {
+    max-width: 150px;
+    background: linear-gradient(180deg, #439CFB 0%, #F187FB 100%);
+    padding: 1px;
+    border-radius: 10px;
+}
+
+.step-one-single-button-container div {
+    padding: 15px 50px;
+    background-color: #25262A;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+
+
