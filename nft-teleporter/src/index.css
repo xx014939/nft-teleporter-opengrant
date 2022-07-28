@@ -203,7 +203,6 @@ code {
 
 .create-collection-container {
   display: flex;
-  min-height: 100vh;
   flex-direction: column;
   background-color: #000000;
   color: white;
