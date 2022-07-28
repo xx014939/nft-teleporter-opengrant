@@ -1,5 +1,11 @@
 import '../styles/StepOne.css';
 import inputSVG from '../inputSVG.svg'
+import {useState} from 'react';
+
+const selectButton = event => {
+    event.currentTarget.classList.toggle('step-one-single-button-container-active');
+    event.currentTarget.classList.toggle('step-one-single-button-container');
+  };
 
 function StepOne () {
     return (
@@ -19,10 +25,10 @@ function StepOne () {
             <div className='step-one-input-container'>
                 <div className='step-one-input-label'>Do you want to Randomised Metada?</div>
                 <div className='step-one-buttons-container'>
-                    <div className='step-one-single-button-container'>
+                    <div className='step-one-single-button-container' onClick={selectButton}>
                         <div>YES</div>
                     </div>
-                    <div className='step-one-single-button-container'>
+                    <div className='step-one-single-button-container' onClick={selectButton}>
                         <div>NO</div>
                     </div>
                 </div>
