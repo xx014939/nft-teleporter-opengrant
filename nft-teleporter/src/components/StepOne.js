@@ -26,10 +26,20 @@ function StepOne () {
                 <div className='step-one-input-label'>Do you want to Randomised Metada?</div>
                 <div className='step-one-buttons-container'>
                     <div className='step-one-single-button-container' onClick={selectButton}>
-                        <div>YES</div>
+                        <div className='step-one-single-button'>
+                            <div className='step-one-single-button-icon'>
+                                <div className='step-one-single-button-icon-inner'></div>
+                            </div>
+                            <div>YES</div>
+                        </div>
                     </div>
                     <div className='step-one-single-button-container' onClick={selectButton}>
-                        <div>NO</div>
+                        <div className='step-one-single-button'>
+                            <div className='step-one-single-button-icon'>
+                                <div className='step-one-single-button-icon-inner'></div>
+                            </div>
+                            <div>NO</div>
+                        </div>
                     </div>
                 </div>
             </div>
