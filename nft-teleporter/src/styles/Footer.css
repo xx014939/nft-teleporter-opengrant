@@ -1,5 +1,4 @@
 .footer-container {
-    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -12,6 +11,14 @@
     flex-direction: column;
     justify-content: center;
     text-align: left;
+}
+
+.footer-tag-line {
+    max-width: 300px;
+    font-family: 'Gilroy';
+    font-size: 12px;
+    margin-top: 30px;
+    margin-bottom: 15px;
 }
 
 .footer-socials-container {
@@ -27,4 +34,19 @@
     width: 35px;
     border-radius: 50%;
     margin-right: 12px;
+}
+
+.footer-link-columns {
+    min-width: 105px;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-link-columns div {
+    margin-bottom: 28px;
+}
+
+.footer-link-columns a {
+    cursor: pointer;
+    margin-bottom: 15px;
 }
