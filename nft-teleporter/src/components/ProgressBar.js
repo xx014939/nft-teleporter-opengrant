@@ -1,5 +1,10 @@
+import React, { useState } from 'react';
 import '../styles/ProgressBar.css';
-import StepOne from './StepOne.js'
+import StepOne from './StepOne.js';
+import StepTwo from './StepTwo';
+import StepThree from './StepThree';
+import StepFour from './StepFour'
+
 
 let counter = 1;
 
@@ -15,6 +20,9 @@ function updateElement () {
 }
 
 function ProgressBar () {
+
+    const [step, setStep] = useState("1");
+
  return (
     <div>
         <div className="progress-bar-container">
@@ -39,9 +47,12 @@ function ProgressBar () {
          </div>
         </div>
         <div>
-            <StepOne/>
+            {step === "1" && <StepOne/>}
+            {step === "2" && <StepTwo/>}
+            {step === "3" && <StepThree/>}
+            {step === "4" && <StepFour/>}
             <div className='continue-button-container'>
-                <button className="continue-button" onClick={() => { updateCount(); updateElement();}}>Continue</button>
+                <button className="continue-button" onClick={() => { updateCount(); updateElement(); setStep(`${counter}`)}}>Continue</button>
             </div>
         </div>
     </div>

@@ -19,11 +19,18 @@
     font-family: 'Gilroy';
 }
 
+.step-one-input-container {
+    width: 100%;
+    padding-left: 510px;
+}
+
 .step-one-container input[type=text]:focus {
     outline-width: 0;
 }
 
-.step-one-container h2 {
+.step-one-heading-container {
+    width: 100%;
+    padding-left: 510px;
     margin-top: 90px;
 }
 
@@ -37,13 +44,14 @@
 }
 
 .continue-button-container {
-    width: 523px;
+    width: 100%;
     margin: auto;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     margin-top: 90px;
     margin-bottom: 130px;
+    padding-left: 255px;
 }
 
 .step-one-input-subcontainer {
