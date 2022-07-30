@@ -9,5 +9,6 @@
     padding: 35px 50px;
     position: fixed;
     top: 0;
-    border-bottom: 0.5px solid #FFFFFF4D
+    border-bottom: 0.5px solid #FFFFFF4D;
+    z-index: 1
 }
