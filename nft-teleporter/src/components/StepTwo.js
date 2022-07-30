@@ -7,9 +7,18 @@ function StepTwo () {
             <div className='step-two-checkbox-section'>
                 <div className='step-two-label'>What Assets you have available?</div>
                 <div className='step-two-checkbox-container'>
-                    <div>CHECKBOX 1</div>
-                    <div>CHECKBOX 2</div>
-                    <div>CHECKBOX 3</div>
+                    <div className='step-two-single-checkbox'>
+                        <div className='step-two-checkbox-icon'>CHECKBOX</div>
+                        <div className='step-two-checkbox-label'>LABEL</div>
+                    </div>
+                    <div className='step-two-single-checkbox'>
+                        <div className='step-two-checkbox-icon'>CHECKBOX</div>
+                        <div className='step-two-checkbox-label'>LABEL</div>
+                    </div>
+                    <div className='step-two-single-checkbox'>
+                        <div className='step-two-checkbox-icon'>CHECKBOX</div>
+                        <div className='step-two-checkbox-label'>LABEL</div>
+                    </div>
                 </div>
             </div>
         </div>
