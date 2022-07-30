@@ -30,6 +30,8 @@
     color: gray;
     margin-bottom: 15px;
     cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .active-element {
@@ -39,6 +41,11 @@
 
 .active-element + div {
     color: #ffffff;
+}
+
+.active-element img {
+    width: 50%;
+    margin: auto;
 }
 
 .progress-bar-element::after {
