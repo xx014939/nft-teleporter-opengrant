@@ -1,10 +1,9 @@
 .step-one-container {
-    text-align: left;
-    font-family: 'Gilroy';
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: 'Gilroy';
 }
 
 .step-one-container input[type=text] {
