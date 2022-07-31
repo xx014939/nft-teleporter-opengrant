@@ -211,3 +211,12 @@ code {
   padding-top: 240px;
   height: 100vh;
 }
+
+.page-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  padding-left: 510px;
+  margin-bottom: 45px;
+}

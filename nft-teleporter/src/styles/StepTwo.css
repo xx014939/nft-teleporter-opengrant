@@ -5,3 +5,64 @@
     align-items: center;
     font-family: 'Gilroy';
 }
+
+.step-two-checkbox-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    width: 600px;
+}
+
+.step-two-label {
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    margin-bottom: 33px;
+    color: #FFFFFF;
+}
+
+.step-two-checkbox-icon {
+    width: 19px;
+    height: 19px;
+    background: #000000;
+    border: 1px solid #232323;
+    border-radius: 3px;
+    margin-right: 16px;
+}
+
+.step-two-checkbox-icon-active {
+    width: 19px;
+    height: 19px;
+    background: linear-gradient(180deg, #439CFB 0%, #F187FB 100%);
+    border-radius: 3px;
+    margin-right: 16px;
+}
+
+.step-two-single-checkbox {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.step-two-checkbox-label {
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFFFFF;
+}
+
+.step-two-upload-container {
+    border: 1px dashed #232323;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 45px 205px;
+}
+
