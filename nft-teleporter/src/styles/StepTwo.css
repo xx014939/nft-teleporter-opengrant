@@ -39,6 +39,7 @@
     background: linear-gradient(180deg, #439CFB 0%, #F187FB 100%);
     border-radius: 3px;
     margin-right: 16px;
+    text-align: center;
 }
 
 .step-two-single-checkbox {

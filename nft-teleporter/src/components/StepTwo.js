@@ -2,6 +2,7 @@ import '../styles/StepTwo.css'
 import '../index.css'
 import React, { useState } from 'react';
 import threedFile from '../3dFile.svg'
+import tick from '../tick.svg'
 
 let checkboxArray  = [false, false, false]
 
@@ -30,15 +31,21 @@ function StepTwo () {
                     <div className='step-two-label'>What Assets do you have currently available?</div>
                     <div className='step-two-checkbox-container'>
                         <div className='step-two-single-checkbox'>
-                            <div className='step-two-checkbox-icon' id="1" onClick={selectBox}></div>
+                            <div className='step-two-checkbox-icon' id="1" onClick={selectBox}>
+                                <img src={tick}/>
+                            </div>
                             <div className='step-two-checkbox-label'>3D Digital Asset</div>
                         </div>
                         <div className='step-two-single-checkbox'>
-                            <div className='step-two-checkbox-icon' id="2" onClick={selectBox}></div>
+                            <div className='step-two-checkbox-icon' id="2" onClick={selectBox}>
+                                <img src={tick}/>
+                            </div>
                             <div className='step-two-checkbox-label'>2D Digital Asset</div>
                         </div>
                         <div className='step-two-single-checkbox'>
-                            <div className='step-two-checkbox-icon' id="3" onClick={selectBox}></div>
+                            <div className='step-two-checkbox-icon' id="3" onClick={selectBox}>
+                                <img src={tick}/>
+                            </div>
                             <div className='step-two-checkbox-label'>MP4 Video File</div>
                         </div>
                     </div>
