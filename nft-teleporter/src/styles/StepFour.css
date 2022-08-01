@@ -12,6 +12,7 @@
     padding-top: 45px;
     padding-left: 50px;
     padding-bottom: 60px;
+    padding-right: 250px;
 }
 
 .successful-deploy-header {
@@ -39,7 +40,7 @@
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
-    max-width: 225px;
+    max-width: 335px;
 
     font-family: 'Gilroy';
     font-style: normal;
@@ -58,6 +59,7 @@
     cursor: pointer;
     color: #000000;
     max-width: 255px;
+    margin-top: 50px;
 }
 
 .successful-deploy-transaction-id-container {
@@ -65,10 +67,16 @@
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: flex-start;
+    align-items: center;
+    margin-top: 15px;
 }
 
 .successful-deploy-transaction-id-container div:first-child {
     margin-right: 15px;
+}
+
+.successful-deploy-info-label-container {
+    margin-top: 40px;
 }
 
 .copy-button-container {

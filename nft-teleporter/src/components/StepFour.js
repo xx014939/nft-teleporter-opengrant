@@ -13,9 +13,9 @@ function SuccessfulDeploy () {
                     <div>Your Contract has been deployed!</div>
                 </div>
                 <div className="successful-deploy-body">
-                    <div>
+                    <div className='successful-deploy-info-label-container'>
                         <div><img src={infoSVG}/></div>
-                        <div>Your Contract has been deployed!</div>
+                        <div>Please Copy Your NFT ID Below &amp; Visit Your Experiences</div>
                     </div>
                     <div className="successful-deploy-transaction-id-container">
                         <div>628301fb10b951006405ba3f</div>
