@@ -2,6 +2,7 @@ import '../styles/StepTwo.css'
 import '../index.css'
 import React, { useState } from 'react';
 import threedFile from '../3dFile.svg'
+import mp4SVG from '../mp4SVG.svg'
 import tick from '../tick.svg'
 
 let checkboxArray  = [false, false, false]
@@ -20,6 +21,28 @@ const selectBox = event => {
         }
     }
   };
+
+function UploadBox (props) {
+    return (
+        <div className='page-container upload-box' style={{display: 'none'}}>
+            <div className='step-two-upload-asset-section'>
+                <div className='step-two-label'>Upload your {props.fileType} Digital Asset</div>
+                <div className='step-two-upload-container'>
+                    <div className='step-two-upload-svg'>
+                        <img src={props.svgName}/>
+                    </div>
+                    <div className='step-two-upload-main-text'>
+                        <div>Drop your {props.fileType} files here or</div>
+                        <div>Browse</div>
+                    </div>
+                    <div className='step-two-upload-secondary-text'>
+                        Max. file size is 25MB 
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
 
 function StepTwo () {
 
@@ -51,23 +74,9 @@ function StepTwo () {
                     </div>
                 </div>
             </div>
-            <div className='page-container upload-box' style={{display: 'none'}}>
-                <div className='step-two-upload-asset-section'>
-                    <div className='step-two-label'>Upload your 3D Digital Asset</div>
-                    <div className='step-two-upload-container'>
-                        <div className='step-two-upload-svg'>
-                            <img src={threedFile}/>
-                        </div>
-                        <div className='step-two-upload-main-text'>
-                            <div>Drop your 3D files here or</div>
-                            <div>Browse</div>
-                        </div>
-                        <div className='step-two-upload-secondary-text'>
-                            Max. file size is 25MB 
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <UploadBox fileType="3D" svgName={threedFile}/>
+            <UploadBox fileType="2D" svgName={threedFile}/>
+            <UploadBox fileType="MP4" svgName={mp4SVG}/>
         </div>
     ) 
 }
