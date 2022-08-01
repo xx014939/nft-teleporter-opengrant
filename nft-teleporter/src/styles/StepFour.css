@@ -2,13 +2,16 @@
     background: linear-gradient(180deg, rgba(67, 156, 251, 0.5) 0%, rgba(241, 135, 251, 0.5) 100%);
     border-radius: 10px;
     padding: 1px;
+    max-width: 750px;
 }
 
 .successful-deploy-inner-container {
     background-color: #0A0A0A;
     border-radius: 10px;
+    max-width: 750px;
     padding-top: 45px;
     padding-left: 50px;
+    padding-bottom: 60px;
 }
 
 .successful-deploy-header {
@@ -44,4 +47,45 @@
     font-size: 12px;
     line-height: 15px;
     text-transform: capitalize;
+}
+
+.view-experiences-button {
+    font-family: "Moderna";
+    background: linear-gradient(180deg, #439CFB 0%, #F187FB 100%);
+    box-shadow: 0px 5px 30px rgba(165, 144, 251, 0.2);
+    border-radius: 10px;
+    padding: 15px 85px;
+    cursor: pointer;
+    color: #000000;
+    max-width: 255px;
+}
+
+.successful-deploy-transaction-id-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+}
+
+.successful-deploy-transaction-id-container div:first-child {
+    margin-right: 15px;
+}
+
+.copy-button-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    cursor: pointer;
+    color: #676767;
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 10px;
+    line-height: 12px;
+    text-decoration-line: underline;
+    text-transform: capitalize;
+}
+
+.copy-button-container div:first-child {
+    margin-right: 9px;
 }

@@ -19,12 +19,14 @@ function SuccessfulDeploy () {
                     </div>
                     <div className="successful-deploy-transaction-id-container">
                         <div>628301fb10b951006405ba3f</div>
-                        <div>
+                        <div className='copy-button-container'>
                             <div><img src={copySVG}/></div>
                             <div>Copy</div>
                         </div>
                     </div>
-                    <div>View your NFT Experiences here</div>
+                    <div className='view-experiences-button'>
+                        View your NFT Experiences here
+                    </div>
                 </div>
             </div>
         </div>
@@ -33,7 +35,7 @@ function SuccessfulDeploy () {
 
 function StepFour () {
     return (
-        <div>
+        <div className='page-container--255'>
             <SuccessfulDeploy/>
         </div>
     ) 
