@@ -5,7 +5,7 @@ import threedFile from '../3dFile.svg'
 import mp4SVG from '../mp4SVG.svg'
 import tick from '../tick.svg'
 
-let checkboxArray  = [false, false, false]
+let checkboxArray = [false, false, false]
 
 const selectBox = event => {
     event.currentTarget.classList.toggle('step-two-checkbox-icon-active');
