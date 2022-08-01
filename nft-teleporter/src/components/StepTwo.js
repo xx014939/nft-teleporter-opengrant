@@ -59,8 +59,8 @@ function StepTwo () {
                             <img src={threedFile}/>
                         </div>
                         <div className='step-two-upload-main-text'>
-                            <div>Drop Your 3D Files</div>
-                            <div>Here</div>
+                            <div>Drop your 3D files here or</div>
+                            <div>Browse</div>
                         </div>
                         <div className='step-two-upload-secondary-text'>
                             Max. file size is 25MB 

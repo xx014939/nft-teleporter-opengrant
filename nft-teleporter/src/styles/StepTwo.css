@@ -67,3 +67,46 @@
     padding: 45px 205px;
 }
 
+.step-two-upload-svg {
+    text-align: center;
+}
+
+.step-two-upload-main-text {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 12px;
+}
+
+.step-two-upload-main-text div {
+    color: #FDA0FF;
+    text-decoration: underline;
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    cursor: pointer;
+}
+
+
+.step-two-upload-main-text div:first-child {
+    text-decoration: none;
+    color: #FFFFFF;
+    margin-right: 5px;
+    cursor: default;
+}
+
+.step-two-upload-secondary-text {
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    color: #676767;
+}
