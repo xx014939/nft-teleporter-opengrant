@@ -2,6 +2,8 @@ import '../styles/StepOne.css';
 import inputSVG from '../inputSVG.svg'
 import {useState} from 'react';
 
+let randomMetaData = false
+
 const selectButton = event => {
     event.currentTarget.classList.toggle('step-one-single-button-container-active');
     event.currentTarget.classList.toggle('step-one-single-button-container');
@@ -37,7 +39,7 @@ function StepOne () {
                             <div className='step-one-single-button-icon'>
                                 <div className='step-one-single-button-icon-inner'></div>
                             </div>
-                            <div>Yes</div>
+                            <div onClick={() => {randomMetaData = true}}>Yes</div>
                         </div>
                     </div>
                     <div className='step-one-single-button-container' onClick={selectButton}>
@@ -45,7 +47,7 @@ function StepOne () {
                             <div className='step-one-single-button-icon'>
                                 <div className='step-one-single-button-icon-inner'></div>
                             </div>
-                            <div>No</div>
+                            <div onClick={() => {randomMetaData = false}}>No</div>
                         </div>
                     </div>
                 </div>
@@ -54,4 +56,5 @@ function StepOne () {
     )
 }
 
+export let randomisedMetadata = randomMetaData;
 export default StepOne;

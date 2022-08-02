@@ -4,6 +4,9 @@ import React, { useState } from 'react';
 import threedFile from '../3dFile.svg'
 import mp4SVG from '../mp4SVG.svg'
 import tick from '../tick.svg'
+import imageSVG from '../imageSVG.svg'
+import csvSVG from '../imageSVG.svg'
+import {randomisedMetadata} from './StepOne'
 
 let checkboxArray = [false, false, false]
 
@@ -13,7 +16,7 @@ const selectBox = event => {
 
     // Show/Hide Upload Boxes
     const uploadBoxes = document.querySelectorAll('.upload-box')
-    for (let i = 0; i < uploadBoxes.length; i++) {
+    for (let i = 0; i < checkboxArray.length; i++) {
         if (checkboxArray[i] === true) {
             uploadBoxes[i].style.display = 'flex' 
         } else {
@@ -43,6 +46,33 @@ function UploadBox (props) {
         </div>
     )
 }
+
+function UploadMetadata () {
+    if (randomisedMetadata === true) 
+    { 
+        return (
+            <div className='page-container upload-box'>
+            <div className='step-two-upload-asset-section'>
+                <div className='step-two-label'>Upload your CSV Meta Data Asset</div>
+                <div className='step-two-upload-container'>
+                    <div className='step-two-upload-svg'>
+                        <img src={csvSVG}/>
+                    </div>
+                    <div className='step-two-upload-main-text'>
+                        <div>Drop your CSV file here or</div>
+                        <div>Browse</div>
+                    </div>
+                    <div className='step-two-upload-secondary-text'>
+                        Max. file size is 25MB 
+                    </div>
+                </div>
+            </div>
+        </div>
+        )
+    }
+}
+
+console.log(randomisedMetadata)
 
 function StepTwo () {
 
@@ -75,8 +105,9 @@ function StepTwo () {
                 </div>
             </div>
             <UploadBox fileType="3D" svgName={threedFile}/>
-            <UploadBox fileType="2D" svgName={threedFile}/>
+            <UploadBox fileType="2D" svgName={imageSVG}/>
             <UploadBox fileType="MP4" svgName={mp4SVG}/>
+            <UploadMetadata/>
         </div>
     ) 
 }
