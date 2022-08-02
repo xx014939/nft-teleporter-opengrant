@@ -24,9 +24,9 @@ function SuccessfulDeploy () {
                             <div>Copy</div>
                         </div>
                     </div>
-                    <div className='view-experiences-button'>
+                    <a className='view-experiences-button' href='/experiences'>
                         View your NFT Experiences here
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>

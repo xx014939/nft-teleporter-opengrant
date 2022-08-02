@@ -6,6 +6,7 @@ import AccountPage from './components/AccountPage';
 import CreateCollectionPage from './components/CreateCollectionPage';
 import reportWebVitals from './reportWebVitals';
 import LoginPortal from './components/LoginPortal';
+import Experiences from './components/Experiences';
 import {
   BrowserRouter,
   Routes,
@@ -30,6 +31,7 @@ root.render(
       <Route path="/" element={<StartPage />} />
       <Route path="account" element={<AccountPage />} />
       <Route path="create-collection" element={<CreateCollectionPage />} />
+      <Route path="experiences" element={<Experiences />} />
     </Routes>
   </BrowserRouter>
 );
