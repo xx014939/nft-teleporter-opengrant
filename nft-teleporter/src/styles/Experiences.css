@@ -1,5 +1,9 @@
-body {
-    /* background-image: url('../vrBackground.svg');
-    background-repeat: no-repeat;
-    background-size: 100%; */
+.select-modal-container {
+    position: fixed;
+    width: 475px;
+    height: 600px;
+    border-radius: 25px;
+    background: #131314E5;
+    left: 35%;
+    top: 25%;
 }
