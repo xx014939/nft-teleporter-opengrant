@@ -7,6 +7,9 @@ import CreateCollectionPage from './components/CreateCollectionPage';
 import reportWebVitals from './reportWebVitals';
 import LoginPortal from './components/LoginPortal';
 import Experiences from './components/Experiences';
+import VRExperience from './components/VRExperience';
+import ARExperience from './components/ARExperience';
+import TwoDExperience from './components/TwoDExperience';
 import {
   BrowserRouter,
   Routes,
@@ -32,6 +35,9 @@ root.render(
       <Route path="account" element={<AccountPage />} />
       <Route path="create-collection" element={<CreateCollectionPage />} />
       <Route path="experiences" element={<Experiences />} />
+      <Route path="vr-experience" element={<VRExperience />} />
+      <Route path="ar-experience" element={<ARExperience />} />
+      <Route path="2d-experience" element={<TwoDExperience />} />
     </Routes>
   </BrowserRouter>
 );
