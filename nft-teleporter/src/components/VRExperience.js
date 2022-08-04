@@ -1,7 +1,9 @@
+import vrExperienceBackground from '../vrExperienceBackground.svg'
+
 function VRExperience () {
     return (
-        <div>
-            <h1 style={{color: 'white'}}>HELLO WORLD</h1>
+        <div style={{backgroundImage: `url(${vrExperienceBackground})`, backgroundSize: 'cover', height: '100vh', backgroundRepeat: 'no-repeat'}}>
+
         </div>
     )
 }

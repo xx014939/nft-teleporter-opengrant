@@ -1,7 +1,9 @@
+import arExperienceBackground from '../arExperienceBackground.svg'
+
 function ARExperience () {
     return (
-        <div>
-            <h1 style={{color: 'white'}}>HELLO WORLD</h1>
+        <div style={{backgroundImage: `url(${arExperienceBackground})`, backgroundSize: 'cover', height: '100vh', backgroundRepeat: 'no-repeat'}}>
+
         </div>
     )
 }
