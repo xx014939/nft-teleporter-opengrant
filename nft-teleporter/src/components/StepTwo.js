@@ -48,7 +48,7 @@ function UploadBox (props) {
 }
 
 function UploadMetadata () {
-    if (randomisedMetadata === true) 
+    while (randomisedMetadata === true) 
     { 
         return (
             <div className='page-container upload-box'>

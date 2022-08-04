@@ -2,7 +2,7 @@ import '../styles/StepOne.css';
 import inputSVG from '../inputSVG.svg'
 import {useState} from 'react';
 
-let randomMetaData = false
+let randomMetaData = true
 
 const selectButton = event => {
     event.currentTarget.classList.toggle('step-one-single-button-container-active');
