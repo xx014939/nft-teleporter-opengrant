@@ -11,6 +11,7 @@ import VRExperience from './components/VRExperience';
 import ARExperience from './components/ARExperience';
 import TwoDExperience from './components/TwoDExperience';
 import ThreeJS from './components/ThreeJS';
+import GLTFScene from './components/GLTFScene';
 import { Canvas, useFrame } from '@react-three/fiber';
 import {
   BrowserRouter,
@@ -40,16 +41,20 @@ root.render(
       <Route path="vr-experience" element={<VRExperience />} />
       <Route path="ar-experience" element={<ARExperience />} />
       <Route path="2d-experience" element={<TwoDExperience />} />
-      <Route path="threejs" element={
+      <Route path="gltf" element={<GLTFScene />} />
+
+      <Route path="threejs" 
+      element={
         <div style={{height: '100vh'}}>
-        <Canvas>
-          <ambientLight />
-          <pointLight position={[10, 10, 10]} />
-          <ThreeJS position={[-1.2, 0, 0]}/>
-          <ThreeJS position={[1.2, 0, 0]} />
-        </Canvas>
+          <Canvas>
+            <ambientLight />
+            <pointLight position={[10, 10, 10]} />
+            <ThreeJS position={[-1.2, 0, 0]}/>
+            <ThreeJS position={[1.2, 0, 0]} />
+          </Canvas>
         </div>
       } />
+      
     </Routes>
   </BrowserRouter>
 );

@@ -1,6 +1,8 @@
 import { createRoot } from 'react-dom/client'
 import React, { useRef, useState } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
+import { useLoader } from '@react-three/fiber'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 
 function ThreeJS(props) {
   // This reference gives us direct access to the THREE.Mesh object
