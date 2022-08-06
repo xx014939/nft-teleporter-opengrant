@@ -1,0 +1,12 @@
+.account-page-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.account-page-lhs-container {
+    width: 310px;
+    border-right: 1px solid gray;
+    height: 100vh;
+}
