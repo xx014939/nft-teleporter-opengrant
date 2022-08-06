@@ -1,5 +1,6 @@
 import Header from "./Header";
 import '../styles/AccountPage.css';
+import inputSVG from '../inputSVG.svg'
 
 function AccountPage () {
  return (
@@ -26,7 +27,29 @@ function AccountPage () {
                     </div>
                 </div>
             </div>
-            <div className="account-page-rhs-container"></div>
+            <div className="account-page-rhs-container">
+                <div className="account-page-rhs-header">
+                    <h2>Account</h2>
+                </div>
+                <div className="account-page-rhs-general-info">
+                    <div className="account-page-title">
+                        General Info
+                    </div>
+                    <div className="account-page-subtitle">
+                        Profile Picture
+                    </div>
+                    <div className="account-page-profile-photo"></div>
+                    <div className='account-page-form'>
+                        <div className='account-page-input-container'>
+                            <div className='account-page-input-label'>Name (NFT Collection)</div>
+                            <div className='account-page-input-subcontainer'>
+                                <div><img src={inputSVG}/></div>
+                                <input type="text" placeholder='Name' label="Enter NFT Collection's Name"></input>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
          </div>
      </div>
  );

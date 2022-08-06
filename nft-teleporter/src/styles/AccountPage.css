@@ -10,3 +10,119 @@
     border-right: 1px solid gray;
     height: 100vh;
 }
+
+.account-page-rhs-container {
+    padding-left: 75px;
+}
+
+.account-page-rhs-header {
+    padding-top: 175px;
+}
+
+.account-page-rhs-header h2 {
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 35px;
+    line-height: 43px;
+    color: #FFFFFF;
+}
+
+.account-page-rhs-general-info {
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 600;
+    color: #FFFFFF;
+}
+
+.account-page-title {
+    font-size: 25px;
+    line-height: 31px;
+    padding-top: 75px;
+}
+
+.account-page-subtitle {
+    padding-top: 40px;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.account-page-profile-photo {
+    margin-top: 20px;
+    height: 135px;
+    width: 135px;
+    border-radius: 50%;
+    background-color: #D9D9D9;
+}
+
+.account-page-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Gilroy';
+}
+
+.account-page-form input[type=text] {
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 0px 10px 10px 0px;
+    border-left: none;
+    width: 455px;
+    padding: 15px;
+    margin-top: 15px;
+    color: #ffffff;
+    background-color: #000000;
+    font-family: 'Gilroy';
+}
+
+.account-page-input-container{
+    width: 100%;
+}
+
+.account-page-input-subcontainer input[type=text]:focus {
+    outline-width: 0;
+}
+
+.account-page-heading-container {
+    width: 100%;
+    padding-left: 510px;
+    margin-top: 90px;
+}
+
+.account-page-input-label {
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15px;
+    color: #FFFFFF;
+}
+
+.continue-button-container {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-top: 90px;
+    margin-bottom: 130px;
+    padding-left: 255px;
+}
+
+.account-page-input-subcontainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.account-page-input-subcontainer div:first-child{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 15px;
+    padding-left: 15px;
+    height: 46px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 10px 0px 0px 10px;
+    border-right: none;
+}
