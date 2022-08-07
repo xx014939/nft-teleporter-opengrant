@@ -69,7 +69,7 @@
 
 .account-page-form input[type=text] {
     border: none;
-    width: 330px;
+    width: 360px;
     padding: 15px;
     color: #ffffff;
     background-color: #000000;
@@ -147,4 +147,14 @@
     border-radius: 0px 10px 10px 0px;
     border-right: none;
     padding-right: 17px;
+}
+
+.password-input {
+    width: 100%;
+    border-radius: 10px 0px 0px 10px;
+    border: none;
+    background: #000000;
+    margin-top: 0.5px;
+    color: #ffffff;
+    padding-left: 21px;
 }

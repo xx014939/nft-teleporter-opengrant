@@ -1,22 +1,35 @@
+import '../styles/AccountPage.css';
 import Header from "./Header";
 import Footer from "./Footer"
-import '../styles/AccountPage.css';
 import userSVG from '../userSVG.svg'
 import idSVG from '../idSVG.svg'
 import emailSVG from '../emailSVG.svg'
 import hashSVG from '../hashSVG.svg'
 import pencilSVG from '../pencilSVG.svg'
+import passwordSVG from '../passwordSVG.svg'
 
 function AccountInputBox (props) {
     return (
         <div className='account-page-input-container'>
-        <div className='account-page-input-label'>{props.Label}</div>
-        <div className='account-page-input-subcontainer'>
-            <div className="account-page-icon"><img src={props.Icon}/></div>
-            <input type="text" placeholder={props.Label} label={props.Description}></input>
-            <div className="account-page-icon-rhs"><img src={pencilSVG}/></div>
+            <div className='account-page-input-label'>{props.Label}</div>
+            <div className='account-page-input-subcontainer'>
+                <div className="account-page-icon"><img src={props.Icon}/></div>
+                <input type="text" placeholder={props.Label} label={props.Description}></input>
+                <div className="account-page-icon-rhs"><img src={pencilSVG}/></div>
+            </div>
         </div>
-    </div>
+    )
+}
+
+function PasswordInputBox (props) {
+    return (
+        <div className='account-page-input-container' style={{marginTop: '40px'}}>
+            <div className='account-page-input-label'>{props.Label}</div>
+            <div className='account-page-input-subcontainer'>
+                <input className='password-input' type="text"></input>
+                <div className="account-page-icon-rhs" style={{marginTop: '0.5px'}}><img src={passwordSVG}/></div>
+            </div>
+        </div>
     )
 }
 
@@ -74,6 +87,9 @@ function AccountPage () {
                     <div className="account-page-subtitle">
                         Password
                     </div>
+                    <PasswordInputBox Label = "Current Password" />
+                    <PasswordInputBox Label = "New Password" />
+                    <PasswordInputBox Label = "Confirm New Password" />
                 </div>
             </div>
          </div>
