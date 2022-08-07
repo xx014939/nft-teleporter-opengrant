@@ -29,7 +29,6 @@ function showPassword (inputNumber) {
     } else {
         inputs[inputNumber - 1].type = 'text'
     }
-    console.log(inputNumber)
 }
 
 function PasswordInputBox (props) {
