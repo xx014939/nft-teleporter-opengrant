@@ -6,6 +6,19 @@ import emailSVG from '../emailSVG.svg'
 import hashSVG from '../hashSVG.svg'
 import pencilSVG from '../pencilSVG.svg'
 
+function AccountInputBox (props) {
+    return (
+        <div className='account-page-input-container'>
+        <div className='account-page-input-label'>{props.Label}</div>
+        <div className='account-page-input-subcontainer'>
+            <div className="account-page-icon"><img src={props.Icon}/></div>
+            <input type="text" placeholder={props.Label} label={props.Description}></input>
+            <div className="account-page-icon-rhs"><img src={pencilSVG}/></div>
+        </div>
+    </div>
+    )
+}
+
 function AccountPage () {
  return (
      <div>
@@ -44,48 +57,15 @@ function AccountPage () {
                     </div>
                     <div className="account-page-profile-photo"></div>
                     <div className='account-page-form'>
-                        <div className='account-page-input-container'>
-                            <div className='account-page-input-label'>Username</div>
-                            <div className='account-page-input-subcontainer'>
-                                <div className="account-page-icon"><img src={userSVG}/></div>
-                                <input type="text" placeholder='Username' label="Enter NFT Collection's Name"></input>
-                                <div className="account-page-icon-rhs"><img src={pencilSVG}/></div>
-                            </div>
-                        </div>
-                        <div className='account-page-input-container'>
-                            <div className='account-page-input-label'>Wallet Address</div>
-                            <div className='account-page-input-subcontainer'>
-                                <div className="account-page-icon"><img src={hashSVG}/></div>
-                                <input type="text" placeholder='Wallet Address' label="Enter NFT Collection's Name"></input>
-                                <div className="account-page-icon-rhs"><img src={pencilSVG}/></div>
-                            </div>
-                        </div>
+                        <AccountInputBox Label = "Username" Description = "" Icon = {userSVG}/>
+                        <AccountInputBox Label = "Wallet Address" Description = "" Icon = {hashSVG}/>
                         <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'nowrap', justifyContent: 'space-between'}}>
-                            <div className='account-page-input-container' style={{marginRight: '60px'}}>
-                                <div className='account-page-input-label'>First Name</div>
-                                <div className='account-page-input-subcontainer'>
-                                    <div className="account-page-icon"><img src={idSVG}/></div>
-                                    <input type="text" placeholder='First Name' label="Enter NFT Collection's Name"></input>
-                                    <div className="account-page-icon-rhs"><img src={pencilSVG}/></div>
-                                </div>
+                            <div style={{marginRight: '40px'}}>
+                                <AccountInputBox Label = "First Name" Description = "" Icon = {idSVG}/>
                             </div>
-                            <div className='account-page-input-container'>
-                                <div className='account-page-input-label'>Last Name</div>
-                                <div className='account-page-input-subcontainer'>
-                                    <div className="account-page-icon"><img src={idSVG}/></div>
-                                    <input type="text" placeholder='Last Name' label="Enter NFT Collection's Name"></input>
-                                    <div className="account-page-icon-rhs"><img src={pencilSVG}/></div>
-                                </div>
-                            </div>
+                            <AccountInputBox Label = "Last Name" Description = "" Icon = {idSVG}/>
                         </div>
-                        <div className='account-page-input-container'>
-                            <div className='account-page-input-label'>Email Address</div>
-                            <div className='account-page-input-subcontainer'>
-                                <div className="account-page-icon"><img src={emailSVG}/></div>
-                                <input type="text" placeholder='Email Address' label="Enter NFT Collection's Name"></input>
-                                <div className="account-page-icon-rhs"><img src={pencilSVG}/></div>
-                            </div>
-                        </div>
+                        <AccountInputBox Label = "Email Address" Description = "" Icon = {emailSVG}/>
                     </div>
                     <div className="account-page-title">
                         Security
