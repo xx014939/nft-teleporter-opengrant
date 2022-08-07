@@ -1,4 +1,5 @@
 import Header from "./Header";
+import Footer from "./Footer"
 import '../styles/AccountPage.css';
 import userSVG from '../userSVG.svg'
 import idSVG from '../idSVG.svg'
@@ -76,6 +77,9 @@ function AccountPage () {
                 </div>
             </div>
          </div>
+         <div style={{paddingLeft: '55px', color: "#FFFFFF"}}>
+            <Footer/>
+        </div>
      </div>
  );
 }
