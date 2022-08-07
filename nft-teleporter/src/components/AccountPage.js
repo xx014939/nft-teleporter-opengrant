@@ -60,12 +60,22 @@ function AccountPage () {
                                 <div className="account-page-icon-rhs"><img src={pencilSVG}/></div>
                             </div>
                         </div>
-                        <div className='account-page-input-container'>
-                            <div className='account-page-input-label'>Contact Name</div>
-                            <div className='account-page-input-subcontainer'>
-                                <div className="account-page-icon"><img src={idSVG}/></div>
-                                <input type="text" placeholder='Contact Name' label="Enter NFT Collection's Name"></input>
-                                <div className="account-page-icon-rhs"><img src={pencilSVG}/></div>
+                        <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'nowrap', justifyContent: 'space-between'}}>
+                            <div className='account-page-input-container' style={{marginRight: '60px'}}>
+                                <div className='account-page-input-label'>First Name</div>
+                                <div className='account-page-input-subcontainer'>
+                                    <div className="account-page-icon"><img src={idSVG}/></div>
+                                    <input type="text" placeholder='First Name' label="Enter NFT Collection's Name"></input>
+                                    <div className="account-page-icon-rhs"><img src={pencilSVG}/></div>
+                                </div>
+                            </div>
+                            <div className='account-page-input-container'>
+                                <div className='account-page-input-label'>Last Name</div>
+                                <div className='account-page-input-subcontainer'>
+                                    <div className="account-page-icon"><img src={idSVG}/></div>
+                                    <input type="text" placeholder='Last Name' label="Enter NFT Collection's Name"></input>
+                                    <div className="account-page-icon-rhs"><img src={pencilSVG}/></div>
+                                </div>
                             </div>
                         </div>
                         <div className='account-page-input-container'>
@@ -76,6 +86,12 @@ function AccountPage () {
                                 <div className="account-page-icon-rhs"><img src={pencilSVG}/></div>
                             </div>
                         </div>
+                    </div>
+                    <div className="account-page-title">
+                        Security
+                    </div>
+                    <div className="account-page-subtitle">
+                        Password
                     </div>
                 </div>
             </div>
