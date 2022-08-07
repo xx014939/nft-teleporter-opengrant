@@ -22,13 +22,25 @@ function AccountInputBox (props) {
     )
 }
 
+function showPassword (inputNumber) {
+    let inputs = document.querySelectorAll('.password-input')
+    if (inputs[inputNumber - 1].type === 'text') {
+        inputs[inputNumber - 1].type = 'password'
+    } else {
+        inputs[inputNumber - 1].type = 'text'
+    }
+    console.log(inputNumber)
+}
+
 function PasswordInputBox (props) {
     return (
         <div className='account-page-input-container' style={{marginTop: '40px'}}>
             <div className='account-page-input-label'>{props.Label}</div>
             <div className='account-page-input-subcontainer'>
                 <input className='password-input' type="password"></input>
-                <div className="account-page-icon-rhs" style={{marginTop: '0.5px'}}><img src={passwordSVG} alt="Password icon"/></div>
+                <div className="account-page-icon-rhs show-password" style={{marginTop: '0.5px'}} onClick={() => {showPassword(props.Number)}}>
+                    <img src={passwordSVG} alt="Password icon"/>
+                </div>
             </div>
         </div>
     )
@@ -94,13 +106,13 @@ function AccountPage () {
                     <div className="account-page-subtitle">
                         Password
                     </div>
-                    <PasswordInputBox Label = "Current Password" />
-                    <PasswordInputBox Label = "New Password" />
+                    <PasswordInputBox Label = "Current Password" Number = {1} />
+                    <PasswordInputBox Label = "New Password" Number = {2} />
                     <div className='password-info-container'>
                         <div className='password-info-icon'><img src={infoSVGGray}/></div>
                         <div className='password-info-text'>Your new password must include one lower case and one upper case letter and it must be 8 characters long. </div>
                     </div>
-                    <PasswordInputBox Label = "Confirm New Password" />
+                    <PasswordInputBox Label = "Confirm New Password" Number = {3} />
                     <a className='account-page-cta'>Update New Password</a>
                 </div>
             </div>
