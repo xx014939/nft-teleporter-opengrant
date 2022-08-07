@@ -7,6 +7,7 @@ import emailSVG from '../emailSVG.svg'
 import hashSVG from '../hashSVG.svg'
 import pencilSVG from '../pencilSVG.svg'
 import passwordSVG from '../passwordSVG.svg'
+import infoSVGGray from '../infoSVGGray.svg'
 
 function AccountInputBox (props) {
     return (
@@ -26,7 +27,7 @@ function PasswordInputBox (props) {
         <div className='account-page-input-container' style={{marginTop: '40px'}}>
             <div className='account-page-input-label'>{props.Label}</div>
             <div className='account-page-input-subcontainer'>
-                <input className='password-input' type="text"></input>
+                <input className='password-input' type="password"></input>
                 <div className="account-page-icon-rhs" style={{marginTop: '0.5px'}}><img src={passwordSVG} alt="Password icon"/></div>
             </div>
         </div>
@@ -80,6 +81,12 @@ function AccountPage () {
                             <AccountInputBox Label = "Last Name" Description = "" Icon = {idSVG}/>
                         </div>
                         <AccountInputBox Label = "Email Address" Description = "" Icon = {emailSVG}/>
+                        <div className='account-page-input-container'>
+                            <div className='account-page-input-label'>Phone No</div>
+                            <div className='account-page-input-subcontainer'>
+                                <input type="text" placeholder="Phone No"></input>
+                            </div>
+                        </div>
                     </div>
                     <div className="account-page-title">
                         Security
@@ -89,7 +96,12 @@ function AccountPage () {
                     </div>
                     <PasswordInputBox Label = "Current Password" />
                     <PasswordInputBox Label = "New Password" />
+                    <div className='password-info-container'>
+                        <div className='password-info-icon'><img src={infoSVGGray}/></div>
+                        <div className='password-info-text'>Your new password must include one lower case and one upper case letter and it must be 8 characters long. </div>
+                    </div>
                     <PasswordInputBox Label = "Confirm New Password" />
+                    <a className='account-page-cta'>Update New Password</a>
                 </div>
             </div>
          </div>

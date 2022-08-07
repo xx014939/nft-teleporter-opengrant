@@ -85,6 +85,10 @@
     outline-width: 0;
 }
 
+.account-page-input-subcontainer input[type=password]:focus {
+    outline-width: 0;
+}
+
 .account-page-heading-container {
     width: 100%;
     padding-left: 510px;
@@ -158,4 +162,43 @@
     margin-top: 0.5px;
     color: #ffffff;
     padding-left: 21px;
+}
+
+.password-info-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    max-width: 370px;
+    margin-top: -10px;
+}
+
+.password-info-icon {
+    margin-right: 8px;
+}
+
+.password-info-icon img path {
+    fill: gray;
+}
+
+.password-info-text {
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: gray;
+    text-align: left;
+}
+
+.account-page-cta {
+    font-family: "Moderna";
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    background: linear-gradient(180deg, #439CFB 0%, #F187FB 100%);
+    box-shadow: 0px 5px 30px rgba(165, 144, 251, 0.2);
+    border-radius: 10px;
+    padding: 15px 27px;
+    cursor: pointer;
+    color: #000000;
 }
