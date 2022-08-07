@@ -126,9 +126,19 @@ function AccountPage () {
                     <PasswordInputBox Label = "Confirm New Password" Number = {3} />
                     <a className='account-page-cta' href='#'>Update New Password</a>
                 </div>
-            </div>
-            <div>
-                <a className='account-page-cta'>Verify Phone No</a>
+                <div>
+                    <div className="account-page-subtitle" style={{marginTop: '88px', color: '#ffffff', marginBottom: '15px'}}>
+                        2 Factor Authentication
+                    </div>
+                    <div className='authentication-message'>
+                        We&#39;ll send you a text with a code to your provided mobile number below,whenever you sign in to your account.
+                    </div>
+                    <div style={{marginTop: ''}}>
+                        <div className='account-page-input-label'>Phone No</div>
+                        <PhoneInputBox/>
+                    </div>
+                    <a className='account-page-cta'>Verify Phone No</a>
+                </div>
             </div>
          </div>
          <div style={{paddingLeft: '55px', color: "#FFFFFF", borderTop: '1px solid gray'}}>

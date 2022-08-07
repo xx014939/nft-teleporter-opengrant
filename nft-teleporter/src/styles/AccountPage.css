@@ -44,9 +44,12 @@
 }
 
 .account-page-subtitle {
-    padding-top: 40px;
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 600;
     font-size: 16px;
     line-height: 20px;
+    padding-top: 40px;
 }
 
 .account-page-profile-photo {
@@ -215,10 +218,6 @@
     justify-content: space-between;
 }
 
-.PhoneInputCountrySelectArrow {
-    /* display: none !important; */
-}
-
 .PhoneInputCountryIcon {
     margin-right: 15px;
 }
@@ -247,4 +246,13 @@
 
 .PhoneInputInput:focus {
     outline: none;
+}
+
+.authentication-message {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    color: #FFFFFF;
+    opacity: 0.5;
 }
