@@ -93,7 +93,7 @@ function AccountPage () {
                 </div>
             </div>
          </div>
-         <div style={{paddingLeft: '55px', color: "#FFFFFF"}}>
+         <div style={{paddingLeft: '55px', color: "#FFFFFF", borderTop: '1px solid gray'}}>
             <Footer/>
         </div>
      </div>
