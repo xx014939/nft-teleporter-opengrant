@@ -1,4 +1,7 @@
 import '../styles/AccountPage.css';
+import 'react-phone-number-input/style.css'
+import React, {useState} from 'react';
+import PhoneInput from 'react-phone-number-input'
 import Header from "./Header";
 import Footer from "./Footer"
 import userSVG from '../userSVG.svg'
@@ -8,6 +11,17 @@ import hashSVG from '../hashSVG.svg'
 import pencilSVG from '../pencilSVG.svg'
 import passwordSVG from '../passwordSVG.svg'
 import infoSVGGray from '../infoSVGGray.svg'
+
+function PhoneInputBox() {
+    const [value, setValue] = useState()
+    return (
+      <PhoneInput
+        defaultCountry="US"
+        placeholder="Phone Number"
+        value={value}
+        onChange={setValue}/>
+    )
+  }
 
 function AccountInputBox (props) {
     return (
@@ -93,10 +107,8 @@ function AccountPage () {
                         </div>
                         <AccountInputBox Label = "Email Address" Description = "" Icon = {emailSVG}/>
                         <div className='account-page-input-container'>
-                            <div className='account-page-input-label'>Phone No</div>
-                            <div className='account-page-input-subcontainer'>
-                                <input type="text" placeholder="Phone No"></input>
-                            </div>
+                            <div className='account-page-input-label' style={{marginBottom: '15px'}}>Phone No</div>
+                            <PhoneInputBox/>
                         </div>
                     </div>
                     <div className="account-page-title">
@@ -112,8 +124,11 @@ function AccountPage () {
                         <div className='password-info-text'>Your new password must include one lower case and one upper case letter and it must be 8 characters long. </div>
                     </div>
                     <PasswordInputBox Label = "Confirm New Password" Number = {3} />
-                    <a className='account-page-cta'>Update New Password</a>
+                    <a className='account-page-cta' href='#'>Update New Password</a>
                 </div>
+            </div>
+            <div>
+                <a className='account-page-cta'>Verify Phone No</a>
             </div>
          </div>
          <div style={{paddingLeft: '55px', color: "#FFFFFF", borderTop: '1px solid gray'}}>
