@@ -13,9 +13,9 @@ function AccountInputBox (props) {
         <div className='account-page-input-container'>
             <div className='account-page-input-label'>{props.Label}</div>
             <div className='account-page-input-subcontainer'>
-                <div className="account-page-icon"><img src={props.Icon}/></div>
+                <div className="account-page-icon"><img src={props.Icon} alt="Account icon"/></div>
                 <input type="text" placeholder={props.Label} label={props.Description}></input>
-                <div className="account-page-icon-rhs"><img src={pencilSVG}/></div>
+                <div className="account-page-icon-rhs"><img src={pencilSVG} alt="Pencil icon"/></div>
             </div>
         </div>
     )
@@ -27,7 +27,7 @@ function PasswordInputBox (props) {
             <div className='account-page-input-label'>{props.Label}</div>
             <div className='account-page-input-subcontainer'>
                 <input className='password-input' type="text"></input>
-                <div className="account-page-icon-rhs" style={{marginTop: '0.5px'}}><img src={passwordSVG}/></div>
+                <div className="account-page-icon-rhs" style={{marginTop: '0.5px'}}><img src={passwordSVG} alt="Password icon"/></div>
             </div>
         </div>
     )
