@@ -59,6 +59,28 @@ function PasswordInputBox (props) {
     )
 }
 
+function CollectionCard() {
+    return (
+        <div className='nft-collections-card-container'>
+            <div className='nft-collections-card-image'>
+                <image/>
+            </div>
+            <div className='nft-collections-card-chains'>
+                <div className='nft-collections-card-chains-icon'></div>
+                <div className='nft-collections-card-chains-icon'></div>
+            </div>
+            <div className='nft-collections-card-details'>
+                <div>NAME</div>
+                <div>TOKEN SYMBOL</div>
+            </div>
+            <div className='nft-collection-card-price'>
+                <div>1 ETH</div>
+                <div>Buy Here</div>
+            </div>
+        </div>
+    )
+}
+
 function AccountPage () {
  return (
      <div>
@@ -130,14 +152,45 @@ function AccountPage () {
                     <div className="account-page-subtitle" style={{marginTop: '88px', color: '#ffffff', marginBottom: '15px'}}>
                         2 Factor Authentication
                     </div>
-                    <div className='authentication-message'>
-                        We&#39;ll send you a text with a code to your provided mobile number below,whenever you sign in to your account.
+                    <div className='password-info-text' style={{width: '400px', marginBottom: '45px'}}>
+                        We&#39;ll send you a text with a code to your provided mobile number below, whenever you sign in to your account.
                     </div>
                     <div style={{marginTop: ''}}>
                         <div className='account-page-input-label'>Phone No</div>
                         <PhoneInputBox/>
                     </div>
-                    <a className='account-page-cta'>Verify Phone No</a>
+                    <div style={{marginTop: '40px'}}>
+                        <a className='account-page-cta'>Verify Phone No</a>
+                    </div>
+                </div>
+                <div className='nft-collections-container'>
+                    <div className='nft-collections-header-container'>
+                    <div className='nft-collections-header'>
+                        <h2>NFT Collections</h2>
+                    </div>
+                        <div className='nft-collections-categories-container'>
+                            <div className='nft-collections-category-container'>
+                                <div className='nft-collections-category'>All</div>
+                            </div>
+                            <div className='nft-collections-category-container'>
+                                <div className='nft-collections-category'>VR/3D</div>
+                            </div>
+                            <div className='nft-collections-category-container'>
+                                <div className='nft-collections-category'>AR</div>
+                            </div>
+                            <div className='nft-collections-category-container'>
+                                <div className='nft-collections-category'>2D</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='nft-collections-grid'>
+                        <CollectionCard/>
+                        <CollectionCard/>
+                        <CollectionCard/>
+                        <CollectionCard/>
+                        <CollectionCard/>
+                        <CollectionCard/>
+                    </div>
                 </div>
             </div>
          </div>

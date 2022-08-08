@@ -256,3 +256,64 @@
     color: #FFFFFF;
     opacity: 0.5;
 }
+
+.nft-collections-container {
+    display: flex;
+    flex-direction: column;
+    color: #ffffff;
+    margin-top: 127px;
+}
+
+.nft-collections-header h2 {
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 31px;
+    color: #FFFFFF;
+}
+
+.nft-collections-header-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+
+.nft-collections-categories-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nft-collections-category {
+    font-family: 'Moderna';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+    color: #FFFFFF;
+    background-color: #000000;
+    padding: 12px 30px;
+    box-shadow: 0px 5px 30px rgba(165, 144, 251, 0.2);
+    border-radius: 10px;
+}
+
+.nft-collections-category-container {
+    background: gray;
+    padding: 1px;
+    border-radius: 10px;
+    margin-right: 16px;
+    cursor: pointer;
+}
+
+.nft-collections-category-container:hover {
+    background: linear-gradient(180deg, #439CFB 0%, #F187FB 100%);
+    padding: 1px;
+}
+
+.nft-collections-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
