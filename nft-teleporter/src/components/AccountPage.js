@@ -14,6 +14,7 @@ import infoSVGGray from '../infoSVGGray.svg'
 import nftcollectionSVG from '../nftcollectionSVG.svg'
 import solanaSVG from '../solanaSVG.svg'
 import ctaArrowSVG from '../ctaArrowSVG.svg'
+import leftArrowSVG from '../leftArrowSVG.svg'
 
 function PhoneInputBox() {
     const [value, setValue] = useState()
@@ -94,8 +95,10 @@ function AccountPage () {
          <div className="account-page-container">
             <div className="account-page-lhs-container">
                 <div className="account-page-lhs-back-button">
-                    <div>Icon</div>
-                    <div>BACK</div>
+                    <div>
+                        <img src={leftArrowSVG} />
+                    </div>
+                    <div>Back</div>
                 </div>
                 <div className="account-page-lhs-progress-bar">
                     <div className="account-page-lhs-progress-bar-element">

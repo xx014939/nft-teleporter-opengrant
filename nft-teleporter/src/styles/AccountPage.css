@@ -12,6 +12,35 @@
     height: 100vh;
     padding-top: 140px;
     min-height: 3300px;
+    color: #FFFFFF;
+}
+
+.account-page-lhs-back-button {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    padding-top: 50px;
+
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 15px;
+    color: #FFFFFF;
+}
+
+.account-page-lhs-back-button div:first-child {
+    background-color:#131314;
+    border-radius: 50%;
+    padding: 11px;
+    height: 39px;
+    width: 39px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 17px;
 }
 
 .account-page-rhs-container {
