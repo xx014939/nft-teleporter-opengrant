@@ -317,3 +317,93 @@
     display: grid;
     grid-template-columns: repeat(3, 2fr);
 }
+
+.nft-collections-card-container {
+    background-color: #1E1E1E;
+    border-radius: 30px;
+    margin-right: 27px;
+    margin-bottom: 27px;
+    padding: 7px;
+}
+
+.nft-collection-card-image-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 3px;
+    border-radius: 30px;
+}
+
+.nft-collections-card-details {
+    padding-left: 15px;
+}
+
+.nft-collections-card-details div:first-child {
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFFFFF;
+    margin-top: 25px;
+}
+
+.nft-collections-card-details div {
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15px;
+    color: rgba(255, 255, 255, 0.3);
+    margin-top: 10px;
+}
+
+.nft-collection-card-price {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 24px;
+    padding-top: 24px;
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFFFFF;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.nft-collection-card-price div:first-child {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nft-collection-card-price div:first-child div:first-child {
+    margin-right: 12px;
+}
+
+.nft-collection-card-cta {
+    background: linear-gradient(180deg, #439CFB 0%, #F187FB 100%);
+    box-shadow: 0px 5px 30px rgba(165, 144, 251, 0.2);
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 13px 10px;
+
+    font-family: 'Moderna';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+    color: #050505;
+
+    display: flex;
+    align-items: center;
+}
+
+.nft-collection-card-cta img {
+    margin-left: 5px;
+    max-width: 5px;
+}

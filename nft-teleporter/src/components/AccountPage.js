@@ -11,6 +11,9 @@ import hashSVG from '../hashSVG.svg'
 import pencilSVG from '../pencilSVG.svg'
 import passwordSVG from '../passwordSVG.svg'
 import infoSVGGray from '../infoSVGGray.svg'
+import nftcollectionSVG from '../nftcollectionSVG.svg'
+import solanaSVG from '../solanaSVG.svg'
+import ctaArrowSVG from '../ctaArrowSVG.svg'
 
 function PhoneInputBox() {
     const [value, setValue] = useState()
@@ -62,20 +65,23 @@ function PasswordInputBox (props) {
 function CollectionCard() {
     return (
         <div className='nft-collections-card-container'>
-            <div className='nft-collections-card-image'>
-                <image/>
+             <div className='nft-collection-card-image-container'>
+                <img src={nftcollectionSVG}/>
             </div>
             <div className='nft-collections-card-chains'>
                 <div className='nft-collections-card-chains-icon'></div>
                 <div className='nft-collections-card-chains-icon'></div>
             </div>
             <div className='nft-collections-card-details'>
-                <div>NAME</div>
+                <div>Collection Name</div>
                 <div>TOKEN SYMBOL</div>
             </div>
             <div className='nft-collection-card-price'>
-                <div>1 ETH</div>
-                <div>Buy Here</div>
+                <div>
+                    <div><img src={solanaSVG}/></div>
+                    <div>1 SOL</div>
+                </div>
+                <div className='nft-collection-card-cta'>View Chains<img src={ctaArrowSVG}/></div>
             </div>
         </div>
     )
