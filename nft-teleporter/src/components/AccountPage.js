@@ -102,15 +102,15 @@ function AccountPage () {
                 </div>
                 <div className="account-page-lhs-progress-bar">
                     <div className="account-page-lhs-progress-bar-element">
-                        <div>Icon</div>
+                        <div>1</div>
                         <div>General Info</div>
                     </div>
                     <div className="account-page-lhs-progress-bar-element">
-                        <div>Icon</div>
+                        <div>2</div>
                         <div>Security</div>
                     </div>
                     <div className="account-page-lhs-progress-bar-element">
-                        <div>Icon</div>
+                        <div>3</div>
                         <div>NFT Collections</div>
                     </div>
                 </div>

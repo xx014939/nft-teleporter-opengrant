@@ -19,8 +19,9 @@
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     padding-top: 50px;
+    padding-left: 53px;
 
     font-family: 'Gilroy';
     font-style: normal;
@@ -41,6 +42,49 @@
     align-items: center;
     cursor: pointer;
     margin-right: 17px;
+}
+
+.account-page-lhs-progress-bar {
+    margin-top: 92px;
+}
+
+.account-page-lhs-progress-bar-element {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 93px;
+    margin-bottom: 16px;
+    cursor: pointer;
+}
+
+.account-page-lhs-progress-bar-element div {
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFFFFF;
+}
+
+.account-page-lhs-progress-bar-element div:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #161616;
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.5);
+    border-radius: 25px;
+    height: 31px;
+    width: 31px;
+    padding: 8px;
+    margin-right: 16px;
+
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 16px;
 }
 
 .account-page-rhs-container {
