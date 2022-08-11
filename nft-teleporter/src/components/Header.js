@@ -13,7 +13,7 @@ function Header () {
             </div>
             <div className='header-create-collection-container'>
                 <div className='header-create-collection-inner'>
-                    <a href='#'>Create Collection</a>
+                    <a href='/create-collection'>Create Collection</a>
                 </div>
             </div>
         </div>
