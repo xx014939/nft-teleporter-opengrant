@@ -1,3 +1,74 @@
+.step-four-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.step-four-title {
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 35px;
+    line-height: 37px;
+}
+
+.step-four-container input[type=text] {
+    border-radius: 0px 10px 10px 0px;
+    border: none;
+    width: 455px;
+    padding: 15px;
+    color: #ffffff;
+    background-color: #000000;
+    font-family: 'Gilroy';
+}
+
+.step-four-input-container {
+    width: 100%;
+}
+
+.step-four-container input[type=text]:focus {
+    outline-width: 0;
+}
+
+.step-four-input-subcontainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    padding: 1px;
+    background: linear-gradient(180deg, rgba(67, 156, 251, 0.5) 0%, rgba(241, 135, 251, 0.5) 100%);
+    border-radius: 10px;
+    max-width: 500px;
+}
+
+.step-four-input-subcontainer div:first-child{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 15px;
+    height: 46px;
+    border-radius: 10px 0px 0px 10px;
+    border-right: none;
+    background-color: #000000;
+}
+
+
+.step-four-heading-container {
+    width: 100%;
+    padding-left: 510px;
+    margin-top: 90px;
+}
+
+.step-four-input-label {
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFFFFF;
+    margin-bottom: 15px;
+}
+
 .successful-deploy-container {
     background: linear-gradient(180deg, rgba(67, 156, 251, 0.5) 0%, rgba(241, 135, 251, 0.5) 100%);
     border-radius: 10px;
@@ -38,7 +109,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     max-width: 335px;
 
@@ -77,6 +148,11 @@
 
 .successful-deploy-info-label-container {
     margin-top: 40px;
+}
+
+.step-four-success-container {
+    display: none;
+    margin-top: 60px;
 }
 
 .copy-button-container {

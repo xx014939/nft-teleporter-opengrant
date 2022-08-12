@@ -24,6 +24,10 @@ function updateElement () {
     }
 }
 
+function hideContinueButton () {
+    document.querySelector('.continue-button-container').style.display = 'none'
+}
+
 function ProgressBar () {
 
     const [step, setStep] = useState("1");
@@ -59,6 +63,7 @@ function ProgressBar () {
             <div className='continue-button-container'>
                 <button className="continue-button" onClick={() => { updateCount(); updateElement(); setStep(`${counter}`)}}>Continue</button>
             </div>
+            {step === "4" && hideContinueButton()}
         </div>
     </div>
  );
