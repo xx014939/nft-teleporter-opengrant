@@ -1,15 +1,20 @@
 import '../styles/StepOne.css';
 import inputSVG from '../inputSVG.svg'
-import {useState} from 'react';
-
-let randomMetaData = true
+import React, {useEffect, useState} from 'react';
 
 const selectButton = event => {
     event.currentTarget.classList.toggle('step-one-single-button-container-active');
     event.currentTarget.classList.toggle('step-one-single-button-container');
   };
 
-function StepOne () {
+class StepOne extends React.Component {
+
+constructor(props) {
+    super(props);
+    this.showMetaUpload = false
+  }
+    
+render() {
     return (
         <div className='step-one-container'>
             <div className='step-one-heading-container'><h2>Basic Info</h2></div>
@@ -39,7 +44,7 @@ function StepOne () {
                             <div className='step-one-single-button-icon'>
                                 <div className='step-one-single-button-icon-inner'></div>
                             </div>
-                            <div onClick={() => {randomMetaData = true}}>Yes</div>
+                            <div onClick={() => {this.showMetaUpload = true}}>Yes</div>
                         </div>
                     </div>
                     <div className='step-one-single-button-container' onClick={selectButton}>
@@ -47,7 +52,7 @@ function StepOne () {
                             <div className='step-one-single-button-icon'>
                                 <div className='step-one-single-button-icon-inner'></div>
                             </div>
-                            <div onClick={() => {randomMetaData = false}}>No</div>
+                            <div onClick={() => {this.showMetaUpload = false}}>No</div>
                         </div>
                     </div>
                 </div>
@@ -55,6 +60,9 @@ function StepOne () {
         </div>
     )
 }
+    
 
-export let randomisedMetadata = randomMetaData;
+}
+
+
 export default StepOne;

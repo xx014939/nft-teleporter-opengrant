@@ -57,7 +57,7 @@ function ProgressBar () {
         </div>
         <div>
             {step === "1" && <StepOne/>}
-            {step === "2" && <StepTwo/>}
+            {step === "2" && <StepTwo randomisedMetaData = {false}/>}
             {step === "3" && <StepThree/>}
             {step === "4" && <StepFour/>}
             <div className='continue-button-container'>

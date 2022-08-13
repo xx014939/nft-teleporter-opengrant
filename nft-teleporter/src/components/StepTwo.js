@@ -1,12 +1,11 @@
 import '../styles/StepTwo.css'
 import '../index.css'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import threedFile from '../3dFile.svg'
 import mp4SVG from '../mp4SVG.svg'
 import tick from '../tick.svg'
 import imageSVG from '../imageSVG.svg'
 import csvSVG from '../imageSVG.svg'
-import {randomisedMetadata} from './StepOne'
 
 let checkboxArray = [false, false, false]
 
@@ -47,8 +46,8 @@ function UploadBox (props) {
     )
 }
 
-function UploadMetadata () {
-    while (randomisedMetadata === true) 
+function UploadMetadata (props) {
+    if (props.showMetaUpload === true) 
     { 
         return (
             <div className='page-container upload-box'>
@@ -72,9 +71,7 @@ function UploadMetadata () {
     }
 }
 
-console.log(randomisedMetadata)
-
-function StepTwo () {
+function StepTwo (props) {
 
     return (
         <div className='step-two-container'>
@@ -107,7 +104,7 @@ function StepTwo () {
             <UploadBox fileType="3D" svgName={threedFile}/>
             <UploadBox fileType="2D" svgName={imageSVG}/>
             <UploadBox fileType="MP4" svgName={mp4SVG}/>
-            <UploadMetadata/>
+            <UploadMetadata showMetaUpload = {props.randomisedMetaData}/>
         </div>
     ) 
 }
