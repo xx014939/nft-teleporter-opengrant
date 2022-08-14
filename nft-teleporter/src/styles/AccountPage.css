@@ -20,8 +20,9 @@
     flex-wrap: nowrap;
     align-items: center;
     justify-content: flex-start;
-    padding-top: 50px;
+    padding-top: 100px;
     padding-left: 53px;
+    text-decoration: none;
 
     font-family: 'Gilroy';
     font-style: normal;
@@ -57,6 +58,7 @@
     padding-left: 93px;
     margin-bottom: 16px;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .account-page-lhs-progress-bar-element div {

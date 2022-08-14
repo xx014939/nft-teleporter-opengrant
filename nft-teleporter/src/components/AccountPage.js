@@ -94,29 +94,29 @@ function AccountPage () {
          <div><Header/></div>
          <div className="account-page-container">
             <div className="account-page-lhs-container">
-                <div className="account-page-lhs-back-button">
+                <a href='/' className="account-page-lhs-back-button">
                     <div>
                         <img src={leftArrowSVG} />
                     </div>
                     <div>Back</div>
-                </div>
+                </a>
                 <div className="account-page-lhs-progress-bar">
-                    <div className="account-page-lhs-progress-bar-element">
-                        <div>1</div>
+                    <a className="account-page-lhs-progress-bar-element" href='#account'>
+                        <div style={{background: 'linear-gradient(180deg, #439CFB 0%, #F187FB 100%)'}}>1</div>
                         <div>General Info</div>
-                    </div>
-                    <div className="account-page-lhs-progress-bar-element">
+                    </a>
+                    <a className="account-page-lhs-progress-bar-element" href='#security'>
                         <div>2</div>
                         <div>Security</div>
-                    </div>
-                    <div className="account-page-lhs-progress-bar-element">
+                    </a>
+                    <a className="account-page-lhs-progress-bar-element" href='#nftcollections'>
                         <div>3</div>
                         <div>NFT Collections</div>
-                    </div>
+                    </a>
                 </div>
             </div>
             <div className="account-page-rhs-container">
-                <div className="account-page-rhs-header">
+                <div className="account-page-rhs-header" id='account'>
                     <h2>Account</h2>
                 </div>
                 <div className="account-page-rhs-general-info">
@@ -142,7 +142,7 @@ function AccountPage () {
                             <PhoneInputBox/>
                         </div>
                     </div>
-                    <div className="account-page-title">
+                    <div className="account-page-title" id='security'>
                         Security
                     </div>
                     <div className="account-page-subtitle">
@@ -174,7 +174,7 @@ function AccountPage () {
                 </div>
                 <div className='nft-collections-container'>
                     <div className='nft-collections-header-container'>
-                    <div className='nft-collections-header'>
+                    <div className='nft-collections-header' id='nftcollections'>
                         <h2>NFT Collections</h2>
                     </div>
                         <div className='nft-collections-categories-container'>
