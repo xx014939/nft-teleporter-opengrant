@@ -24,6 +24,16 @@ const selectBox = event => {
     }
   };
 
+function getCookie() {
+    let cookieValue = document.cookie
+    .split('; ')
+    .find((row) => row.startsWith('randomdata='))
+    ?.split('=')[1];
+    console.log(cookieValue)
+
+    return cookieValue;
+}
+
 function UploadBox (props) {
     return (
         <div className='page-container upload-box' style={{display: 'none'}}>
@@ -71,7 +81,7 @@ function UploadMetadata (props) {
     }
 }
 
-function StepTwo (props) {
+function StepTwo () {
 
     return (
         <div className='step-two-container'>
@@ -104,7 +114,7 @@ function StepTwo (props) {
             <UploadBox fileType="3D" svgName={threedFile}/>
             <UploadBox fileType="2D" svgName={imageSVG}/>
             <UploadBox fileType="MP4" svgName={mp4SVG}/>
-            <UploadMetadata showMetaUpload = {props.randomisedMetaData}/>
+            {getCookie() === 'true' && <UploadMetadata showMetaUpload = {true}/>}
         </div>
     ) 
 }
