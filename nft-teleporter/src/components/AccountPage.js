@@ -15,6 +15,7 @@ import nftcollectionSVG from '../nftcollectionSVG.svg'
 import solanaSVG from '../solanaSVG.svg'
 import ctaArrowSVG from '../ctaArrowSVG.svg'
 import leftArrowSVG from '../leftArrowSVG.svg'
+import cameraSVG from '../cameraSVG.svg'
 
 function PhoneInputBox() {
     const [value, setValue] = useState()
@@ -127,6 +128,11 @@ function AccountPage () {
                         Profile Picture
                     </div>
                     <div className="account-page-profile-photo"></div>
+                    <div className='account-page-profile-icon-container'>
+                        <div className='account-page-profile-icon-inner-container'>
+                            <img src={cameraSVG}/>
+                        </div>
+                    </div>
                     <div className='account-page-form'>
                         <AccountInputBox Label = "Username" Description = "" Icon = {userSVG}/>
                         <AccountInputBox Label = "Wallet Address" Description = "" Icon = {hashSVG}/>
