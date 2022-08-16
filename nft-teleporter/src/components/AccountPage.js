@@ -98,7 +98,7 @@ function AccountPage () {
                     <div>
                         <img src={leftArrowSVG} />
                     </div>
-                    <div>Back</div>
+                    <div>Logout</div>
                 </a>
                 <div className="account-page-lhs-progress-bar">
                     <a className="account-page-lhs-progress-bar-element" href='#account'>
