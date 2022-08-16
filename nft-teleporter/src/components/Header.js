@@ -4,9 +4,9 @@ import logo from '../logo.svg'
 function Header () {
     return (
         <div className='header-container'>
-            <div className='header-logo'>
+            <a className='header-logo' href='/'>
                 <img src={logo} />
-            </div>
+            </a>
             <div className='header-linklist'>
                 <div>About Us</div>
                 <div>How It Works</div>
