@@ -5,7 +5,7 @@ function Header () {
     return (
         <div className='transparent-header-container'>
             <div className='header-logo'>
-                <img src={logo} />
+                <img src={logo} alt=""/>
             </div>
         </div>
     )

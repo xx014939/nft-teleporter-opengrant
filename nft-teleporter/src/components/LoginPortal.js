@@ -57,7 +57,7 @@ import React, { useState } from 'react';
         {stepNumber === 3 && <ShowRegister/>}
       </div>
       <div className='rhs-container'>
-        <img src={multimedia}/>
+        <img src={multimedia} alt=""/>
       </div>
     </div>
     )

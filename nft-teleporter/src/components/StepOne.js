@@ -21,7 +21,7 @@ return (
         <div className='step-one-input-container'>
             <div className='step-one-input-label'>Name (NFT Collection)</div>
             <div className='step-one-input-subcontainer'>
-                <div><img src={inputSVG}/></div>
+                <div><img src={inputSVG} alt=""/></div>
                 <input type="text" placeholder='Name' label="Enter NFT Collection's Name"></input>
             </div>
         </div>

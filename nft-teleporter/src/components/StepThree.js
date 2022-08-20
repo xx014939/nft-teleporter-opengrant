@@ -17,19 +17,19 @@ function StepThree () {
                     <div className='step-two-checkbox-container'>
                         <div className='step-two-single-checkbox'>
                             <div className='step-two-checkbox-icon' onClick={selectBox}>
-                                <img src={tick}/>
+                                <img src={tick} alt=""/>
                             </div>
                             <div className='step-two-checkbox-label'>Ethereum</div>
                         </div>
                         <div className='step-two-single-checkbox'>
                             <div className='step-two-checkbox-icon' onClick={selectBox}>
-                                <img src={tick}/>
+                                <img src={tick} alt=""/>
                             </div>
                             <div className='step-two-checkbox-label'>Solana</div>
                         </div>
                         <div className='step-two-single-checkbox'>
                             <div className='step-two-checkbox-icon' onClick={selectBox}>
-                                <img src={tick}/>
+                                <img src={tick} alt=""/>
                             </div>
                             <div className='step-two-checkbox-label'>Hedera Hashgraph</div>
                         </div>

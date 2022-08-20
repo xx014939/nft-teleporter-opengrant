@@ -68,7 +68,7 @@ function CollectionCard() {
     return (
         <div className='nft-collections-card-container'>
              <div className='nft-collection-card-image-container'>
-                <img src={nftcollectionSVG}/>
+                <img src={nftcollectionSVG} alt="NFT Collection"/>
             </div>
             <div className='nft-collections-card-chains'>
                 <div className='nft-collections-card-chains-icon'></div>
@@ -80,7 +80,7 @@ function CollectionCard() {
             </div>
             <div className='nft-collection-card-price'>
                 <div>
-                    <div><img src={solanaSVG}/></div>
+                    <div><img src={solanaSVG} alt="Crypto Logo"/></div>
                     <div>1 SOL</div>
                 </div>
                 <div className='nft-collection-card-cta'>View Chains<img src={ctaArrowSVG}/></div>
@@ -97,7 +97,7 @@ function AccountPage () {
             <div className="account-page-lhs-container">
                 <a href='/' className="account-page-lhs-back-button">
                     <div>
-                        <img src={leftArrowSVG} />
+                        <img src={leftArrowSVG} alt=""/>
                     </div>
                     <div>Logout</div>
                 </a>
@@ -130,7 +130,7 @@ function AccountPage () {
                     <div className="account-page-profile-photo"></div>
                     <div className='account-page-profile-icon-container'>
                         <div className='account-page-profile-icon-inner-container'>
-                            <img src={cameraSVG}/>
+                            <img src={cameraSVG} alt=""/>
                         </div>
                     </div>
                     <div className='account-page-form'>
@@ -157,7 +157,7 @@ function AccountPage () {
                     <PasswordInputBox Label = "Current Password" Number = {1} />
                     <PasswordInputBox Label = "New Password" Number = {2} />
                     <div className='password-info-container'>
-                        <div className='password-info-icon'><img src={infoSVGGray}/></div>
+                        <div className='password-info-icon'><img src={infoSVGGray} alt="" /></div>
                         <div className='password-info-text'>Your new password must include one lower case and one upper case letter and it must be 8 characters long. </div>
                     </div>
                     <PasswordInputBox Label = "Confirm New Password" Number = {3} />

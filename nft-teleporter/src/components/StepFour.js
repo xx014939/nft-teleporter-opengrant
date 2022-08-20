@@ -15,18 +15,18 @@ function SuccessfulDeploy () {
         <div className="successful-deploy-container">
             <div className="successful-deploy-inner-container">
                 <div className="successful-deploy-header">
-                    <div><img src={completedBadge}/></div>
+                    <div><img src={completedBadge} alt="Deployed Smart Contract"/></div>
                     <div>Your Contract has been deployed!</div>
                 </div>
                 <div className="successful-deploy-body">
                     <div className='successful-deploy-info-label-container'>
-                        <div style={{marginRight: '7px'}}><img src={infoSVG}/></div>
+                        <div style={{marginRight: '7px'}}><img src={infoSVG} alt=""/></div>
                         <div>Please view your transaction hash below</div>
                     </div>
                     <div className="successful-deploy-transaction-id-container">
                         <div>628301fb10b951006405ba3f</div>
                         <div className='copy-button-container'>
-                            <div><img src={copySVG}/></div>
+                            <div><img src={copySVG} alt=""/></div>
                             <div>Copy</div>
                         </div>
                     </div>
@@ -46,14 +46,14 @@ function StepFour () {
             <div className='step-four-input-container'>
                 <div className='step-four-input-label'>Treasury Public Wallet Address</div>
                 <div className='step-four-input-subcontainer'>
-                    <div><img src={walletIDSVG}/></div>
+                    <div><img src={walletIDSVG} alt=""/></div>
                     <input type="text" placeholder='Wallet Address'></input>
                 </div>
             </div>
             <div className='step-four-input-container' style={{marginTop: '38px'}}>
                 <div className='step-four-input-label'>Treasury Private Wallet Key</div>
                 <div className='step-four-input-subcontainer'>
-                    <div><img src={keySVG}/></div>
+                    <div><img src={keySVG} alt=""/></div>
                     <input type="text" placeholder='Private Wallet Address'></input>
                 </div>
             </div>

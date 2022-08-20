@@ -20,7 +20,7 @@ function updateElement () {
     let elementArray = document.querySelectorAll('.progress-bar-element')
     for (let i = 0; i < counter; i++) {
         elementArray[i].classList.add('active-element')
-        stepArray[i - 1] = <img src={tick}/>
+        stepArray[i - 1] = <img src={tick} alt=""/>
     }
 }
 

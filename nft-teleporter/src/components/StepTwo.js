@@ -41,7 +41,7 @@ function UploadBox (props) {
                 <div className='step-two-label'>Upload your {props.fileType} Digital Asset</div>
                 <div className='step-two-upload-container'>
                     <div className='step-two-upload-svg'>
-                        <img src={props.svgName}/>
+                        <img src={props.svgName} alt="" />
                     </div>
                     <div className='step-two-upload-main-text'>
                         <div>Drop your {props.fileType} files here or</div>
@@ -65,7 +65,7 @@ function UploadMetadata (props) {
                 <div className='step-two-label'>Upload your CSV Meta Data Asset</div>
                 <div className='step-two-upload-container'>
                     <div className='step-two-upload-svg'>
-                        <img src={csvSVG}/>
+                        <img src={csvSVG} alt=""/>
                     </div>
                     <div className='step-two-upload-main-text'>
                         <div>Drop your CSV file here or</div>
@@ -92,19 +92,19 @@ function StepTwo () {
                     <div className='step-two-checkbox-container'>
                         <div className='step-two-single-checkbox'>
                             <div className='step-two-checkbox-icon' id="1" onClick={selectBox}>
-                                <img src={tick}/>
+                                <img src={tick} alt=""/>
                             </div>
                             <div className='step-two-checkbox-label'>3D Digital Asset</div>
                         </div>
                         <div className='step-two-single-checkbox'>
                             <div className='step-two-checkbox-icon' id="2" onClick={selectBox}>
-                                <img src={tick}/>
+                                <img src={tick} alt=""/>
                             </div>
                             <div className='step-two-checkbox-label'>2D Digital Asset</div>
                         </div>
                         <div className='step-two-single-checkbox'>
                             <div className='step-two-checkbox-icon' id="3" onClick={selectBox}>
-                                <img src={tick}/>
+                                <img src={tick} alt=""/>
                             </div>
                             <div className='step-two-checkbox-label'>MP4 Video File</div>
                         </div>

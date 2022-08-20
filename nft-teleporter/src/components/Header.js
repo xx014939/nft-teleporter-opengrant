@@ -5,7 +5,7 @@ function Header () {
     return (
         <div className='header-container'>
             <a className='header-logo' href='/'>
-                <img src={logo} />
+                <img src={logo} alt="NFT Teleporter"/>
             </a>
             <div className='header-linklist'>
                 <div>About Us</div>
