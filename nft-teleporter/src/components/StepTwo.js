@@ -1,6 +1,5 @@
 import '../styles/StepTwo.css'
 import '../index.css'
-import React, { useEffect, useState } from 'react';
 import threedFile from '../3dFile.svg'
 import mp4SVG from '../mp4SVG.svg'
 import tick from '../tick.svg'

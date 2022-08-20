@@ -1,6 +1,5 @@
 import '../styles/StepOne.css';
 import inputSVG from '../inputSVG.svg'
-import React, {useEffect, useState} from 'react';
 
 const selectButton = event => {
     event.currentTarget.classList.toggle('step-one-single-button-container-active');
