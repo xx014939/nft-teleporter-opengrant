@@ -4,8 +4,8 @@ import { Canvas, useThree } from '@react-three/fiber'
 import { Environment } from '@react-three/drei'
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
-import backgroundPNG from '../HDR/background.png'
-import background from '../HDR/background.hdr'
+// import backgroundPNG from '../HDR/background.png'
+// import background from '../HDR/background.hdr'
 import Model from '../GLTF/Model.js'
 
 const CameraController = () => {

@@ -83,7 +83,7 @@ function CollectionCard() {
                     <div><img src={solanaSVG} alt="Crypto Logo"/></div>
                     <div>1 SOL</div>
                 </div>
-                <div className='nft-collection-card-cta'>View Chains<img src={ctaArrowSVG}/></div>
+                <div className='nft-collection-card-cta'>View Chains<img src={ctaArrowSVG} alt=""/></div>
             </div>
         </div>
     )
@@ -161,7 +161,7 @@ function AccountPage () {
                         <div className='password-info-text'>Your new password must include one lower case and one upper case letter and it must be 8 characters long. </div>
                     </div>
                     <PasswordInputBox Label = "Confirm New Password" Number = {3} />
-                    <a className='account-page-cta' href='#'>Update New Password</a>
+                    <a className='account-page-cta' href='/#'>Update New Password</a>
                 </div>
                 <div>
                     <div className="account-page-subtitle" style={{marginTop: '88px', color: '#ffffff', marginBottom: '15px'}}>
@@ -175,7 +175,7 @@ function AccountPage () {
                         <PhoneInputBox/>
                     </div>
                     <div style={{marginTop: '40px'}}>
-                        <a className='account-page-cta'>Verify Phone No</a>
+                        <a href='/#' className='account-page-cta'>Verify Phone No</a>
                     </div>
                 </div>
                 <div className='nft-collections-container'>

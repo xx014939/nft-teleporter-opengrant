@@ -13,8 +13,8 @@ import React, { useState } from 'react';
           <div className='lhs-inner'>
               <div><img alt='NFT Teleporter Logo' src={logo}/></div>
               <div className="button-container">
-                  <div><a onClick={() => {setStepNumber(2)}} id="login" className='button' href='#'>Login</a></div>
-                  <div><a onClick={() => {setStepNumber(3)}} id="register" className='button' href='#'>Register</a></div>
+                  <div><a onClick={() => {setStepNumber(2)}} id="login" className='button' href='/#'>Login</a></div>
+                  <div><a onClick={() => {setStepNumber(3)}} id="register" className='button' href='/#'>Register</a></div>
               </div>
           </div>
       )
