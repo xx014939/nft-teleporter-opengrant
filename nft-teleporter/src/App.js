@@ -11,7 +11,7 @@ function App() {
         
       </div>
       <div className='rhs-container'>
-        <img src={multimedia}/>
+        <img src={multimedia} alt=""/>
       </div>
       
     </div>
