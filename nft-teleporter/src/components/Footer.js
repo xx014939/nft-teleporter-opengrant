@@ -17,9 +17,9 @@ function Footer () {
             <div className='footer-rhs'>
                 <div className='footer-link-columns'>
                     <div>Lorem Ipsum</div>
-                    <a>Link One</a>
-                    <a>Link Two</a>
-                    <a>Link Three</a>
+                    <a href='#'>Link One</a>
+                    <a href='#'>Link Two</a>
+                    <a href='#'>Link Three</a>
                 </div>
             </div>
         </div>
