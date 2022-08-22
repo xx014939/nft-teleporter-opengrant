@@ -4,18 +4,18 @@ import React, {useState} from 'react';
 import PhoneInput from 'react-phone-number-input'
 import Header from "./Header";
 import Footer from "./Footer"
-import userSVG from '../userSVG.svg'
-import idSVG from '../idSVG.svg'
-import emailSVG from '../emailSVG.svg'
-import hashSVG from '../hashSVG.svg'
-import pencilSVG from '../pencilSVG.svg'
-import passwordSVG from '../passwordSVG.svg'
-import infoSVGGray from '../infoSVGGray.svg'
-import nftcollectionSVG from '../nftcollectionSVG.svg'
-import solanaSVG from '../solanaSVG.svg'
-import ctaArrowSVG from '../ctaArrowSVG.svg'
-import leftArrowSVG from '../leftArrowSVG.svg'
-import cameraSVG from '../cameraSVG.svg'
+import userSVG from '../assets/userSVG.svg'
+import idSVG from '../assets/idSVG.svg'
+import emailSVG from '../assets/emailSVG.svg'
+import hashSVG from '../assets/hashSVG.svg'
+import pencilSVG from '../assets/pencilSVG.svg'
+import passwordSVG from '../assets/passwordSVG.svg'
+import infoSVGGray from '../assets/infoSVGGray.svg'
+import nftcollectionSVG from '../assets/nftcollectionSVG.svg'
+import solanaSVG from '../assets/solanaSVG.svg'
+import ctaArrowSVG from '../assets/ctaArrowSVG.svg'
+import leftArrowSVG from '../assets/leftArrowSVG.svg'
+import cameraSVG from '../assets/cameraSVG.svg'
 
 function PhoneInputBox() {
     const [value, setValue] = useState()
