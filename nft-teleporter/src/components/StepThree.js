@@ -1,7 +1,7 @@
 import '../styles/StepTwo.css'
 import '../styles/StepOne.css'
 import '../index.css'
-import tick from '../tick.svg'
+import tick from '../assets/tick.svg'
 
 const selectBox = event => {
     event.currentTarget.classList.toggle('step-two-checkbox-icon-active');

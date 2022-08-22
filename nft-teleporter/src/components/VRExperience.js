@@ -1,4 +1,4 @@
-import vrExperienceBackground from '../vrExperienceBackground.svg'
+import vrExperienceBackground from '../assets/vrExperienceBackground.svg'
 
 function VRExperience () {
     return (

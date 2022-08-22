@@ -1,6 +1,6 @@
-import logo from '../logo.svg';
-import multimedia from '../multimedia.svg';
-import starryBG from '../starryBG.svg'
+import logo from '../assets/logo.svg';
+import multimedia from '../assets/multimedia.svg';
+import starryBG from '../assets/starryBG.svg'
 import '../App.css';
 import React, { useState } from 'react';
 

@@ -1,10 +1,10 @@
 import '../index.css';
 import '../styles/StepFour.css';
-import completedBadge from '../completedBadge.svg';
-import infoSVG from '../infoSVG.svg';
-import copySVG from '../copySVG.svg';
-import walletIDSVG from '../walletIDSVG.svg'
-import keySVG from '../keySVG.svg'
+import completedBadge from '../assets/completedBadge.svg';
+import infoSVG from '../assets/infoSVG.svg';
+import copySVG from '../assets/copySVG.svg';
+import walletIDSVG from '../assets/walletIDSVG.svg'
+import keySVG from '../assets/keySVG.svg'
 
 function showSuccess () {
     document.querySelector('.step-four-success-container').style.display = 'block'

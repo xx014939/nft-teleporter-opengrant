@@ -1,4 +1,4 @@
-import arExperienceBackground from '../arExperienceBackground.svg'
+import arExperienceBackground from '../assets/arExperienceBackground.svg'
 
 function ARExperience () {
     return (

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/ProgressBar.css';
-import tick from '../tick.svg'
+import tick from '../assets/tick.svg'
 import StepOne from './StepOne.js';
 import StepTwo from './StepTwo';
 import StepThree from './StepThree';

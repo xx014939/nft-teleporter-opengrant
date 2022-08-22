@@ -1,10 +1,10 @@
 import '../styles/StepTwo.css'
 import '../index.css'
-import threedFile from '../3dFile.svg'
-import mp4SVG from '../mp4SVG.svg'
-import tick from '../tick.svg'
-import imageSVG from '../imageSVG.svg'
-import csvSVG from '../imageSVG.svg'
+import threedFile from '../assets/3dFile.svg'
+import mp4SVG from '../assets/mp4SVG.svg'
+import tick from '../assets/tick.svg'
+import imageSVG from '../assets/imageSVG.svg'
+import csvSVG from '../assets/imageSVG.svg'
 
 let checkboxArray = [false, false, false]
 

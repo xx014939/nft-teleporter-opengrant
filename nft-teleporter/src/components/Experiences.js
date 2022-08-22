@@ -1,6 +1,6 @@
 import TransparentHeader from "./TransparentHeader";
 import '../styles/Experiences.css';
-import bg from '../2049px.png'
+import bg from '../assets/2049px.png'
 
 function SelectExperienceModal () {
     return (
