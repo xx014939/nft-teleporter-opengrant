@@ -40,9 +40,25 @@ recordRoutes.route("/record/:id").get(function (req, res) {
 recordRoutes.route("/record/add").post(function (req, response) {
  let db_connect = dbo.getDb();
  let myobj = {
-   name: req.body.name,
-   position: req.body.position,
-   level: req.body.level,
+  personal_information: {
+    first_name: req.body.personal_information.first_name,
+    last_name: req.body.personal_information.last_name,
+    phone_number: req.body.personal_information.phone_number,
+    country_extension: req.body.personal_information.country_extension
+   },
+   account_information: {
+    username: req.body.account_information.username,
+    password: req.body.account_information.password,
+    email_address: req.body.account_information.email_address
+   },
+   wallet_information: {
+    public_key: req.body.wallet_information.public_key,
+    private_key: req.body.wallet_information.private_key,
+    wallet_chain: req.body.wallet_information.wallet_chain
+   },
+   nft_collections: [{
+    collection_name: req.body.nft_collections.collection_name
+   }]
  };
  db_connect.collection("records").insertOne(myobj, function (err, res) {
    if (err) throw err;
@@ -56,9 +72,25 @@ recordRoutes.route("/update/:id").post(function (req, response) {
  let myquery = { _id: ObjectId(req.params.id) };
  let newvalues = {
    $set: {
-     name: req.body.name,
-     position: req.body.position,
-     level: req.body.level,
+    personal_information: {
+      first_name: req.body.personal_information.first_name,
+      last_name: req.body.personal_information.last_name,
+      phone_number: req.body.personal_information.phone_number,
+      country_extension: req.body.personal_information.country_extension
+     },
+     account_information: {
+      username: req.body.account_information.username,
+      password: req.body.account_information.password,
+      email_address: req.body.account_information.email_address
+     },
+     wallet_information: {
+      public_key: req.body.wallet_information.public_key,
+      private_key: req.body.wallet_information.private_key,
+      wallet_chain: req.body.wallet_information.wallet_chain
+     },
+     nft_collections: [{
+      collection_name: req.body.nft_collections.collection_name
+     }]
    },
  };
  db_connect
