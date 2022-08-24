@@ -56,9 +56,10 @@ recordRoutes.route("/record/add").post(function (req, response) {
     private_key: req.body.wallet_information.private_key,
     wallet_chain: req.body.wallet_information.wallet_chain
    },
-   nft_collections: [{
-    collection_name: req.body.nft_collections.collection_name
-   }]
+   nft_collections: {
+    collection_name: req.body.nft_collections.collection_name,
+    collection_chains: req.body.nft_collections.collection_chains
+   }
  };
  db_connect.collection("records").insertOne(myobj, function (err, res) {
    if (err) throw err;
@@ -88,9 +89,10 @@ recordRoutes.route("/update/:id").post(function (req, response) {
       private_key: req.body.wallet_information.private_key,
       wallet_chain: req.body.wallet_information.wallet_chain
      },
-     nft_collections: [{
-      collection_name: req.body.nft_collections.collection_name
-     }]
+     nft_collections: {
+      collection_name: req.body.nft_collections.collection_name,
+      collection_chains: req.body.nft_collections.collection_chains
+     }
    },
  };
  db_connect
