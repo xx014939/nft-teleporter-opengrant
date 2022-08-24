@@ -3,6 +3,44 @@ import multimedia from '../assets/multimedia.svg';
 import starryBG from '../assets/starryBG.svg'
 import '../App.css';
 import React, { useState } from 'react';
+var bcrypt = require('bcryptjs');
+
+// Password encryption
+const password = "mypass123"
+const saltRounds = 10
+
+function generateHash () {
+    bcrypt.genSalt(saltRounds, function (saltError, salt) {
+        if (saltError) {
+          throw saltError
+        } else {
+          bcrypt.hash(password, salt, function(hashError, hash) {
+            if (hashError) {
+              throw hashError
+            } else {
+                //thisHash = hash
+                console.log('The has is here -->',hash)
+                return hash
+            }
+          })
+        }
+    })
+}
+
+const passwordEnteredByUser = "mypass1234"
+const hash = "$2a$10$W5MQpwj9iYlbmZKmec9jiOEiSrzk9vpvRo0dXUKZ0sIMIGgY2oB4W"
+let newHash = generateHash()
+console.log('new hash is -->', newHash)
+
+bcrypt.compare(passwordEnteredByUser, `${hash}`, function(error, isMatch) {
+  if (error) {
+    throw error
+  } else if (!isMatch) {
+    console.log("Password doesn't match!")
+  } else {
+    console.log("Password matches!")
+  }
+})
 
 
   function LoginPortal() {
