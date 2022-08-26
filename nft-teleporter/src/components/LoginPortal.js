@@ -3,7 +3,11 @@ import multimedia from '../assets/multimedia.svg';
 import starryBG from '../assets/starryBG.svg'
 import '../App.css';
 import React, { useState } from 'react';
-var bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs');
+
+function createUser() {
+  console.log('user')
+}
 
 // Password encryption
 const password = "mypass123"
@@ -44,6 +48,7 @@ bcrypt.compare(passwordEnteredByUser, `${hash}`, function(error, isMatch) {
 
 
   function LoginPortal() {
+
     const [stepNumber, setStepNumber] = useState(1);
 
     function RegisterOrLogin(props) {
@@ -73,15 +78,41 @@ bcrypt.compare(passwordEnteredByUser, `${hash}`, function(error, isMatch) {
     }
     
     function ShowRegister() {
+
+      async function createUser() {
+
+        // Save input values to variables
+        let emailAddress = document.getElementById('emailRegister').value 
+        let userName = document.getElementById('usernameRegister').value 
+        let password = document.getElementById('passwordRegister').value 
+
+        console.log(emailAddress, userName, password)
+
+        // Hash user password variable
+        console.log('dont be null', password)
+        const hashedPassword = await new Promise((resolve, reject) => {
+          bcrypt.hash(password, saltRounds, function(err, hash) {
+            if (err) reject(err)
+            resolve(hash)
+          });
+        })
+
+        password = hashedPassword
+      }
+
       return (
         <div className='lhs-inner-three'>
           <div><img alt='NFT Teleporter Logo' src={logo} style={{marginLeft: '-40px'}}/></div>
           <div className='lhs-inner-three-text'>
               <div><h2>Register</h2></div>
-              <div><input className='input-field' placeholder='Email' label="Email"></input></div>
-              <div><input className='input-field' placeholder='Username' label="Username"></input></div>
-              <div><input className='input-field' placeholder='Password' label="Password"></input></div>
-              <div><a href='/account' className='button'>Register</a></div>
+              <div><input className='input-field' placeholder='Email' label="Email" id='emailRegister'></input></div>
+              <div><input className='input-field' placeholder='Username' label="Username" id='usernameRegister'></input></div>
+              <div><input className='input-field' placeholder='Password' label="Password" id='passwordRegister'></input></div>
+              <div onClick={() => {createUser()}}>
+                <a href='#' className='button' id='buttonTwo'>
+                  Register
+                </a>
+              </div>
           </div>
         </div>
       )
