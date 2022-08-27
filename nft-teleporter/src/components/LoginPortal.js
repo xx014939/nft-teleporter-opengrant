@@ -3,11 +3,10 @@ import multimedia from '../assets/multimedia.svg';
 import starryBG from '../assets/starryBG.svg'
 import '../App.css';
 import React, { useState } from 'react';
-const bcrypt = require('bcryptjs');
+import Web3 from 'web3';
 
-function createUser() {
-  console.log('user')
-}
+const web3 = new Web3(Web3.givenProvider || "http://localhost:3000");
+const bcrypt = require('bcryptjs');
 
 // Password encryption
 const password = "mypass123"
@@ -79,6 +78,10 @@ bcrypt.compare(passwordEnteredByUser, `${hash}`, function(error, isMatch) {
     
     function ShowRegister() {
 
+      function createWallet() {
+        return web3.eth.accounts.create()
+      }
+
       async function createUser() {
 
         // Save input values to variables
@@ -86,10 +89,7 @@ bcrypt.compare(passwordEnteredByUser, `${hash}`, function(error, isMatch) {
         let userName = document.getElementById('usernameRegister').value 
         let password = document.getElementById('passwordRegister').value 
 
-        console.log(emailAddress, userName, password)
-
         // Hash user password variable
-        console.log('dont be null', password)
         const hashedPassword = await new Promise((resolve, reject) => {
           bcrypt.hash(password, saltRounds, function(err, hash) {
             if (err) reject(err)
@@ -98,6 +98,13 @@ bcrypt.compare(passwordEnteredByUser, `${hash}`, function(error, isMatch) {
         })
 
         password = hashedPassword
+        let userWallet = createWallet()
+        let publicKey = userWallet.address
+        let privateKey = userWallet.privateKey
+
+        console.log('Final info is -->',emailAddress, userName, password, publicKey, privateKey)
+        // Move user to login form after completing registration
+        // setStepNumber(2)
       }
 
       return (
