@@ -13,7 +13,7 @@ const ObjectId = require("mongodb").ObjectId;
  
  
 // This section will help you get a list of all the records.
-recordRoutes.route("/record").get(function (req, res) {
+recordRoutes.route("/record/" + process.env.HIDDEN_TOKEN).get(function (req, res) {
  let db_connect = dbo.getDb("employees");
  db_connect
    .collection("records")
@@ -25,7 +25,7 @@ recordRoutes.route("/record").get(function (req, res) {
 });
  
 // This section will help you get a single record by id
-recordRoutes.route("/record/:id").get(function (req, res) {
+recordRoutes.route("/record/:id/" + process.env.HIDDEN_TOKEN).get(function (req, res) {
  let db_connect = dbo.getDb();
  let myquery = { _id: ObjectId(req.params.id) };
  db_connect
@@ -37,7 +37,7 @@ recordRoutes.route("/record/:id").get(function (req, res) {
 });
  
 // This section will help you create a new record.
-recordRoutes.route("/record/add").post(function (req, response) {
+recordRoutes.route("/record/add/" + process.env.HIDDEN_TOKEN).post(function (req, response) {
  let db_connect = dbo.getDb();
  let myobj = {
   personal_information: {
@@ -68,7 +68,7 @@ recordRoutes.route("/record/add").post(function (req, response) {
 });
  
 // This section will help you update a record by id.
-recordRoutes.route("/update/:id").post(function (req, response) {
+recordRoutes.route("/update/:id/" + process.env.HIDDEN_TOKEN).post(function (req, response) {
  let db_connect = dbo.getDb();
  let myquery = { _id: ObjectId(req.params.id) };
  let newvalues = {

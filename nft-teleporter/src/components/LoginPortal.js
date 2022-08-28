@@ -4,13 +4,17 @@ import starryBG from '../assets/starryBG.svg'
 import '../App.css';
 import React, { useState } from 'react';
 import Web3 from 'web3';
+import axios from 'axios';
 
+require('dotenv').config()
 const web3 = new Web3(Web3.givenProvider || "http://localhost:3000");
 const bcrypt = require('bcryptjs');
 
 // Password encryption
 const password = "mypass123"
 const saltRounds = 10
+
+let token = process.env.REACT_APP_HIDDEN_TOKEN
 
 function generateHash () {
     bcrypt.genSalt(saltRounds, function (saltError, salt) {
@@ -103,6 +107,36 @@ bcrypt.compare(passwordEnteredByUser, `${hash}`, function(error, isMatch) {
         let privateKey = userWallet.privateKey
 
         console.log('Final info is -->',emailAddress, userName, password, publicKey, privateKey)
+
+        axios.post(`http://localhost:5000/record/add/${token}`, {
+          personal_information: {
+            first_name: "",
+            last_name: "",
+            phone_number: "",
+            country_extension: ""
+           },
+           account_information: {
+            username: userName,
+            password: password,
+            email_address: emailAddress
+           },
+           wallet_information: {
+            public_key: publicKey,
+            private_key: privateKey,
+            wallet_chain: "ETH"
+           },
+           nft_collections: {
+            collection_name: "",
+            collection_chains: ""
+           }
+        })
+        .then(res => {
+          console.log(res)
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+  
         // Move user to login form after completing registration
         // setStepNumber(2)
       }
