@@ -28,7 +28,12 @@ const registerUser = asyncHandler ( async (req, res) => {
           })
           try {
             const newUser = await user.save()
-            res.status(201).json(newUser)
+            res.status(201).json({
+                __id: user.id, 
+                name: user.username,
+                email: user.email_address,
+                token: generateToken(user._id)
+            })
           } catch (err) {
             res.status(400).json({ message: err.message })
           }
@@ -42,7 +47,10 @@ const loginUser = asyncHandler( async (req, res) => {
     const user = await User.findOne({email_address})
 
     if (user && (await bcrypt.compare(password, user.password))) {
-        res.json({message: 'User Successfully Logged In'})
+        res.json({
+        message: 'User Successfully Logged In',
+        token: generateToken(user._id)
+        })
     } else {
         res.status(400)
         throw new Error('Password Incorect')
@@ -63,6 +71,11 @@ const getUser = asyncHandler(async (req, res, next) => {
     res.user = user
     next()
   })
+
+// Generate Token
+const generateToken = (id) => {
+    return jwt.sign({ id }, process.env.JWT_SECRET, {expiresIn: '30d'})
+}
 
 module.exports = {
     registerUser,
