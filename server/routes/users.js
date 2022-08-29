@@ -3,6 +3,7 @@ const User = require('../models/userModel')
 const cors = require('cors'); 
 const { registerUser, getUser, loginUser } = require("../controllers/userController");
 const router = express.Router();
+const {protect} = require('../middleware/authMiddleware')
  
 // Getting all
 router.get('/', cors(), async (req, res) => {
@@ -19,7 +20,7 @@ router.get('/', cors(), async (req, res) => {
 router.post('/login', loginUser)
  
 // Getting One
-router.get('/:id', getUser, (req, res) => {
+router.get('/:id', protect, getUser, (req, res) => {
   res.json(res.user)
 })
 
