@@ -21,6 +21,10 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    password: {
+        type: String,
+        required: true
+    },
     email_address: {
         type: String,
         required: true

@@ -6,15 +6,21 @@ const e = require('cors')
 
 const registerUser = asyncHandler ( async (req, res) => {
 
-    const {email_address} = req.body
+    const {email_address, password} = req.body
     // Check if user already exists
     const userExists = await User.findOne({email_address})
+
     if (userExists) {
         res.status(400).json({ message: 'User Exists' })
     } else {
+
+        // Hash the password
+        const salt = await bcrypt.genSalt(10)
+        const hashedPassword = await bcrypt.hash(password, salt)
+
         const user = new User({
             username: req.body.username,
-            password: req.body.password,
+            password: hashedPassword,
             email_address: req.body.email_address,
             public_key: req.body.public_key,
             private_key: req.body.private_key,
@@ -30,7 +36,17 @@ const registerUser = asyncHandler ( async (req, res) => {
   })
 
 const loginUser = asyncHandler( async (req, res) => {
-    res.json({message: 'User Successfully Logged In'})
+    const {email_address, username, password} = req.body
+
+    // Locate user
+    const user = await User.findOne({email_address})
+
+    if (user && (await bcrypt.compare(password, user.password))) {
+        res.json({message: 'User Successfully Logged In'})
+    } else {
+        res.status(400)
+        throw new Error('Password Incorect')
+    }
 })
 
 const getUser = asyncHandler(async (req, res, next) => {

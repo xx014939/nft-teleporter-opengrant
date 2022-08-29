@@ -1,7 +1,7 @@
 const express = require("express");
 const User = require('../models/userModel')
 const cors = require('cors'); 
-const { registerUser, getUser } = require("../controllers/userController");
+const { registerUser, getUser, loginUser } = require("../controllers/userController");
 const router = express.Router();
  
 // Getting all
@@ -14,6 +14,9 @@ router.get('/', cors(), async (req, res) => {
     res.status(500).json({ message: err.message })
   }
 })
+
+// Login
+router.post('/login', loginUser)
  
 // Getting One
 router.get('/:id', getUser, (req, res) => {
