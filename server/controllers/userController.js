@@ -2,21 +2,30 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const asyncHandler = require('express-async-handler')
 const User = require('../models/userModel')
+const e = require('cors')
 
 const registerUser = asyncHandler ( async (req, res) => {
-    const user = new User({
-      username: req.body.username,
-      password: req.body.password,
-      email_address: req.body.email_address,
-      public_key: req.body.public_key,
-      private_key: req.body.private_key,
-      wallet_chain: req.body.wallet_chain
-    })
-    try {
-      const newUser = await user.save()
-      res.status(201).json(newUser)
-    } catch (err) {
-      res.status(400).json({ message: err.message })
+
+    const {email_address} = req.body
+    // Check if user already exists
+    const userExists = await User.findOne({email_address})
+    if (userExists) {
+        res.status(400).json({ message: 'User Exists' })
+    } else {
+        const user = new User({
+            username: req.body.username,
+            password: req.body.password,
+            email_address: req.body.email_address,
+            public_key: req.body.public_key,
+            private_key: req.body.private_key,
+            wallet_chain: req.body.wallet_chain
+          })
+          try {
+            const newUser = await user.save()
+            res.status(201).json(newUser)
+          } catch (err) {
+            res.status(400).json({ message: err.message })
+          }
     }
   })
 
