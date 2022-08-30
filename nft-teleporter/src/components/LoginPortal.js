@@ -60,7 +60,7 @@ bcrypt.compare(passwordEnteredByUser, `${hash}`, function(error, isMatch) {
               <div><img alt='NFT Teleporter Logo' src={logo}/></div>
               <div className="button-container">
                   <div><a onClick={() => {setStepNumber(2)}} id="login" className='button'>Login</a></div>
-                  <div><a onClick={() => {setStepNumber(3)}} id="register" className='button' href='/#'>Register</a></div>
+                  <div><a onClick={() => {setStepNumber(3)}} id="register" className='button'>Register</a></div>
               </div>
           </div>
       )
@@ -159,7 +159,7 @@ bcrypt.compare(passwordEnteredByUser, `${hash}`, function(error, isMatch) {
               <div><input className='input-field' placeholder='Username' label="Username" id='usernameRegister'></input></div>
               <div><input className='input-field' placeholder='Password' label="Password" id='passwordRegister'></input></div>
               <div onClick={() => {createUser()}}>
-                <a href='#' className='button' id='buttonTwo'>
+                <a className='button' id='buttonTwo'>
                   Register
                 </a>
               </div>
