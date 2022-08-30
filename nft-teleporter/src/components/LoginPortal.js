@@ -59,7 +59,7 @@ bcrypt.compare(passwordEnteredByUser, `${hash}`, function(error, isMatch) {
           <div className='lhs-inner'>
               <div><img alt='NFT Teleporter Logo' src={logo}/></div>
               <div className="button-container">
-                  <div><a onClick={() => {setStepNumber(2)}} id="login" className='button' href='/#'>Login</a></div>
+                  <div><a onClick={() => {setStepNumber(2)}} id="login" className='button'>Login</a></div>
                   <div><a onClick={() => {setStepNumber(3)}} id="register" className='button' href='/#'>Register</a></div>
               </div>
           </div>
@@ -67,14 +67,37 @@ bcrypt.compare(passwordEnteredByUser, `${hash}`, function(error, isMatch) {
     }
     
     function ShowLogin() {
+
+      async function loginUser() {
+
+        const userName = document.getElementById('usernameLogin').value
+        const userPassword = document.getElementById('passwordLogin').value
+
+        axios.post(`http://localhost:5000/users/login`, {
+          username: userName,
+          password: userPassword
+        })
+        .then(res => {
+          console.log(res)
+          console.log('working!!!')
+          let JWTTOKEN = res.token
+          document.cookie = "jwt=" + JWTTOKEN;
+          window.location.href = window.location.href + 'account'
+        })
+        .catch(function (error) {
+          console.log(error);
+          alert(error)
+        });
+      }
+
       return (
           <div className='lhs-inner-two'>
               <div><img alt='NFT Teleporter Logo' src={logo}  style={{marginLeft: '-20px'}}/></div>
               <div className='lhs-inner-two-text'>
                   <div><h2>Login</h2></div>
-                  <div><input className='input-field' placeholder='Username' label="Username"></input></div>
-                  <div><input className='input-field' placeholder='Password' label="Password"></input></div>
-                  <div><a href='/account' className='button'>Login</a></div>
+                  <div><input id='usernameLogin' className='input-field' placeholder='Username' label="Username"></input></div>
+                  <div><input id='passwordLogin' className='input-field' placeholder='Password' label="Password"></input></div>
+                  <div><a className='button' onClick={loginUser}>Login</a></div>
               </div>
           </div>
       )
@@ -101,7 +124,7 @@ bcrypt.compare(passwordEnteredByUser, `${hash}`, function(error, isMatch) {
           });
         })
 
-        password = hashedPassword
+        // password = hashedPassword
         let userWallet = createWallet()
         let publicKey = userWallet.address
         let privateKey = userWallet.privateKey
@@ -119,13 +142,12 @@ bcrypt.compare(passwordEnteredByUser, `${hash}`, function(error, isMatch) {
         })
         .then(res => {
           console.log(res)
+          setStepNumber(2)
         })
         .catch(function (error) {
           console.log(error);
+          alert(error)
         });
-  
-        // Move user to login form after completing registration
-        // setStepNumber(2)
       }
 
       return (
