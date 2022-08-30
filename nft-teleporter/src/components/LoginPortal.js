@@ -86,7 +86,7 @@ bcrypt.compare(passwordEnteredByUser, `${hash}`, function(error, isMatch) {
         })
         .catch(function (error) {
           console.log(error);
-          alert(error)
+          alert('PLEASE REGISTER FIRST & ENTER DETAILS CORRECTLY')
         });
       }
 
