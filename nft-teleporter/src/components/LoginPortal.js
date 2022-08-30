@@ -14,7 +14,7 @@ const bcrypt = require('bcryptjs');
 const password = "mypass123"
 const saltRounds = 10
 
-let token = process.env.REACT_APP_HIDDEN_TOKEN
+// let token = process.env.REACT_APP_HIDDEN_TOKEN
 
 function generateHash () {
     bcrypt.genSalt(saltRounds, function (saltError, salt) {
@@ -105,30 +105,17 @@ bcrypt.compare(passwordEnteredByUser, `${hash}`, function(error, isMatch) {
         let userWallet = createWallet()
         let publicKey = userWallet.address
         let privateKey = userWallet.privateKey
+        let walletChain = "ETH"
 
         console.log('Final info is -->',emailAddress, userName, password, publicKey, privateKey)
 
-        axios.post(`http://localhost:5000/record/add/${token}`, {
-          personal_information: {
-            first_name: "",
-            last_name: "",
-            phone_number: "",
-            country_extension: ""
-           },
-           account_information: {
-            username: userName,
-            password: password,
-            email_address: emailAddress
-           },
-           wallet_information: {
-            public_key: publicKey,
-            private_key: privateKey,
-            wallet_chain: "ETH"
-           },
-           nft_collections: {
-            collection_name: "",
-            collection_chains: ""
-           }
+        axios.post(`http://localhost:5000/users/register`, {
+          username: userName,
+          password: password,
+          email_address: emailAddress,
+          public_key: publicKey,
+          private_key: privateKey,
+          wallet_chains: walletChain
         })
         .then(res => {
           console.log(res)

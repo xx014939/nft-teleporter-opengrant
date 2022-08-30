@@ -24,7 +24,7 @@ const registerUser = asyncHandler ( async (req, res) => {
             email_address: req.body.email_address,
             public_key: req.body.public_key,
             private_key: req.body.private_key,
-            wallet_chain: req.body.wallet_chain
+            wallet_chains: req.body.wallet_chains
           })
           try {
             const newUser = await user.save()
