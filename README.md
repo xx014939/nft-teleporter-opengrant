@@ -11,7 +11,13 @@ web based interactive experiences in VR, AR and other mediums. We also offer a s
 
 New Figma Designs - https://www.figma.com/file/GMRl7mPcXB3yUJxfRwci9g/NFT-Teleporter?node-id=0%3A1
 
-Current UI Deployment - https://nft-teleporter-ui.netlify.app/
+Current UI Deployment (Netlify) - https://nft-teleporter-ui.netlify.app/
 
 Open Grant - https://github.com/filecoin-project/devgrants/issues/596 
+
+## Important Info
+
+Currently the login/register function portal on the Netlify URL in the previous section will not work properly. This is because it is currently making API calls to our localhost sever. You can bypass the login portal, but visiting https://nft-teleporter-ui.netlify.app/account
+
+You may also run the app locally with your own config.env file inside of the server folder.
 
