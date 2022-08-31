@@ -90,10 +90,14 @@ function CollectionCard() {
 }
 
 function AccountPage () {
- return (
-     <div>
-         <div><Header/></div>
-         <div className="account-page-container">
+
+let authorizedUser = true;
+
+if (authorizedUser) {
+    return (
+        <div>
+            <div><Header/></div>
+            <div className="account-page-container">
             <div className="account-page-lhs-container">
                 <a href='/' className="account-page-lhs-back-button">
                     <div>
@@ -208,12 +212,13 @@ function AccountPage () {
                     </div>
                 </div>
             </div>
-         </div>
-         <div style={{paddingLeft: '55px', color: "#FFFFFF", borderTop: '1px solid gray'}}>
+            </div>
+            <div style={{paddingLeft: '55px', color: "#FFFFFF", borderTop: '1px solid gray'}}>
             <Footer/>
         </div>
-     </div>
- );
+        </div>
+    );
+}
 }
 
 export default AccountPage 
