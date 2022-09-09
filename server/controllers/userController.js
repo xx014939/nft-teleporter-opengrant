@@ -4,15 +4,6 @@ const asyncHandler = require('express-async-handler')
 const User = require('../models/userModel')
 const e = require('cors')
 
-/* COMPILE AND DEPLOY CONTRACT */
-const fs = require('fs');
-const path = require('path');
-const solc = require('solc');
-const Web3 = require('Web3');
-const HDWalletProvider = require('@truffle/hdwallet-provider');
-const mnemonic = '<YOUR SEED PHRASE HERE>'; 
-const providerOrUrl = 'https://rinkeby.infura.io/v3/f6ea9a5670444f3b8f2221aa4d57149b';
-
 const registerUser = asyncHandler ( async (req, res) => {
 
     const {email_address, password} = req.body
@@ -89,9 +80,12 @@ const generateToken = (id) => {
 }
 
 // Deploy smart contract
-const deploySmartContract = (argument) => {
-  return argument
+const deploySmartContract = () => {
+  /* 1. Get Ethereum Account */
+  const [account] = await web3.eth.getAccounts();
+  return account
 }
+
 
 module.exports = {
     registerUser,

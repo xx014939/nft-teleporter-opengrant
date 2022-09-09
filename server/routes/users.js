@@ -1,7 +1,7 @@
 const express = require("express");
 const User = require('../models/userModel')
 const cors = require('cors'); 
-const { registerUser, getUser, loginUser } = require("../controllers/userController");
+const { registerUser, getUser, loginUser, deploySmartContract } = require("../controllers/userController");
 const router = express.Router();
 const {protect} = require('../middleware/authMiddleware')
  
@@ -18,6 +18,9 @@ router.get('/', cors(), async (req, res) => {
 
 // Login
 router.post('/login', loginUser)
+
+// Gain access to Metamask
+router.post('/web3-login', deploySmartContract)
  
 // Getting One
 router.get('/:id', protect, getUser, (req, res) => {
