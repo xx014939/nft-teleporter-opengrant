@@ -1,6 +1,6 @@
 import Web3 from 'web3';
-import * as wrapper from 'solc/wrapper';
-const solc = wrapper(window.Module);
+// import * as wrapper from 'solc/wrapper';
+// const solc = wrapper(window.Module);
 
 
 /* COMPILE AND DEPLOY CONTRACT */
@@ -42,27 +42,27 @@ const input = {
 // Deploy smart contract
 const deploySmartContract = async () => {
 
-    /* 1. Get Ethereum Account */
-    const [account] = await web3.eth.getAccounts();
-    console.log(account)
+  //   /* 1. Get Ethereum Account */
+  //   const [account] = await web3.eth.getAccounts();
+  //   console.log(account)
     
-    /* 2. Compile Smart Contract */
-    const {contracts} = JSON.parse(
-    solc.compile(JSON.stringify(input))
-  );
+  //   /* 2. Compile Smart Contract */
+  //   const {contracts} = JSON.parse(
+  //   solc.compile(JSON.stringify(input))
+  // );
 
-  const contract = contracts['MyContract.sol'].MyContract;
+  // const contract = contracts['MyContract.sol'].MyContract;
 
-    /* 2. Extract Abi And Bytecode From Contract */
-    const abi = contract.abi;
-    const bytecode = contract.evm.bytecode.object;
+  //   /* 2. Extract Abi And Bytecode From Contract */
+  //   const abi = contract.abi;
+  //   const bytecode = contract.evm.bytecode.object;
   
-    /* 3. Send Smart Contract To Blockchain */
-    // const { _address } = await new web3.eth.Contract(abi)
-    //   .deploy({ data: bytecode })
-    //   .send({from: account, gas: 1000000 });
+  //   /* 3. Send Smart Contract To Blockchain */
+  //   // const { _address } = await new web3.eth.Contract(abi)
+  //   //   .deploy({ data: bytecode })
+  //   //   .send({from: account, gas: 1000000 });
   
-    console.log("Contract Address =>", abi, bytecode);
+  //   console.log("Contract Address =>", abi, bytecode);
   }
 
 
