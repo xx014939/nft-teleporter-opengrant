@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs')
 const asyncHandler = require('express-async-handler')
 const User = require('../models/userModel')
 const e = require('cors')
+const solc = require('solc');
 
 const registerUser = asyncHandler ( async (req, res) => {
 
@@ -79,17 +80,41 @@ const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {expiresIn: '30d'})
 }
 
-// Deploy smart contract
-const deploySmartContract = () => {
-  /* 1. Get Ethereum Account */
-  const [account] = await web3.eth.getAccounts();
-  return account
-}
+// Compile smart contract
+const compileContract = asyncHandler(async (req, res) => {
+
+  const contractContent = `
+  // SPDX-License-Identifier: MIT 
+  pragma solidity ^0.8.13; 
+  contract HelloWorld {
+    string public greet = "Hello World!";
+  }`
+var input = {
+  language: 'Solidity',
+  sources: {
+    'HelloWorld.sol': {
+      content: `${contractContent.toString()}`
+    }
+  },
+  settings: {
+    outputSelection: {
+      '*': {
+        '*': ['*']
+      }
+    }
+  }
+};
+
+  const output = JSON.parse(solc.compile(JSON.stringify(input)));
+  console.log('HERE -->', output.contracts['HelloWorld.sol'].HelloWorld.abi) // Outputs property value is object
+  console.log('HERE -->', output.contracts['HelloWorld.sol'].HelloWorld.abi[0].outputs) //  Outputs value is a string
+  return res.status(200).json({ message: `${output.contracts}` })
+})
 
 
 module.exports = {
     registerUser,
     loginUser,
     getUser,
-    deploySmartContract
+    compileContract
 }
