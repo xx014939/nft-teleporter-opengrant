@@ -63,7 +63,29 @@ const deploySmartContract = async () => {
   //   //   .send({from: account, gas: 1000000 });
   
   //   console.log("Contract Address =>", abi, bytecode);
+  console.log('deploying')
   }
+
+
+async function generateNewWallet() {
+  let newWallet = await web3.eth.accounts.create()
+  console.log('New wallet is -->', newWallet)
+  console.log('PRIVATE KEY -->', newWallet.privateKey)
+}
+
+async function connectNewWallet(privateKey) {
+
+  console.log('All wallets -->', web3.eth.accounts.wallet)
+
+  let result = await web3.eth.accounts.privateKeyToAccount(privateKey)
+  console.log('The result is - ', result)
+
+
+  console.log('All wallets -->', web3.eth.accounts.wallet)
+
+  let secondResult = await web3.eth.accounts.wallet.add(privateKey)
+  console.log('The second result is - ', secondResult)
+}
 
 
   
@@ -71,6 +93,8 @@ function GenerateETHWallet () {
     return (
         <div>
             <button onClick={() => {console.log(web3.eth.accounts.create())}}>GENERATE ETH WALLET</button>
+            <button onClick={() => {generateNewWallet()}}>Generate 2</button>
+            <button onClick={() => {connectNewWallet('0x119edc54c8be0cc39fa15f5cf09a6ca38013b93c0a506f90c6d9d2a1b2872deb')}}>Sign In</button>
             <button onClick={deploySmartContract}>DEPLOY</button>
         </div>
     )
