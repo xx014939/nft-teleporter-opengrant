@@ -6,8 +6,8 @@ const selectButton = event => {
     event.currentTarget.classList.toggle('step-one-single-button-container');
   };
 
-function setCookie(boolean) {
-    document.cookie = "randomdata=" + boolean;
+function setCookie(cookieName, boolean) {
+    document.cookie = cookieName + "=" + boolean;
     console.log(document.cookie)
 }
 
@@ -39,7 +39,7 @@ return (
             <div className='step-one-input-label' style={{marginBottom: '14px'}}>Do you want to Randomised Metada?</div>
             <div className='step-one-buttons-container'>
                 <div className='step-one-single-button-container' onClick={selectButton} style={{marginRight: '15px'}}>
-                    <div className='step-one-single-button' onClick={() => {setCookie(true)}}>
+                    <div className='step-one-single-button' onClick={() => {setCookie("randomdata", true)}}>
                         <div className='step-one-single-button-icon'>
                             <div className='step-one-single-button-icon-inner'></div>
                         </div>
@@ -47,7 +47,7 @@ return (
                     </div>
                 </div>
                 <div className='step-one-single-button-container' onClick={selectButton}>
-                    <div className='step-one-single-button' onClick={() => {setCookie(false)}}>
+                    <div className='step-one-single-button' onClick={() => {setCookie("randomdata", false)}}>
                         <div className='step-one-single-button-icon'>
                             <div className='step-one-single-button-icon-inner'></div>
                         </div>
