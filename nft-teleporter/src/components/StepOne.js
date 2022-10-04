@@ -21,7 +21,7 @@ return (
             <div className='step-one-input-label'>Name (NFT Collection)</div>
             <div className='step-one-input-subcontainer'>
                 <div><img src={inputSVG} alt=""/></div>
-                <input type="text" placeholder='Name' label="Enter NFT Collection's Name"></input>
+                <input class="input-name" type="text" placeholder='Name' label="Enter NFT Collection's Name"></input>
             </div>
         </div>
         <div className='step-one-input-container'>
@@ -29,9 +29,9 @@ return (
             <div className='quantity-selector-container'>
                 <input type="number" id="quantity" name="quantity" min="1" max="5"></input>
                 <div className='quantity-selector'>
-                    <div>-</div>
-                    <div>1</div>
-                    <div>+</div>
+                    <div onClick={() => { document.getElementById("collectionNumber").innerHTML = `${document.getElementById("collectionNumber").innerHTML - 1}`}}>-</div>
+                    <div id="collectionNumber">1</div>
+                    <div onClick={() => { document.getElementById("collectionNumber").innerHTML = `${parseInt(document.getElementById("collectionNumber").innerHTML) + 1}`}}>+</div>
                 </div>
             </div>
         </div>
@@ -39,7 +39,12 @@ return (
             <div className='step-one-input-label' style={{marginBottom: '14px'}}>Do you want to Randomised Metada?</div>
             <div className='step-one-buttons-container'>
                 <div className='step-one-single-button-container' onClick={selectButton} style={{marginRight: '15px'}}>
-                    <div className='step-one-single-button' onClick={() => {setCookie("randomdata", true)}}>
+                    <div className='step-one-single-button' onClick={() => {
+                        // Set Cookie Data onClick
+                        setCookie("randomdata", true) // Metadata 
+                        setCookie("currentCollectionName", document.querySelector('.input-name').value) // Collection Name
+                        setCookie("currentCollectionCount", document.getElementById("collectionNumber").innerHTML) // Collectio Count (numbe of NFT's in collection)
+                        }}>
                         <div className='step-one-single-button-icon'>
                             <div className='step-one-single-button-icon-inner'></div>
                         </div>
@@ -47,7 +52,11 @@ return (
                     </div>
                 </div>
                 <div className='step-one-single-button-container' onClick={selectButton}>
-                    <div className='step-one-single-button' onClick={() => {setCookie("randomdata", false)}}>
+                    <div className='step-one-single-button' onClick={() => {
+                        setCookie("randomdata", false) // Metadata 
+                        setCookie("currentCollectionName", document.querySelector('.input-name').value) // Collection Name
+                        setCookie("currentCollectionCount", document.getElementById("collectionNumber").innerHTML) // Collectio Count (numbe of NFT's in collection)
+                        }}>
                         <div className='step-one-single-button-icon'>
                             <div className='step-one-single-button-icon-inner'></div>
                         </div>

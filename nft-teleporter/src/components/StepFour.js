@@ -3,11 +3,59 @@ import '../styles/StepFour.css';
 import completedBadge from '../assets/completedBadge.svg';
 import infoSVG from '../assets/infoSVG.svg';
 import copySVG from '../assets/copySVG.svg';
-import walletIDSVG from '../assets/walletIDSVG.svg'
-import keySVG from '../assets/keySVG.svg'
+import walletIDSVG from '../assets/walletIDSVG.svg';
+import keySVG from '../assets/keySVG.svg';
+import axios from 'axios';
+// import { compileContract } from '../../../server/controllers/userController';
 
 function showSuccess () {
     document.querySelector('.step-four-success-container').style.display = 'block'
+}
+
+async function compileContract() {
+    console.log('working')
+    let collectionNumber = 4
+    let collectionName = 'test'
+    let collectionContract = `
+    // SPDX-License-Identifier: MIT 
+    pragma solidity ^0.8.17;
+    import "Counters.sol";
+    import "ERC721.sol";
+    import "ERC721URIStorage.sol";
+  
+    contract HelloWorld is ERC721URIStorage { 
+  
+      using Counters for Counters.Counter; 
+      Counters.Counter private _tokenIds;
+  
+      constructor() ERC721("${(collectionName).toString()}", "NFC") {
+      }
+  
+      function createToken(string memory tokenURI) public returns (uint) {
+          _tokenIds.increment();
+          uint256 newItemId = _tokenIds.current();
+  
+          if (newItemId < ${parseInt(collectionNumber)}) {
+              _mint(msg.sender, newItemId);
+              _setTokenURI(newItemId, tokenURI);
+          }
+  
+          return newItemId;
+      }
+  }
+    `
+    // Axios Post
+    axios.post(`http://localhost:5000/users/compile`, {
+        smartContract: collectionContract
+      })
+      .then(res => {
+        console.log(res)
+        console.log('THE ABI IS HERE -->', res.data.abi)
+        console.log('working!!!')
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
 }
 
 function SuccessfulDeploy () {
@@ -55,6 +103,11 @@ function StepFour () {
                 <div className='step-four-input-subcontainer'>
                     <div><img src={keySVG} alt=""/></div>
                     <input type="text" placeholder='Private Wallet Address'></input>
+                </div>
+            </div>
+            <div onClick={() => {compileContract()}}>
+                <div className='view-experiences-button' style={{padding: '17px 27px', textAlign: 'center'}} >
+                    Send Custom Contract to Server
                 </div>
             </div>
             <div onClick={showSuccess}>

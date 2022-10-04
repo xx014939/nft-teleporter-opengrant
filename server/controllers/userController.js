@@ -4,6 +4,8 @@ const asyncHandler = require('express-async-handler')
 const User = require('../models/userModel')
 const e = require('cors')
 const solc = require('solc');
+const path = require("path");
+const fs = require("fs-extra");
 
 const registerUser = asyncHandler ( async (req, res) => {
 
@@ -83,17 +85,65 @@ const generateToken = (id) => {
 // Compile smart contract
 const compileContract = asyncHandler(async (req, res) => {
 
-  const contractContent = `
-  // SPDX-License-Identifier: MIT 
-  pragma solidity ^0.8.13; 
-  contract HelloWorld {
-    string public greet = "Hello World!";
-  }`
+const {smartContract} = req.body
+console.log('The client contract is -->', smartContract)
+
+// ERC
+const contractPath = path.resolve("smartContracts", "ERC721.sol");
+const ERC165Path = path.resolve("smartContracts", "ERC165.sol");
+const ERC721URIStoragePath = path.resolve("smartContracts", "ERC721URIStorage.sol");
+
+// IERC
+const contractPathThree = path.resolve("smartContracts", "IERC165.sol");
+const contractPathTwo = path.resolve("smartContracts", "IERC721.sol");
+const IERC721ReceiverPath = path.resolve("smartContracts", "IERC721Receiver.sol");
+const IERC721MetadataPath = path.resolve("smartContracts", "IERC721Metadata.sol");
+
+// ELEMENTS
+const AddressPath = path.resolve("smartContracts", "Address.sol");
+const ContextPath = path.resolve("smartContracts", "Context.sol");
+const StringsPath = path.resolve("smartContracts", "Strings.sol");
+const CountersPath = path.resolve("smartContracts", "Counters.sol");
+
+
 var input = {
   language: 'Solidity',
   sources: {
+    'ERC721.sol': {
+      content: fs.readFileSync(contractPath, 'utf8')
+    },
+    'ERC721URIStorage.sol': {
+      content: fs.readFileSync(ERC721URIStoragePath, 'utf8')
+    },
+    'IERC721.sol': {
+      content: fs.readFileSync(contractPathTwo, 'utf8')
+    },
+    'IERC721Receiver.sol': {
+      content: fs.readFileSync(IERC721ReceiverPath, 'utf8')
+    },
+    'IERC721Metadata.sol': {
+      content: fs.readFileSync(IERC721MetadataPath, 'utf8')
+    },
+    'IERC165.sol': {
+      content: fs.readFileSync(contractPathThree, 'utf8')
+    },
+    'Address.sol': {
+      content: fs.readFileSync(AddressPath, 'utf8')
+    },
+    'Strings.sol': {
+      content: fs.readFileSync(StringsPath, 'utf8')
+    },
+    'Context.sol': {
+      content: fs.readFileSync(ContextPath, 'utf8')
+    },
+    'ERC165.sol': {
+      content: fs.readFileSync(ERC165Path, 'utf8')
+    },
+    'Counters.sol': {
+      content: fs.readFileSync(CountersPath, 'utf8')
+    } ,
     'HelloWorld.sol': {
-      content: `${contractContent.toString()}`
+      content: `${smartContract.toString()}`
     }
   },
   settings: {
@@ -106,9 +156,18 @@ var input = {
 };
 
   const output = JSON.parse(solc.compile(JSON.stringify(input)));
-  console.log('HERE -->', output.contracts['HelloWorld.sol'].HelloWorld.abi) // Outputs property value is object
-  console.log('HERE -->', output.contracts['HelloWorld.sol'].HelloWorld.abi[0].outputs) //  Outputs value is a string
-  return res.status(200).json({ message: `${output.contracts}` })
+
+  // for (let i = 0; i < output.contracts['HelloWorld.sol'].HelloWorld.abi.length; i++) {
+  //   if (i + 1 !== output.contracts['HelloWorld.sol'].HelloWorld.abi.length) {
+  //     console.log((output.contracts['HelloWorld.sol'].HelloWorld.abi[i]), ',')
+  //   } else {
+  //     console.log((output.contracts['HelloWorld.sol'].HelloWorld.abi[i]))
+  //   }
+  // }
+
+  console.log(JSON.stringify(output.contracts['HelloWorld.sol'].HelloWorld.abi))
+
+  return res.status(200).json({ abi: `${JSON.stringify(output.contracts['HelloWorld.sol'].HelloWorld.abi)}` })
 })
 
 
