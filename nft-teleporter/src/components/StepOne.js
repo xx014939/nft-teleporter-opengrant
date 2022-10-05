@@ -27,11 +27,14 @@ return (
         <div className='step-one-input-container'>
             <div className='step-one-input-label' style={{marginTop: '38px'}}>Number of NFT's (inside of collection)</div>
             <div className='quantity-selector-container'>
-                <input type="number" id="quantity" name="quantity" min="1" max="5"></input>
                 <div className='quantity-selector'>
-                    <div onClick={() => { document.getElementById("collectionNumber").innerHTML = `${document.getElementById("collectionNumber").innerHTML - 1}`}}>-</div>
-                    <div id="collectionNumber">1</div>
-                    <div onClick={() => { document.getElementById("collectionNumber").innerHTML = `${parseInt(document.getElementById("collectionNumber").innerHTML) + 1}`}}>+</div>
+                    <div class="quantity-selector-btn" onClick={() => { 
+                        if (document.getElementById("collectionNumber").value > 0) {
+                            document.getElementById("collectionNumber").value--
+                        }
+                    }}>-</div>
+                    <input id="collectionNumber" type="number" name="quantity" min="0" max="10000" placeholder="number"></input>
+                    <div class="quantity-selector-btn" onClick={() => { document.getElementById("collectionNumber").value++}}>+</div>
                 </div>
             </div>
         </div>
@@ -43,7 +46,7 @@ return (
                         // Set Cookie Data onClick
                         setCookie("randomdata", true) // Metadata 
                         setCookie("currentCollectionName", document.querySelector('.input-name').value) // Collection Name
-                        setCookie("currentCollectionCount", document.getElementById("collectionNumber").innerHTML) // Collectio Count (numbe of NFT's in collection)
+                        setCookie("currentCollectionCount", document.getElementById("collectionNumber").value) // Collectio Count (numbe of NFT's in collection)
                         }}>
                         <div className='step-one-single-button-icon'>
                             <div className='step-one-single-button-icon-inner'></div>

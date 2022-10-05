@@ -134,6 +134,10 @@
     margin-bottom: 38px;
 }
 
+.quantity-selector-btn {
+    cursor: pointer;
+}
+
 .quantity-selector {
     display: flex;
     flex-direction: row;
@@ -148,7 +152,20 @@
 }
 
 .quantity-selector-container input {
-    display: none;
+    background: transparent;
+    color: white;
+    border: none;
+    text-align: center;
+}
+
+.quantity-selector-container input:focus {
+    outline: none;
+}
+
+.quantity-selector-container input::-webkit-outer-spin-button,
+.quantity-selector-container input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 

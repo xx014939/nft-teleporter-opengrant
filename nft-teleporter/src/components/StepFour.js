@@ -26,7 +26,6 @@ async function compileContract() {
     console.log('working')
     let collectionNumber = `${parseInt(getCookie('currentCollectionCount'))}`
     let collectionName = `${getCookie('currentCollectionName')}`
-    console.log(collectionName, collectionNumber)
     let collectionContract = `
     // SPDX-License-Identifier: MIT 
     pragma solidity ^0.8.17;
