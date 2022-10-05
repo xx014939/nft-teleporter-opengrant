@@ -12,10 +12,21 @@ function showSuccess () {
     document.querySelector('.step-four-success-container').style.display = 'block'
 }
 
+function getCookie(cookieName) {
+    let cookieValue = document.cookie
+    .split('; ')
+    .find((row) => row.startsWith(`${cookieName}=`))
+    ?.split('=')[1];
+    console.log(cookieValue)
+
+    return cookieValue;
+}
+
 async function compileContract() {
     console.log('working')
-    let collectionNumber = 4
-    let collectionName = 'test'
+    let collectionNumber = `${parseInt(getCookie('currentCollectionCount'))}`
+    let collectionName = `${getCookie('currentCollectionName')}`
+    console.log(collectionName, collectionNumber)
     let collectionContract = `
     // SPDX-License-Identifier: MIT 
     pragma solidity ^0.8.17;
