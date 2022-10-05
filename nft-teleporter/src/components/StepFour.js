@@ -6,11 +6,8 @@ import copySVG from '../assets/copySVG.svg';
 import walletIDSVG from '../assets/walletIDSVG.svg';
 import keySVG from '../assets/keySVG.svg';
 import axios from 'axios';
-// import { compileContract } from '../../../server/controllers/userController';
-
-function showSuccess () {
-    document.querySelector('.step-four-success-container').style.display = 'block'
-}
+import Web3 from 'web3';
+const web3 = new Web3(Web3.givenProvider || "http://localhost:3000");
 
 function getCookie(cookieName) {
     let cookieValue = document.cookie
@@ -21,6 +18,50 @@ function getCookie(cookieName) {
 
     return cookieValue;
 }
+
+function showSuccess () {
+    document.querySelector('.step-four-success-container').style.display = 'block'
+}
+
+async function connectNewWallet(privateKey) {
+    let result = await web3.eth.accounts.privateKeyToAccount(privateKey)  
+    if (result) {
+        web3.eth.accounts.wallet.add(privateKey)
+    }
+  }
+
+async function deployContract() {
+    // Retrieve username
+    let currentUsername = getCookie("currentUsername")
+    // Ask for password
+    let currentPassword = prompt("Please re-enter your password")
+    // Make POST request to backend to retrieve keys
+    let keysResponse = await axios.post(`http://localhost:5000/users/keys`, {username: currentUsername, password: currentPassword})
+
+    console.log('The keys are -->', keysResponse)
+    console.log('The private key is -->', keysResponse.data.private_key[0])
+    // Retrieve ABI & Bytecode from cookies
+    let ABI =  JSON.parse(getCookie("currentABI"))
+    let bytecode = `0x${localStorage.getItem('currentBytecode').replace(/['"]+/g, '')}`
+
+    console.log('THE ABI IS -->', ABI)
+    console.log('THE Bytecode IS -->', bytecode)
+
+    // Sign wallet in (if it's not already)
+    connectNewWallet(`${keysResponse.data.private_key[0]}`)
+
+    // Deploy contract using ABI + BYTECODE recieved from compile method 
+    let accountList = await web3.eth.accounts.wallet;
+    let account = accountList[0].address
+    
+    const { _address } = await new web3.eth.Contract(ABI).deploy({ data: `${bytecode}` }).send({from: account, gas: 1000000 });
+    console.log('deploying', _address)
+
+    // Show completion certificate
+    showSuccess(); 
+
+}
+  
 
 async function compileContract() {
     console.log('working')
@@ -60,8 +101,10 @@ async function compileContract() {
       })
       .then(res => {
         console.log(res)
-        console.log('THE ABI IS HERE -->', res.data.abi)
-        console.log('working!!!')
+        
+        document.cookie = "currentABI=" + res.data.abi
+        // document.cookie = "currentBytecode=" + res.data.bytecode
+        localStorage.setItem('currentBytecode', res.data.bytecode);
       })
       .catch(function (error) {
         console.log(error);
@@ -117,10 +160,10 @@ function StepFour () {
             </div>
             <div onClick={() => {compileContract()}}>
                 <div className='view-experiences-button' style={{padding: '17px 27px', textAlign: 'center'}} >
-                    Send Custom Contract to Server
+                    Compile Smart Contract
                 </div>
             </div>
-            <div onClick={showSuccess}>
+            <div onClick={() => {deployContract()}}>
                 <div className='view-experiences-button' style={{padding: '17px 27px', textAlign: 'center'}} >
                     Deploy Smart Contract
                 </div>

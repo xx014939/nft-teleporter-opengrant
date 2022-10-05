@@ -62,6 +62,24 @@ const loginUser = asyncHandler( async (req, res) => {
     }
 })
 
+const getKeys = asyncHandler( async (req, res) => {
+  const {username, password} = req.body
+    // Locate user
+    const user = await User.findOne({username})
+
+  if (user && (await bcrypt.compare(password, user.password))) {
+    res.json({
+    message: 'User Successfully Logged In',
+    private_key: user.private_key,
+    public_key: user.public_key
+    })
+} else {
+    res.status(400)
+    throw new Error('Password Incorect')
+}
+
+})
+
 const getUser = asyncHandler(async (req, res, next) => {
     let user
     try {
@@ -157,17 +175,13 @@ var input = {
 
   const output = JSON.parse(solc.compile(JSON.stringify(input)));
 
-  // for (let i = 0; i < output.contracts['HelloWorld.sol'].HelloWorld.abi.length; i++) {
-  //   if (i + 1 !== output.contracts['HelloWorld.sol'].HelloWorld.abi.length) {
-  //     console.log((output.contracts['HelloWorld.sol'].HelloWorld.abi[i]), ',')
-  //   } else {
-  //     console.log((output.contracts['HelloWorld.sol'].HelloWorld.abi[i]))
-  //   }
-  // }
-
   console.log(JSON.stringify(output.contracts['HelloWorld.sol'].HelloWorld.abi))
+  console.log(JSON.stringify(output.contracts['HelloWorld.sol'].HelloWorld.evm.bytecode.object))
 
-  return res.status(200).json({ abi: `${JSON.stringify(output.contracts['HelloWorld.sol'].HelloWorld.abi)}` })
+  return res.status(200).json({ 
+    abi: `${JSON.stringify(output.contracts['HelloWorld.sol'].HelloWorld.abi)}`,
+    bytecode:  JSON.stringify(output.contracts['HelloWorld.sol'].HelloWorld.evm.bytecode.object)
+  })
 })
 
 
@@ -175,5 +189,6 @@ module.exports = {
     registerUser,
     loginUser,
     getUser,
-    compileContract
+    compileContract,
+    getKeys
 }

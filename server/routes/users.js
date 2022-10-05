@@ -1,7 +1,7 @@
 const express = require("express");
 const User = require('../models/userModel')
 const cors = require('cors'); 
-const { registerUser, getUser, loginUser, compileContract } = require("../controllers/userController");
+const { registerUser, getUser, loginUser, compileContract, getKeys } = require("../controllers/userController");
 const router = express.Router();
 const {protect} = require('../middleware/authMiddleware')
  
@@ -24,6 +24,11 @@ router.post('/compile', compileContract)
  
 // Getting One
 router.get('/:id', protect, getUser, (req, res) => {
+  res.json(res.user)
+})
+
+// Getting Wallet Keys
+router.post('/keys', getKeys, (req,res) => {
   res.json(res.user)
 })
 

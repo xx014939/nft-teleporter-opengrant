@@ -33,7 +33,7 @@ return (
                             document.getElementById("collectionNumber").value--
                         }
                     }}>-</div>
-                    <input id="collectionNumber" type="number" name="quantity" min="0" max="10000" placeholder="number"></input>
+                    <input className='collectionNumber' id="collectionNumber" type="number" name="quantity" min="0" max="10000" placeholder="number"></input>
                     <div class="quantity-selector-btn" onClick={() => { document.getElementById("collectionNumber").value++}}>+</div>
                 </div>
             </div>
@@ -46,7 +46,8 @@ return (
                         // Set Cookie Data onClick
                         setCookie("randomdata", true) // Metadata 
                         setCookie("currentCollectionName", document.querySelector('.input-name').value) // Collection Name
-                        setCookie("currentCollectionCount", document.getElementById("collectionNumber").value) // Collectio Count (numbe of NFT's in collection)
+                        setCookie("currentCollectionCount", document.querySelector(".collectionNumber").value.toString()) // Collectio Count (numbe of NFT's in collection)
+                        console.log('The number is here --> ', document.querySelector(".collectionNumber").value.toString())
                         }}>
                         <div className='step-one-single-button-icon'>
                             <div className='step-one-single-button-icon-inner'></div>
@@ -56,9 +57,10 @@ return (
                 </div>
                 <div className='step-one-single-button-container' onClick={selectButton}>
                     <div className='step-one-single-button' onClick={() => {
-                        setCookie("randomdata", false) // Metadata 
-                        setCookie("currentCollectionName", document.querySelector('.input-name').value) // Collection Name
-                        setCookie("currentCollectionCount", document.getElementById("collectionNumber").innerHTML) // Collectio Count (numbe of NFT's in collection)
+                         setCookie("randomdata", true) // Metadata 
+                         setCookie("currentCollectionName", document.querySelector('.input-name').value) // Collection Name
+                         setCookie("currentCollectionCount", document.querySelector(".collectionNumber").value.toString()) // Collectio Count (numbe of NFT's in collection)
+                         console.log('The number is here --> ', document.querySelector(".collectionNumber").value.toString())
                         }}>
                         <div className='step-one-single-button-icon'>
                             <div className='step-one-single-button-icon-inner'></div>
