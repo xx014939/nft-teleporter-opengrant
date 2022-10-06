@@ -33,7 +33,7 @@ return (
                             document.getElementById("collectionNumber").value--
                         }
                     }}>-</div>
-                    <input className='collectionNumber' id="collectionNumber" type="number" name="quantity" min="0" max="10000" placeholder="number"></input>
+                    <input className='collectionNumber' id="collectionNumber" type="number" name="quantity" min="0" max="10000" placeholder="0"></input>
                     <div class="quantity-selector-btn" onClick={() => { document.getElementById("collectionNumber").value++}}>+</div>
                 </div>
             </div>
@@ -57,7 +57,7 @@ return (
                 </div>
                 <div className='step-one-single-button-container' onClick={selectButton}>
                     <div className='step-one-single-button' onClick={() => {
-                         setCookie("randomdata", true) // Metadata 
+                         setCookie("randomdata", false) // Metadata 
                          setCookie("currentCollectionName", document.querySelector('.input-name').value) // Collection Name
                          setCookie("currentCollectionCount", document.querySelector(".collectionNumber").value.toString()) // Collectio Count (numbe of NFT's in collection)
                          console.log('The number is here --> ', document.querySelector(".collectionNumber").value.toString())
