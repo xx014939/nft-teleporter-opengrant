@@ -62,6 +62,7 @@ function UploadMetadata (props) {
             <div className='page-container upload-box'>
             <div className='step-two-upload-asset-section'>
                 <div className='step-two-label'>Upload your CSV Meta Data Asset</div>
+                <div className='step-two-label'>Click here to find out how to format your CSV file</div>
                 <div className='step-two-upload-container'>
                     <div className='step-two-upload-svg'>
                         <img src={csvSVG} alt=""/>

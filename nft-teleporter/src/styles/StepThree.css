@@ -1,0 +1,23 @@
+.metadata-attributes-modal {
+    max-width: 600px;
+}
+ 
+.metadata-attributes-header {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: space-between;
+}
+
+.metadata-attributes-header div {
+    width: 200px;
+}
+
+.metadata-attributes-input-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.metadata-attributes-input-container input {
+    width: 200px;
+}

@@ -12,6 +12,19 @@ let stepArray = [1,2,3,4]
 // Current Step
 let counter = 1;
 
+function checkFormCompleted() {
+    let nameInput = document.querySelector('.input-name')
+    let sizeInput = document.querySelector('.collectionNumber')
+
+    if (sizeInput) {
+        if (sizeInput.value > 0 && nameInput.value.length > 0) {
+            return true
+        } else {
+            return false
+        }
+    }
+}
+
 function updateCount () {
     counter = counter + 1;
 }
@@ -47,9 +60,9 @@ function ProgressBar () {
          <div style={{width: '100%', height: "2px", background: "#ffffff", marginTop: "30px"}}></div>
          <div className="progress-bar-step" style={{marginBottom: '16px', marginRight: '-8px', marginLeft: '-8px'}}>
             <div className="progress-bar-element">{stepArray[2]}</div>
-            <div className="progress-bar-text">Blockchains</div>
+            <div className="progress-bar-text">Metadata</div>
          </div>
-         <div style={{width: '100%', height: "2px", background: "#ffffff", marginTop: "30px"}}></div>
+         <div style={{width: '100%', height: "2px", background: "#ffffff", marginTop: "30px", marginLeft: "6px"}}></div>
          <div className="progress-bar-step">
             <div className="progress-bar-element">{stepArray[3]}</div>
             <div className="progress-bar-text">Smart Contract</div>
@@ -61,7 +74,20 @@ function ProgressBar () {
             {step === "3" && <StepThree/>}
             {step === "4" && <StepFour/>}
             <div className='continue-button-container'>
-                <button className="continue-button" onClick={() => { updateCount(); updateElement(); setStep(`${counter}`)}}>Continue</button>
+                <button className="continue-button" onClick={() => { 
+                    let formFilled = checkFormCompleted()
+                    if (formFilled) {
+                        updateCount(); 
+                        updateElement(); 
+                        setStep(`${counter}`)
+                    } else if (formFilled === false){
+                        alert('Fill out all fields')
+                    } else if (counter > 1) {
+                        updateCount(); 
+                        updateElement(); 
+                        setStep(`${counter}`)
+                    }
+                    }}>Continue</button>
             </div>
             {step === "4" && hideContinueButton()}
         </div>

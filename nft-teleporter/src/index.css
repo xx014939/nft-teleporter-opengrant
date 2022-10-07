@@ -230,3 +230,28 @@ code {
   padding-left: 255px;
   margin-bottom: 45px;
 }
+
+.css-1s2u09g-control {
+  width: 200px;
+  border-color: #000000 !important;
+  color: #000000 !important;
+}
+
+.css-1pahdxg-control {
+  width: 200px !important;
+  border-color: #000000 !important;
+  color: #000000 !important;
+}
+
+.css-1pahdxg-control:focus {
+  outline: none;
+}
+
+.css-1s2u09g-control:focus {
+  outline: none;
+}
+
+.css-26l3qy-menu {
+  border-color: #000000 !important;
+  color: #000000 !important;
+}
