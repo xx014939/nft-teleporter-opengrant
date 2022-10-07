@@ -9,6 +9,24 @@ const selectBox = event => {
     event.currentTarget.classList.toggle('step-two-checkbox-icon-active');
   };
 
+function getCookie(cookieName) {
+    let cookieValue = document.cookie
+    .split('; ')
+    .find((row) => row.startsWith(`${cookieName}=`))
+    ?.split('=')[1];
+    console.log(cookieValue)
+
+    return cookieValue;
+}
+
+// Upon adding a new attribute
+// Let the next section know there is a new attribute, hence creating a checkbox for it
+// Append the attribute name to the checkbox
+
+// IN OTHER WORDS
+// Upon creating a new attribute
+// Output 1. a new attribute signal 2. attribute name and value (dynamic use onchange)
+
 function AttributeInput () {
     const [selectedOption, setSelectedOption] = useState(null);
 
@@ -21,10 +39,14 @@ function AttributeInput () {
         { value: 'Legendary', label: 'Legendary' },
     ];
 
+    function handleChange(event) {
+        console.log(event.target.value);
+      }
+
     return (
         <div className="metadata-attributes-input-container">
-            <input/>
-            <input/>
+            <input id='attributeName' onChange={handleChange} />
+            <input id='attributeValue'/>
             <div>
                 <Select
                 defaultValue={selectedOption}
@@ -37,6 +59,8 @@ function AttributeInput () {
 }
 
 function AttributeInputList () {
+    let counter = 1
+    document.cookie = "numberOfAttributes=" + counter
     const [inputList, setInputList] = useState([]);   
 
     function newAttribute() {
@@ -47,7 +71,19 @@ function AttributeInputList () {
         <div className="metadata-attributes-body">
             <AttributeInput/>
             {inputList}
-            <div onClick={() => {newAttribute()}}>ADD MORE</div>
+            <div className='add-more-btn' onClick={() => {
+                newAttribute(); 
+                counter++; 
+                document.cookie = "numberOfAttributes=" + counter
+            }}>Add More</div>
+        </div>
+    )
+}
+
+function AssetsConnectionList() {
+    return(
+        <div>
+            Assets Upload - Attributes Created
         </div>
     )
 }
@@ -66,7 +102,9 @@ function StepThree () {
                         <div>Attribute Rarity</div>
                     </div>
                 </div>
-                <AttributeInputList/>
+                    <AttributeInputList/>
+                <div className='step-two-label'>Connect uploaded assets to your attributes</div>
+                    <AssetsConnectionList/>
                 {/* <div className='step-two-checkbox-section'>
                     <div className='step-two-label'>Select blockchain for NFT collection</div>
                     <div className='step-two-checkbox-container'>

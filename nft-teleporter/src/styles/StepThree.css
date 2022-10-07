@@ -7,6 +7,7 @@
     flex-direction: row;
     text-align: center;
     justify-content: space-between;
+    margin-bottom: 15px;
 }
 
 .metadata-attributes-header div {
@@ -20,4 +21,19 @@
 
 .metadata-attributes-input-container input {
     width: 200px;
+}
+
+.add-more-btn {
+    font-family: "Moderna";
+    font-size: 14px;
+    background: linear-gradient(180deg, #439CFB 0%, #F187FB 100%);
+    box-shadow: 0px 5px 30px rgb(165 144 251 / 20%);
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    cursor: pointer;
+    width: 100px;
+    text-align: center;
+    color: #000000;
 }
