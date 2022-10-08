@@ -97,6 +97,7 @@ function StepTwo () {
       
   
         console.log('starting')
+        console.log(file.name) // FILENAME NEEDS TO REPLACE CURRENT UPLOAD TEXT
     
         // initialize the form data
         const formData = new FormData()
@@ -168,11 +169,10 @@ function StepTwo () {
 
             <div className="file-manager-upload-form">
                 <label class="custom-file-upload">
-                    <input className='file-input' type="file" onChange={(event)=>setFile(event.target.files[0])}/>
+                    <input className='file-input' type="file" onChange={(event)=>{setFile(event.target.files[0]); console.log('HIDE/SHOW ELEMENTS HERE')}}/>
                     Upload
                 </label>
                 <button className='pin-button' onClick={()=>handleFile(file)}>Pin</button>
-                <a href='#signContract' className='pin-button' style={{maxWidth: '200px'}}>Sign?</a>
             </div>
         </div>
     ) 
