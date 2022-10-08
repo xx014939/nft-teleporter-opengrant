@@ -5,6 +5,8 @@ import '../index.css'
 import Select from 'react-select';
 import React, { useState } from 'react';
 
+let counter = 1
+
 const selectBox = event => {
     event.currentTarget.classList.toggle('step-two-checkbox-icon-active');
   };
@@ -41,11 +43,19 @@ function AttributeInput () {
 
     function handleChange(event) {
         console.log(event.target.value);
+        let allInputs = document.querySelectorAll('.attribute-name-input')
+        let allCreated = document.querySelectorAll('.attribute-element')
+        for (let i = 0; i < allInputs.length; i++) {
+            if (allInputs[i] === event.target) { // Locate input box index in node list
+                allCreated[i].innerHTML = event.target.value // Update corresponding div inside div nodelist
+            }
+        }
+
       }
 
     return (
         <div className="metadata-attributes-input-container">
-            <input id='attributeName' onChange={handleChange} />
+            <input id='attributeName' className='attribute-name-input' onChange={handleChange} />
             <input id='attributeValue'/>
             <div>
                 <Select
@@ -59,12 +69,18 @@ function AttributeInput () {
 }
 
 function AttributeInputList () {
-    let counter = 1
     document.cookie = "numberOfAttributes=" + counter
     const [inputList, setInputList] = useState([]);   
 
     function newAttribute() {
-        setInputList(inputList.concat(<AttributeInput key={inputList.length}/>));
+        setInputList(inputList.concat(<AttributeInput key={inputList.length}/>)); // Create new attribute element
+
+        let attributeCounter = document.querySelector('.attributes-created') // Attribute div container
+
+        let newAttributeElement = document.createElement("div")
+        newAttributeElement.classList.add('attribute-element')
+        newAttributeElement.innerHTML = counter
+        attributeCounter.append(newAttributeElement) // Add new child div, representing the new attribute
     }
 
     return (
@@ -72,9 +88,9 @@ function AttributeInputList () {
             <AttributeInput/>
             {inputList}
             <div className='add-more-btn' onClick={() => {
-                newAttribute(); 
-                counter++; 
+                counter = counter + 1; 
                 document.cookie = "numberOfAttributes=" + counter
+                newAttribute(); 
             }}>Add More</div>
         </div>
     )
@@ -83,7 +99,10 @@ function AttributeInputList () {
 function AssetsConnectionList() {
     return(
         <div>
-            Assets Upload - Attributes Created
+            <div>Assets Upload - Attributes Created</div>
+            <div className='attributes-created'>
+                <div className='attribute-element'></div>
+            </div>
         </div>
     )
 }
