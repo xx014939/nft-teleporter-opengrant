@@ -5,6 +5,10 @@ import mp4SVG from '../assets/mp4SVG.svg'
 import tick from '../assets/tick.svg'
 import imageSVG from '../assets/imageSVG.svg'
 import csvSVG from '../assets/imageSVG.svg'
+import { useState } from 'react';
+import FormData from 'form-data';
+import axios from 'axios'; 
+require('dotenv').config()
 
 let checkboxArray = [false, false, false]
 
@@ -44,7 +48,9 @@ function UploadBox (props) {
                     </div>
                     <div className='step-two-upload-main-text'>
                         <div>Drop your {props.fileType} files here or</div>
-                        <div>Browse</div>
+                        <div onClick={()=>{
+                            document.querySelector('.file-input').click()
+                        }}>Browse</div>
                     </div>
                     <div className='step-two-upload-secondary-text'>
                         Max. file size is 25MB 
@@ -83,6 +89,50 @@ function UploadMetadata (props) {
 
 function StepTwo () {
 
+    const [file, setFile] = useState()
+    const [myipfsHash, setIPFSHASH] = useState('')
+  
+    const handleFile = async (fileToHandle) =>{
+  
+      
+  
+        console.log('starting')
+    
+        // initialize the form data
+        const formData = new FormData()
+    
+        // append the file form data to 
+        formData.append("file", fileToHandle)
+        for (const value of formData.values()) {
+            console.log(value, 'here')
+        }
+    
+        // call the keys from .env
+    
+        const API_KEY = process.env.REACT_APP_API_KEY
+        const API_SECRET = process.env.REACT_APP_API_SECRET
+
+        console.log('KEYS -->', API_KEY, API_SECRET)
+    
+        // the endpoint needed to upload the file
+        const url =  `https://api.pinata.cloud/pinning/pinFileToIPFS`
+    
+        const response = await axios.post(
+            url,
+            formData,
+            {
+                maxContentLength: "Infinity",
+                headers: {
+                    "Content-Type": `multipart/form-data;boundary=${formData._boundary}`, 
+                    'pinata_api_key': `${API_KEY}`,
+                    'pinata_secret_api_key': `${API_SECRET}`
+                }
+            }
+        )
+
+        console.log(response.data.IpfsHash)
+    }
+
     return (
         <div className='step-two-container'>
             <div className='step-one-heading-container'><h2>Digital Assets</h2></div>
@@ -115,6 +165,15 @@ function StepTwo () {
             <UploadBox fileType="2D" svgName={imageSVG}/>
             <UploadBox fileType="MP4" svgName={mp4SVG}/>
             {getCookie() === 'true' && <UploadMetadata showMetaUpload = {true}/>}
+
+            <div className="file-manager-upload-form">
+                <label class="custom-file-upload">
+                    <input className='file-input' type="file" onChange={(event)=>setFile(event.target.files[0])}/>
+                    Upload
+                </label>
+                <button className='pin-button' onClick={()=>handleFile(file)}>Pin</button>
+                <a href='#signContract' className='pin-button' style={{maxWidth: '200px'}}>Sign?</a>
+            </div>
         </div>
     ) 
 }
