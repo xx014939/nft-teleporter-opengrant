@@ -8,7 +8,7 @@ const selectButton = event => {
 
 function setCookie(cookieName, boolean) {
     document.cookie = cookieName + "=" + boolean;
-    console.log(document.cookie)
+    // console.log(document.cookie)
 }
 
 function StepOne () {
@@ -21,20 +21,20 @@ return (
             <div className='step-one-input-label'>Name (NFT Collection)</div>
             <div className='step-one-input-subcontainer'>
                 <div><img src={inputSVG} alt=""/></div>
-                <input class="input-name" type="text" placeholder='Name' label="Enter NFT Collection's Name"></input>
+                <input className="input-name" type="text" placeholder='Name' label="Enter NFT Collection's Name"></input>
             </div>
         </div>
         <div className='step-one-input-container'>
             <div className='step-one-input-label' style={{marginTop: '38px'}}>Number of NFT's (inside of collection)</div>
             <div className='quantity-selector-container'>
                 <div className='quantity-selector'>
-                    <div class="quantity-selector-btn" onClick={() => { 
+                    <div className="quantity-selector-btn" onClick={() => { 
                         if (document.getElementById("collectionNumber").value > 0) {
                             document.getElementById("collectionNumber").value--
                         }
                     }}>-</div>
                     <input className='collectionNumber' id="collectionNumber" type="number" name="quantity" min="0" max="10000" placeholder="0"></input>
-                    <div class="quantity-selector-btn" onClick={() => { document.getElementById("collectionNumber").value++}}>+</div>
+                    <div className="quantity-selector-btn" onClick={() => { document.getElementById("collectionNumber").value++}}>+</div>
                 </div>
             </div>
         </div>

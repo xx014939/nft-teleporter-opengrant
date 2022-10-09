@@ -55,6 +55,10 @@ function UploadBox (props) {
                     <div className='step-two-upload-secondary-text'>
                         Max. file size is 25MB 
                     </div>
+                    <div id='uploadButton' className='step-two-upload-main-text'>
+                        <div id='fileName'>{props.fileName}</div>
+                        <div onClick={()=>{document.querySelector('.pin-button').click()}}>Upload</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -90,6 +94,7 @@ function UploadMetadata (props) {
 function StepTwo () {
 
     const [file, setFile] = useState()
+    const [fileName, setFileName] = useState()
     const [myipfsHash, setIPFSHASH] = useState('')
   
     const handleFile = async (fileToHandle) =>{
@@ -162,14 +167,14 @@ function StepTwo () {
                     </div>
                 </div>
             </div>
-            <UploadBox fileType="3D" svgName={threedFile}/>
+            <UploadBox fileName={fileName} fileType="3D" svgName={threedFile}/>
             <UploadBox fileType="2D" svgName={imageSVG}/>
             <UploadBox fileType="MP4" svgName={mp4SVG}/>
             {getCookie() === 'true' && <UploadMetadata showMetaUpload = {true}/>}
 
             <div className="file-manager-upload-form">
-                <label class="custom-file-upload">
-                    <input className='file-input' type="file" onChange={(event)=>{setFile(event.target.files[0]); console.log('HIDE/SHOW ELEMENTS HERE')}}/>
+                <label className="custom-file-upload">
+                    <input className='file-input' type="file" onChange={(event)=>{setFile(event.target.files[0], setFileName(event.target.files[0].name))}}/>
                     Upload
                 </label>
                 <button className='pin-button' onClick={()=>handleFile(file)}>Pin</button>
