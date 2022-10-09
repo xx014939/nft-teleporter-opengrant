@@ -49,7 +49,7 @@ function UploadBox (props) {
                     <div className='step-two-upload-main-text'>
                         <div>Drop your {props.fileType} files here or</div>
                         <div onClick={()=>{
-                            document.querySelector('.file-input').click()
+                            document.querySelector(`.${props.uploadButtonClass}`).click()
                         }}>Browse</div>
                     </div>
                     <div className='step-two-upload-secondary-text'>
@@ -57,7 +57,7 @@ function UploadBox (props) {
                     </div>
                     <div id='uploadButton' className='step-two-upload-main-text'>
                         <div id='fileName'>{props.fileName}</div>
-                        <div onClick={()=>{document.querySelector('.pin-button').click()}}>Upload</div>
+                        <div onClick={()=>{document.querySelector(`.${props.pinButtonClass}`).click()}}>Upload</div>
                     </div>
                 </div>
             </div>
@@ -95,7 +95,9 @@ function StepTwo () {
 
     const [file, setFile] = useState()
     const [fileName, setFileName] = useState()
-    const [myipfsHash, setIPFSHASH] = useState('')
+    const [twoDfileName, settwoDFileName] = useState()
+    const [mpFourFileName, setmpFourFileName] = useState()
+    
   
     const handleFile = async (fileToHandle) =>{
   
@@ -167,17 +169,31 @@ function StepTwo () {
                     </div>
                 </div>
             </div>
-            <UploadBox fileName={fileName} fileType="3D" svgName={threedFile}/>
-            <UploadBox fileType="2D" svgName={imageSVG}/>
-            <UploadBox fileType="MP4" svgName={mp4SVG}/>
+            <UploadBox uploadButtonClass='file-input-3d' pinButtonClass='pin-button-3d' fileName={fileName} fileType="3D" svgName={threedFile}/>
+            <UploadBox uploadButtonClass='file-input-2d' pinButtonClass='pin-button-2d' fileName={twoDfileName} fileType="2D" svgName={imageSVG}/>
+            <UploadBox uploadButtonClass='file-input-mp4' pinButtonClass='pin-button-mp4' fileName={mpFourFileName} fileType="MP4" svgName={mp4SVG}/>
             {getCookie() === 'true' && <UploadMetadata showMetaUpload = {true}/>}
 
             <div className="file-manager-upload-form">
                 <label className="custom-file-upload">
-                    <input className='file-input' type="file" onChange={(event)=>{setFile(event.target.files[0], setFileName(event.target.files[0].name))}}/>
+                    <input className='file-input-3d' type="file" onChange={(event)=>{setFile(event.target.files[0], setFileName(event.target.files[0].name))}}/>
                     Upload
                 </label>
-                <button className='pin-button' onClick={()=>handleFile(file)}>Pin</button>
+                <button className='pin-button-3d' onClick={()=>handleFile(file)}>Pin</button>
+            </div>
+            <div className="file-manager-upload-form">
+                <label className="custom-file-upload">
+                    <input className='file-input-2d' type="file" onChange={(event)=>{setFile(event.target.files[0], settwoDFileName(event.target.files[0].name))}}/>
+                    Upload
+                </label>
+                <button className='pin-button-2d' onClick={()=>handleFile(file)}>Pin</button>
+            </div>
+            <div className="file-manager-upload-form">
+                <label className="custom-file-upload">
+                    <input className='file-input-mp4' type="file" onChange={(event)=>{setFile(event.target.files[0], setmpFourFileName(event.target.files[0].name))}}/>
+                    Upload
+                </label>
+                <button className='pin-button-mp4' onClick={()=>handleFile(file)}>Pin</button>
             </div>
         </div>
     ) 
