@@ -110,3 +110,7 @@
     text-align: center;
     color: #676767;
 }
+
+.file-manager-upload-form {
+    display: none;
+}

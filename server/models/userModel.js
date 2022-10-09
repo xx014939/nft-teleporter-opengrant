@@ -48,6 +48,10 @@ const userSchema = mongoose.Schema({
     collection_chains: {
         type: Array,
         required: false
+    },
+    collection_assets: {
+        type: Array,
+        required: false
     }
 })
 

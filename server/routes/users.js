@@ -55,6 +55,9 @@ router.patch('/:id', getUser, async (req, res) => {
   if (req.body.wallet_chain != null) {
     res.user.wallet_chain = req.body.wallet_chain
   }
+  if (req.body.collection_assets != null) {
+    res.user.collection_assets = req.body.collection_assets
+  }
   try {
     const updatedUser = await res.user.save()
     res.json(updatedUser)
