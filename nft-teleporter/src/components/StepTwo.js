@@ -99,12 +99,7 @@ function StepTwo () {
     const [mpFourFileName, setmpFourFileName] = useState()
     
   
-    const handleFile = async (fileToHandle) =>{
-  
-      
-  
-        console.log('starting')
-        console.log(file.name) // FILENAME NEEDS TO REPLACE CURRENT UPLOAD TEXT
+    const handleFile = async (fileToHandle, assetType) =>{
     
         // initialize the form data
         const formData = new FormData()
@@ -119,8 +114,6 @@ function StepTwo () {
     
         const API_KEY = process.env.REACT_APP_API_KEY
         const API_SECRET = process.env.REACT_APP_API_SECRET
-
-        console.log('KEYS -->', API_KEY, API_SECRET)
     
         // the endpoint needed to upload the file
         const url =  `https://api.pinata.cloud/pinning/pinFileToIPFS`
@@ -138,7 +131,33 @@ function StepTwo () {
             }
         )
 
-        console.log(response.data.IpfsHash)
+        let userID = getCookie('userID')
+        let jwtToken = getCookie('jwt')
+        let currentIPFSHash = response.data.IpfsHash
+        let patchUrl = `http://localhost:5000/users/${userID}`
+        let body = {}
+        const config = {
+            headers: { Authorization: `Bearer ${jwtToken}` }
+        };
+
+        if (assetType === "3D") {
+            // PATCH USERS 3D HASH ARRAY IN BACKEND
+            body = {
+                "collection_assets": [[[currentIPFSHash],[],[]]]
+            }
+        } else if (assetType === "2D") {
+            // PATCH USERS 2D HASH ARRAY IN BACKEND
+            body = {
+                "collection_assets": [[[],[currentIPFSHash],[]]]
+            }
+        } else if (assetType === "MP4") {
+            // PATCH USERS MP4 HASH ARRAY IN BACKEND
+            body = {
+                "collection_assets": [[[],[],[currentIPFSHash]]]
+            }
+        }
+
+        axios.patch(patchUrl, body, config).then(console.log)
     }
 
     return (

@@ -81,7 +81,9 @@ bcrypt.compare(passwordEnteredByUser, `${hash}`, function(error, isMatch) {
           console.log(res)
           console.log('working!!!')
           let JWTTOKEN = res.token
+          let userID = res._id
           document.cookie = "jwt=" + JWTTOKEN;
+          document.cookie = "userID=" + userID;
           document.cookie = "currentUsername=" + userName
           window.location.href = window.location.href + 'account'
         })
