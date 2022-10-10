@@ -86,6 +86,8 @@ function AttributeInputList () {
     function newAttribute() {
         setInputList(inputList.concat(<AttributeInput key={inputList.length}/>)); // Create new attribute element
 
+        let attributeCounter = document.querySelector('.attributes-created') // Attribute div container
+        
         // Add new checkbox to asset connection section
         let newElement = document.querySelectorAll('.step-two-single-checkbox')[0].cloneNode(true)
         attributeCounter.append(newElement)
