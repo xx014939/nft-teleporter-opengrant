@@ -113,7 +113,7 @@ function StepThree () {
         <div className='step-two-container'>
             <div className='step-one-heading-container'><h2>Metadata</h2></div>
             <div className='page-container' style={{flexDirection: 'column'}}>
-                <div className='step-two-label'>What attributes will your collections have?</div>
+                <div className='step-two-label'>What attributes will your collections have? (Multiple attributes with the same name are permitted)</div>
                 <div className="metadata-attributes-modal">
                     <div className="metadata-attributes-header">
                         <div>Attribute Name</div>

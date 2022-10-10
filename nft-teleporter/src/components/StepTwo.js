@@ -142,6 +142,7 @@ function StepTwo () {
         let patchUrl = `http://localhost:5000/users/${userID}` // Our backend server
         let jwtToken = getCookie('jwt')
         let body = {}
+        let container
         const config = {
             maxContentLength: "Infinity",
             headers: { 
@@ -152,14 +153,10 @@ function StepTwo () {
 
         // Retrieve users current collection_assets array (all hashes from all existing collections)
         let userResponse = await axios.get(patchUrl, config)
-        console.log('FIRST BEARER REQUEST -->', userResponse)
         let existingHashArray = userResponse.data.collection_assets
 
-        console.log('EXISTING HASH ARRAY -->', existingHashArray)
-        console.log(filesUploaded, 'files uploaded counter')
         if (parseInt(filesUploaded) === 0) {
             existingHashArray.push([['3D HASH'],['2D HASH'],['MP4 HASH']])
-            console.log('EXISTING HASH ARRAY TWO -->', existingHashArray)
         }
 
         // Patch users new hash array into our backend
@@ -180,10 +177,32 @@ function StepTwo () {
             }
         }
 
-        console.log('EXISTING HASH ARRAY THREE -->', existingHashArray)
-
         let testResponse = await axios.patch(patchUrl, body, config)
         console.log(testResponse)
+
+        // Append file name to uploaded files container
+        if (assetType === "3D") {
+            container = document.getElementById('3DContainer')
+            let newFileName = document.createElement('div')
+            newFileName.innerHTML = `${file.name}`
+
+            container.append(newFileName)
+            container.firstChild.style.display = 'block'
+        } else if (assetType === "2D") {
+            container = document.getElementById('2DContainer')
+            let newFileName = document.createElement('div')
+            newFileName.innerHTML = `${file.name}`
+
+            container.append(newFileName)
+            container.firstChild.style.display = 'block'
+        } else if (assetType === "MP4") {
+            container = document.getElementById('MP4Container')
+            let newFileName = document.createElement('div')
+            newFileName.innerHTML = `${file.name}`
+
+            container.append(newFileName)
+            container.firstChild.style.display = 'block'
+        }
 
         document.cookie = "filesUploaded=1"
     }
@@ -217,8 +236,20 @@ function StepTwo () {
                 </div>
             </div>
             <UploadBox uploadButtonClass='file-input-3d' pinButtonClass='pin-button-3d' fileName={fileName} fileType="3D" svgName={threedFile}/>
+            <div id='3DContainer' className='uploaded-files-container page-container'>
+                <div className='uploaded-files-header'>Uploaded 3D Files</div>
+            </div>
+
             <UploadBox uploadButtonClass='file-input-2d' pinButtonClass='pin-button-2d' fileName={twoDfileName} fileType="2D" svgName={imageSVG}/>
+            <div id='2DContainer' className='uploaded-files-container page-container'>
+                <div className='uploaded-files-header'>Uploaded 2D Files</div>
+            </div>
+
             <UploadBox uploadButtonClass='file-input-mp4' pinButtonClass='pin-button-mp4' fileName={mpFourFileName} fileType="MP4" svgName={mp4SVG}/>
+            <div id='MP4Container' className='uploaded-files-container page-container'>
+                <div className='uploaded-files-header'>Uploaded MP4 Files</div>
+            </div>
+
             {getCookie('randomdata') === 'true' && <UploadMetadata showMetaUpload = {true}/>}
 
             <div className="file-manager-upload-form">
