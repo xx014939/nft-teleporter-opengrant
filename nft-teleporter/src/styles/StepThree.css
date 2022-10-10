@@ -37,3 +37,14 @@
     text-align: center;
     color: #000000;
 }
+
+.assets-plus-attributes-header {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+
+.assets-plus-attributes-container {
+    padding-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}

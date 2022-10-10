@@ -2,6 +2,7 @@ import '../styles/StepThree.css'
 import '../styles/StepTwo.css'
 import '../styles/StepOne.css'
 import '../index.css'
+import tick from '../assets/tick.svg'
 import Select from 'react-select';
 import React, { useState } from 'react';
 
@@ -44,7 +45,7 @@ function AttributeInput () {
     function handleChange(event) {
         console.log(event.target.value);
         let allInputs = document.querySelectorAll('.attribute-name-input')
-        let allCreated = document.querySelectorAll('.attribute-element')
+        let allCreated = document.querySelectorAll('.attribute-element-name')
         for (let i = 0; i < allInputs.length; i++) {
             if (allInputs[i] === event.target) { // Locate input box index in node list
                 allCreated[i].innerHTML = event.target.value // Update corresponding div inside div nodelist
@@ -52,11 +53,21 @@ function AttributeInput () {
         }
 
       }
+    
+    function handleValueChange(event) {
+        let allInputs = document.querySelectorAll('.attribute-value-input')
+        let allCreated = document.querySelectorAll('.attribute-element-value')
+        for (let i = 0; i < allInputs.length; i++) {
+            if (allInputs[i] === event.target) { // Locate input box index in node list
+                allCreated[i].innerHTML = event.target.value // Update corresponding div inside div nodelist
+            }
+        }
+    }
 
     return (
         <div className="metadata-attributes-input-container">
             <input id='attributeName' className='attribute-name-input' onChange={handleChange} />
-            <input id='attributeValue'/>
+            <input id='attributeValue' className='attribute-value-input' onChange={handleValueChange}/>
             <div>
                 <Select
                 defaultValue={selectedOption}
@@ -75,12 +86,15 @@ function AttributeInputList () {
     function newAttribute() {
         setInputList(inputList.concat(<AttributeInput key={inputList.length}/>)); // Create new attribute element
 
-        let attributeCounter = document.querySelector('.attributes-created') // Attribute div container
-
-        let newAttributeElement = document.createElement("div")
-        newAttributeElement.classList.add('attribute-element')
-        newAttributeElement.innerHTML = counter
-        attributeCounter.append(newAttributeElement) // Add new child div, representing the new attribute
+        // Add new checkbox to asset connection section
+        let newElement = document.querySelectorAll('.step-two-single-checkbox')[0].cloneNode(true)
+        attributeCounter.append(newElement)
+        let latestCheckBox = document.querySelectorAll('.step-two-checkbox-icon')
+        
+        // Add onclick to new checkbox
+        latestCheckBox[(latestCheckBox.length -1)].addEventListener('click', (event) => {
+            event.currentTarget.classList.toggle('step-two-checkbox-icon-active');
+        })
     }
 
     return (
@@ -99,9 +113,24 @@ function AttributeInputList () {
 function AssetsConnectionList() {
     return(
         <div>
-            <div>Assets Upload - Attributes Created</div>
-            <div className='attributes-created'>
-                <div className='attribute-element'></div>
+            <div className='assets-plus-attributes-header'>
+                <div>Assets Uploaded</div>
+                <div>Attributes Created</div>
+            </div>
+            <div className='assets-plus-attributes-container'>
+                <div className='file-name'>
+                    FILENAME.PNG
+                </div>
+                <div className='attributes-list attributes-created'>
+                    <div className='step-two-single-checkbox'>
+                        <div className='step-two-checkbox-icon' onClick={selectBox}>
+                            <img src={tick} alt=""/>
+                        </div>
+                        <div className='step-two-checkbox-label'>
+                            <span className='attribute-element-name'></span> - <span className='attribute-element-value'>VALUE</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )
