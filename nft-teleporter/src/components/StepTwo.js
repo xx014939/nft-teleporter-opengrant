@@ -8,9 +8,11 @@ import csvSVG from '../assets/imageSVG.svg'
 import { useState } from 'react';
 import FormData from 'form-data';
 import axios from 'axios'; 
+import { getCountryCallingCode } from 'libphonenumber-js/core'
 require('dotenv').config()
 
 let checkboxArray = [false, false, false]
+document.cookie = 'filesUploaded=0'
 
 const selectBox = event => {
     event.currentTarget.classList.toggle('step-two-checkbox-icon-active');
@@ -27,10 +29,10 @@ const selectBox = event => {
     }
   };
 
-function getCookie() {
+  function getCookie(cookieName) {
     let cookieValue = document.cookie
     .split('; ')
-    .find((row) => row.startsWith('randomdata='))
+    .find((row) => row.startsWith(`${cookieName}=`))
     ?.split('=')[1];
     console.log(cookieValue)
 
@@ -100,6 +102,8 @@ function StepTwo () {
     
   
     const handleFile = async (fileToHandle, assetType) =>{
+
+        let filesUploaded = getCookie('filesUploaded')
     
         // initialize the form data
         const formData = new FormData()
@@ -118,6 +122,7 @@ function StepTwo () {
         // the endpoint needed to upload the file
         const url =  `https://api.pinata.cloud/pinning/pinFileToIPFS`
     
+        // POST file to Pinata
         const response = await axios.post(
             url,
             formData,
@@ -131,33 +136,56 @@ function StepTwo () {
             }
         )
 
+        let currentIPFSHash = response.data.IpfsHash // Save file hash in response
+
         let userID = getCookie('userID')
+        let patchUrl = `http://localhost:5000/users/${userID}` // Our backend server
         let jwtToken = getCookie('jwt')
-        let currentIPFSHash = response.data.IpfsHash
-        let patchUrl = `http://localhost:5000/users/${userID}`
         let body = {}
         const config = {
-            headers: { Authorization: `Bearer ${jwtToken}` }
-        };
+            maxContentLength: "Infinity",
+            headers: { 
+                'Authorization': `Bearer ${jwtToken}` 
+            }
+        }
+        console.log(config)
 
+        // Retrieve users current collection_assets array (all hashes from all existing collections)
+        let userResponse = await axios.get(patchUrl, config)
+        console.log('FIRST BEARER REQUEST -->', userResponse)
+        let existingHashArray = userResponse.data.collection_assets
+
+        console.log('EXISTING HASH ARRAY -->', existingHashArray)
+        console.log(filesUploaded, 'files uploaded counter')
+        if (parseInt(filesUploaded) === 0) {
+            existingHashArray.push([['3D HASH'],['2D HASH'],['MP4 HASH']])
+            console.log('EXISTING HASH ARRAY TWO -->', existingHashArray)
+        }
+
+        // Patch users new hash array into our backend
         if (assetType === "3D") {
-            // PATCH USERS 3D HASH ARRAY IN BACKEND
+            existingHashArray[(existingHashArray.length - 1)][0].push([`${file.name}`, currentIPFSHash]) // [File Name, Hash]) 
             body = {
-                "collection_assets": [[[currentIPFSHash],[],[]]]
+                "collection_assets": existingHashArray
             }
         } else if (assetType === "2D") {
-            // PATCH USERS 2D HASH ARRAY IN BACKEND
+            existingHashArray[(existingHashArray.length - 1)][1].push([`${file.name}`, currentIPFSHash]) // [File Name, Hash]) 
             body = {
-                "collection_assets": [[[],[currentIPFSHash],[]]]
+                "collection_assets": existingHashArray
             }
         } else if (assetType === "MP4") {
-            // PATCH USERS MP4 HASH ARRAY IN BACKEND
+            existingHashArray[(existingHashArray.length - 1)][2].push([`${file.name}`, currentIPFSHash]) // [File Name, Hash]) 
             body = {
-                "collection_assets": [[[],[],[currentIPFSHash]]]
+                "collection_assets": existingHashArray
             }
         }
 
-        axios.patch(patchUrl, body, config).then(console.log)
+        console.log('EXISTING HASH ARRAY THREE -->', existingHashArray)
+
+        let testResponse = await axios.patch(patchUrl, body, config)
+        console.log(testResponse)
+
+        document.cookie = "filesUploaded=1"
     }
 
     return (
@@ -191,28 +219,28 @@ function StepTwo () {
             <UploadBox uploadButtonClass='file-input-3d' pinButtonClass='pin-button-3d' fileName={fileName} fileType="3D" svgName={threedFile}/>
             <UploadBox uploadButtonClass='file-input-2d' pinButtonClass='pin-button-2d' fileName={twoDfileName} fileType="2D" svgName={imageSVG}/>
             <UploadBox uploadButtonClass='file-input-mp4' pinButtonClass='pin-button-mp4' fileName={mpFourFileName} fileType="MP4" svgName={mp4SVG}/>
-            {getCookie() === 'true' && <UploadMetadata showMetaUpload = {true}/>}
+            {getCookie('randomdata') === 'true' && <UploadMetadata showMetaUpload = {true}/>}
 
             <div className="file-manager-upload-form">
                 <label className="custom-file-upload">
                     <input className='file-input-3d' type="file" onChange={(event)=>{setFile(event.target.files[0], setFileName(event.target.files[0].name))}}/>
                     Upload
                 </label>
-                <button className='pin-button-3d' onClick={()=>handleFile(file)}>Pin</button>
+                <button className='pin-button-3d' onClick={()=>handleFile(file, '3D')}>Pin</button>
             </div>
             <div className="file-manager-upload-form">
                 <label className="custom-file-upload">
                     <input className='file-input-2d' type="file" onChange={(event)=>{setFile(event.target.files[0], settwoDFileName(event.target.files[0].name))}}/>
                     Upload
                 </label>
-                <button className='pin-button-2d' onClick={()=>handleFile(file)}>Pin</button>
+                <button className='pin-button-2d' onClick={()=>handleFile(file, '2D')}>Pin</button>
             </div>
             <div className="file-manager-upload-form">
                 <label className="custom-file-upload">
                     <input className='file-input-mp4' type="file" onChange={(event)=>{setFile(event.target.files[0], setmpFourFileName(event.target.files[0].name))}}/>
                     Upload
                 </label>
-                <button className='pin-button-mp4' onClick={()=>handleFile(file)}>Pin</button>
+                <button className='pin-button-mp4' onClick={()=>handleFile(file, 'MP4')}>Pin</button>
             </div>
         </div>
     ) 

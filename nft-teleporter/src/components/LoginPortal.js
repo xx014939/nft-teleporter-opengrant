@@ -80,8 +80,8 @@ bcrypt.compare(passwordEnteredByUser, `${hash}`, function(error, isMatch) {
         .then(res => {
           console.log(res)
           console.log('working!!!')
-          let JWTTOKEN = res.token
-          let userID = res._id
+          let JWTTOKEN = res.data.token
+          let userID = res.data.id
           document.cookie = "jwt=" + JWTTOKEN;
           document.cookie = "userID=" + userID;
           document.cookie = "currentUsername=" + userName
