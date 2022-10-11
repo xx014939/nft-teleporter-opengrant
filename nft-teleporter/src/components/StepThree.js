@@ -4,9 +4,12 @@ import '../styles/StepOne.css'
 import '../index.css'
 import tick from '../assets/tick.svg'
 import Select from 'react-select';
-import React, { useState } from 'react';
+import React, { useState, useEffect  } from 'react';
+import axios from 'axios'; 
+import parse from 'html-react-parser';
 
 let counter = 1
+let fileListUpdated = false
 
 const selectBox = event => {
     event.currentTarget.classList.toggle('step-two-checkbox-icon-active');
@@ -87,7 +90,7 @@ function AttributeInputList () {
         setInputList(inputList.concat(<AttributeInput key={inputList.length}/>)); // Create new attribute element
 
         let attributeCounter = document.querySelector('.attributes-created') // Attribute div container
-        
+
         // Add new checkbox to asset connection section
         let newElement = document.querySelectorAll('.step-two-single-checkbox')[0].cloneNode(true)
         attributeCounter.append(newElement)
@@ -113,6 +116,64 @@ function AttributeInputList () {
 }
 
 function AssetsConnectionList() {
+    const [fileList, setFileList] = useState([]);
+
+    async function retrieveFileList() {
+        let userID = getCookie('userID')
+        let patchUrl = `http://localhost:5000/users/${userID}` // Our backend server
+        let jwtToken = getCookie('jwt')
+        const config = {
+            maxContentLength: "Infinity",
+            headers: { 
+                'Authorization': `Bearer ${jwtToken}` 
+            }
+        }
+
+        let userResponse = await axios.get(patchUrl, config)
+        let existingFileList = userResponse.data.collection_assets
+        let currentCollectionFileList = existingFileList[(existingFileList.length - 1)]
+        console.log('working')
+        console.log(currentCollectionFileList)
+        if (fileListUpdated === false) {
+            if (currentCollectionFileList[0].length > 1) {
+                for (let i = 1; i < currentCollectionFileList[0].length; i++) {
+                    setFileList(fileList.concat(`${currentCollectionFileList[0][i][0]}`))
+                }
+            }
+    
+            console.log('triggered one!')
+            if (currentCollectionFileList[1].length > 1) {
+                for (let i = 1; i < currentCollectionFileList[1].length; i++) {
+                    setFileList(fileList.concat(`<div>${currentCollectionFileList[1][i][0]}</div>`))
+                    console.log('triggered two!')
+                }
+            }
+            console.log('triggered three!', fileListUpdated)
+    
+            if (currentCollectionFileList[2].length > 1) {
+                for (let i = 1; i < currentCollectionFileList[2].length; i++) {
+                    setFileList(fileList.concat(`${currentCollectionFileList[2][i][0]}`))
+                }   
+            }
+    
+            fileListUpdated = true
+        }
+    }
+
+    useEffect(() => {
+        retrieveFileList()
+        let fileListElement = document.querySelector('.file-name')
+
+        for (let i = 0; i < fileList.length; i++) {
+            let newFile = document.createElement('div')
+            newFile.innerHTML = `${fileList[i]}`
+
+            fileListElement.append(newFile)
+        }
+
+        console.log('THE FILE LIST IS -->', fileList)
+      }, [fileList]);
+
     return(
         <div>
             <div className='assets-plus-attributes-header'>
@@ -129,7 +190,7 @@ function AssetsConnectionList() {
                             <img src={tick} alt=""/>
                         </div>
                         <div className='step-two-checkbox-label'>
-                            <span className='attribute-element-name'></span> - <span className='attribute-element-value'>VALUE</span>
+                            <span className='attribute-element-name'>NAME</span> - <span className='attribute-element-value'>VALUE</span>
                         </div>
                     </div>
                 </div>
