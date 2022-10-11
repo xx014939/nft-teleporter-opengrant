@@ -171,19 +171,19 @@ function AssetsConnectionList() {
         if (fileListUpdated === false) {
             if (currentCollectionFileList[0].length > 1) {
                 for (let i = 1; i < currentCollectionFileList[0].length; i++) {
-                    setFileList(fileList.concat(`${currentCollectionFileList[0][i][0]}`))
+                    setFileList(current => [...current, `<div>${currentCollectionFileList[0][i][0]}</div>`])
                 }
             }
     
             if (currentCollectionFileList[1].length > 1) {
                 for (let i = 1; i < currentCollectionFileList[1].length; i++) {
-                    setFileList(fileList.concat(`<div>${currentCollectionFileList[1][i][0]}</div>`))
+                    setFileList(current => [...current, `<div>${currentCollectionFileList[1][i][0]}</div>`]);
                 }
             }
     
             if (currentCollectionFileList[2].length > 1) {
                 for (let i = 1; i < currentCollectionFileList[2].length; i++) {
-                    setFileList(fileList.concat(`${currentCollectionFileList[2][i][0]}`))
+                    setFileList(current => [...current, `<div>${currentCollectionFileList[2][i][0]}</div>`])
                 }   
             }
     
@@ -194,19 +194,23 @@ function AssetsConnectionList() {
     useEffect(() => {
         retrieveFileList()
         let fileListElement = document.querySelector('.file-name')
+        let doFileElementsExist = document.querySelectorAll('.new-file-name')
+        console.log(doFileElementsExist, 'HERE')
 
-        for (let i = 0; i < fileList.length; i++) {
-            let newFile = document.createElement('div')
-            newFile.classList.add('new-file-name')
-            newFile.innerHTML = `${fileList[i]}`
-            newFile.addEventListener('click', () => {
-                newFile.classList.toggle('new-file-name--active')
-                currentlySelectedAsset = i
-                console.log(currentlySelectedAsset)
-            })
-
-            fileListElement.append(newFile)
-            attributeSelectedArray.push([false])
+        if (!doFileElementsExist.length > 0) {
+            for (let i = 0; i < fileList.length; i++) {
+                let newFile = document.createElement('div')
+                newFile.classList.add('new-file-name')
+                newFile.innerHTML = `${fileList[i]}`
+                newFile.addEventListener('click', () => {
+                    newFile.classList.toggle('new-file-name--active')
+                    currentlySelectedAsset = i
+                    console.log(currentlySelectedAsset)
+                })
+    
+                fileListElement.append(newFile)
+                attributeSelectedArray.push([false])
+            }
         }
 
         console.log('THE FILE LIST IS -->', fileList)
