@@ -10,9 +10,27 @@ import parse from 'html-react-parser';
 
 let counter = 1
 let fileListUpdated = false
+let currentlySelectedAsset = null
 
-const selectBox = event => {
-    event.currentTarget.classList.toggle('step-two-checkbox-icon-active');
+let attributeSelectedArray = [] // Multi-Dimensional Array - attributeSelectedArray[ASSET INDEX][CHECKBOX INDEX] - Checkbox index will hold a TRUE/FALSE value corresponding to CHECKED/UNCHECKED
+
+const selectBox = event => { // This function is ONLY used for 1st checkbox. Subsequent boxes make use of the newAttribute() function
+    if (attributeSelectedArray[currentlySelectedAsset]) {
+                
+        // Update its corresponding attribute true/false value inside the array
+        let checkboxIndex = event.currentTarget.id
+
+        if (attributeSelectedArray[currentlySelectedAsset][(parseInt(checkboxIndex))] === true) {
+            attributeSelectedArray[currentlySelectedAsset][(parseInt(checkboxIndex))] = false
+        } else {
+            attributeSelectedArray[currentlySelectedAsset][(parseInt(checkboxIndex))] = true
+        }
+
+        event.currentTarget.classList.toggle('step-two-checkbox-icon-active');
+        console.log(attributeSelectedArray)
+    } else {
+        alert('Please Select Asset First')
+    }
   };
 
 function getCookie(cookieName) {
@@ -24,14 +42,6 @@ function getCookie(cookieName) {
 
     return cookieValue;
 }
-
-// Upon adding a new attribute
-// Let the next section know there is a new attribute, hence creating a checkbox for it
-// Append the attribute name to the checkbox
-
-// IN OTHER WORDS
-// Upon creating a new attribute
-// Output 1. a new attribute signal 2. attribute name and value (dynamic use onchange)
 
 function AttributeInput () {
     const [selectedOption, setSelectedOption] = useState(null);
@@ -45,7 +55,7 @@ function AttributeInput () {
         { value: 'Legendary', label: 'Legendary' },
     ];
 
-    function handleChange(event) {
+    function handleNameChange(event) {
         console.log(event.target.value);
         let allInputs = document.querySelectorAll('.attribute-name-input')
         let allCreated = document.querySelectorAll('.attribute-element-name')
@@ -69,7 +79,7 @@ function AttributeInput () {
 
     return (
         <div className="metadata-attributes-input-container">
-            <input id='attributeName' className='attribute-name-input' onChange={handleChange} />
+            <input id='attributeName' className='attribute-name-input' onChange={handleNameChange} />
             <input id='attributeValue' className='attribute-value-input' onChange={handleValueChange}/>
             <div>
                 <Select
@@ -95,10 +105,29 @@ function AttributeInputList () {
         let newElement = document.querySelectorAll('.step-two-single-checkbox')[0].cloneNode(true)
         attributeCounter.append(newElement)
         let latestCheckBox = document.querySelectorAll('.step-two-checkbox-icon')
+
+        // Add ID keeping track of box number
+        latestCheckBox[(latestCheckBox.length -1)].id = `${(counter - 1)}`
         
         // Add onclick to new checkbox
         latestCheckBox[(latestCheckBox.length -1)].addEventListener('click', (event) => {
-            event.currentTarget.classList.toggle('step-two-checkbox-icon-active');
+            // If there is an asset selected
+            if (attributeSelectedArray[currentlySelectedAsset]) {
+                
+                // Update its corresponding attribute true/false value inside the array
+                let checkboxIndex = event.currentTarget.id
+
+                if (attributeSelectedArray[currentlySelectedAsset][(parseInt(checkboxIndex))] === true) {
+                    attributeSelectedArray[currentlySelectedAsset][(parseInt(checkboxIndex))] = false
+                } else {
+                    attributeSelectedArray[currentlySelectedAsset][(parseInt(checkboxIndex))] = true
+                }
+
+                event.currentTarget.classList.toggle('step-two-checkbox-icon-active');
+                console.log(attributeSelectedArray)
+            } else {
+                alert('Please Select Asset First')
+            }
         })
     }
 
@@ -107,9 +136,14 @@ function AttributeInputList () {
             <AttributeInput/>
             {inputList}
             <div className='add-more-btn' onClick={() => {
-                counter = counter + 1; 
+                counter = counter + 1;  
                 document.cookie = "numberOfAttributes=" + counter
                 newAttribute(); 
+
+                for (let i = 0; i < attributeSelectedArray.length; i++) {
+                    attributeSelectedArray[i].push(false)
+                }
+                console.log(attributeSelectedArray)
             }}>Add More</div>
         </div>
     )
@@ -163,9 +197,16 @@ function AssetsConnectionList() {
 
         for (let i = 0; i < fileList.length; i++) {
             let newFile = document.createElement('div')
+            newFile.classList.add('new-file-name')
             newFile.innerHTML = `${fileList[i]}`
+            newFile.addEventListener('click', () => {
+                newFile.classList.toggle('new-file-name--active')
+                currentlySelectedAsset = i
+                console.log(currentlySelectedAsset)
+            })
 
             fileListElement.append(newFile)
+            attributeSelectedArray.push([false])
         }
 
         console.log('THE FILE LIST IS -->', fileList)
@@ -179,11 +220,11 @@ function AssetsConnectionList() {
             </div>
             <div className='assets-plus-attributes-container'>
                 <div className='file-name'>
-                    FILENAME.PNG
+
                 </div>
                 <div className='attributes-list attributes-created'>
                     <div className='step-two-single-checkbox'>
-                        <div className='step-two-checkbox-icon' onClick={selectBox}>
+                        <div className='step-two-checkbox-icon' id='0' onClick={selectBox}>
                             <img src={tick} alt=""/>
                         </div>
                         <div className='step-two-checkbox-label'>

@@ -48,3 +48,19 @@
     display: grid;
     grid-template-columns: repeat(2,1fr);
 }
+
+.new-file-name {
+    padding: 5px;
+    border: 1px solid #ffffff;
+    opacity: 0.5;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+    width: 150px;
+    cursor: pointer;
+}
+
+.new-file-name--active {
+    border: 1px solid #F187FB !important;
+    opacity: 1 !important;
+}
