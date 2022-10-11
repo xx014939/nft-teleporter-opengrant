@@ -141,14 +141,11 @@ function AssetsConnectionList() {
                 }
             }
     
-            console.log('triggered one!')
             if (currentCollectionFileList[1].length > 1) {
                 for (let i = 1; i < currentCollectionFileList[1].length; i++) {
                     setFileList(fileList.concat(`<div>${currentCollectionFileList[1][i][0]}</div>`))
-                    console.log('triggered two!')
                 }
             }
-            console.log('triggered three!', fileListUpdated)
     
             if (currentCollectionFileList[2].length > 1) {
                 for (let i = 1; i < currentCollectionFileList[2].length; i++) {
