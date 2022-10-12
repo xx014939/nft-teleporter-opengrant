@@ -110,6 +110,9 @@ function AttributeInputList () {
 
         // Add ID keeping track of box number
         latestCheckBox[(latestCheckBox.length -1)].id = `${(counter - 1)}`
+
+        // Remove checked class if present (default is unchecked)
+        latestCheckBox[(latestCheckBox.length -1)].classList.remove('step-two-checkbox-icon-active')
         
         // Add onclick to new checkbox
         latestCheckBox[(latestCheckBox.length -1)].addEventListener('click', (event) => {
