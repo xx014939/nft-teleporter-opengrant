@@ -12,6 +12,8 @@ let counter = 1
 let fileListUpdated = false
 let currentlySelectedAsset = null
 
+let assetButtonList = []
+
 let attributeSelectedArray = [] // Multi-Dimensional Array - attributeSelectedArray[ASSET INDEX][CHECKBOX INDEX] - Checkbox index will hold a TRUE/FALSE value corresponding to CHECKED/UNCHECKED
 
 const selectBox = event => { // This function is ONLY used for 1st checkbox. Subsequent boxes make use of the newAttribute() function
@@ -202,10 +204,32 @@ function AssetsConnectionList() {
                 let newFile = document.createElement('div')
                 newFile.classList.add('new-file-name')
                 newFile.innerHTML = `${fileList[i]}`
+                assetButtonList.push(newFile)
                 newFile.addEventListener('click', () => {
                     newFile.classList.toggle('new-file-name--active')
                     currentlySelectedAsset = i
                     console.log(currentlySelectedAsset)
+
+                    // Unselect other assets if they are selected
+                    for (let i = 0; i < assetButtonList.length; i++) {
+                        if (assetButtonList[i] !== newFile) {
+                            assetButtonList[i].classList.remove('new-file-name--active')
+                        }
+                    }
+
+                    // Check/Uncheck attribute boxes based on current value in attributeSelectedArray 
+                    let currentCheckBoxes = document.querySelectorAll('.step-two-checkbox-icon')
+                    for (let i = 0; i < currentCheckBoxes.length; i++) {
+                        let currentBool = attributeSelectedArray[currentlySelectedAsset][i]
+                        if (currentBool) {
+                            if (!currentCheckBoxes[i].classList.contains('step-two-checkbox-icon-active')) {
+                                currentCheckBoxes[i].classList.add('step-two-checkbox-icon-active')
+                            }
+                        } else {
+                            console.log(currentCheckBoxes[i], 'Checkbox that is false')
+                            currentCheckBoxes[i].classList.remove('step-two-checkbox-icon-active')
+                        }
+                    }
                 })
     
                 fileListElement.append(newFile)
