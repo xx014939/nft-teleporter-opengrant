@@ -269,7 +269,7 @@ function AssetsConnectionList() {
                     </div>
                 </div>
             </div>
-            <MetadataImage attributeList = {fileList}/>
+            <MetadataImage/>
         </div>
     )
 }
@@ -313,7 +313,7 @@ function hideAttributes () {
     document.querySelector('.unique-name-container').style.display = "none"
 }
 
-function MetadataImage(props) {
+function MetadataImage() {
 
     return(
         <div>
@@ -337,7 +337,7 @@ function MetadataImage(props) {
                     </div>
                 </div>
             <div className='unique-name-container'>
-                {parse((`${uniqueNames}`).replaceAll(',', ''))}
+                
             </div>
         </div>
     )
