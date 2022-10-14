@@ -64,3 +64,24 @@
     border: 1px solid #F187FB !important;
     opacity: 1 !important;
 }
+
+.step-three-label {
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 17px;
+    margin-bottom: 33px;
+    color: #FFFFFF;
+}
+
+.metadata-description {
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    margin-bottom: 33px;
+    color: #FFFFFF;
+    max-width: 800px;
+}

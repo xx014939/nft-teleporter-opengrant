@@ -113,7 +113,7 @@ function AttributeInputList () {
 
         // Remove checked class if present (default is unchecked)
         latestCheckBox[(latestCheckBox.length -1)].classList.remove('step-two-checkbox-icon-active')
-        
+
         // Add onclick to new checkbox
         latestCheckBox[(latestCheckBox.length -1)].addEventListener('click', (event) => {
             // If there is an asset selected
@@ -264,6 +264,18 @@ function AssetsConnectionList() {
                     </div>
                 </div>
             </div>
+            <MetadataImage fileList = {fileList}/>
+        </div>
+    )
+}
+
+function MetadataImage(props) {
+    return(
+        <div>
+            <div className='step-three-label'>Which attribute type will determine your NFT's main image?</div>
+            <div>
+                {parse((`${props.fileList}`).replaceAll(',', ''))}
+            </div>
         </div>
     )
 }
@@ -274,7 +286,8 @@ function StepThree () {
         <div className='step-two-container'>
             <div className='step-one-heading-container'><h2>Metadata</h2></div>
             <div className='page-container' style={{flexDirection: 'column'}}>
-                <div className='step-two-label'>What attributes will your collections have? (Multiple attributes with the same name are permitted)</div>
+                <div className='step-three-label'>What attributes will your collections have?</div>
+                {/* <div className='metadata-description'>Most NFT collections have at least one attribute which will be assigned to all NFT's within the collection. Attributes can (and should) have varying degrees of rarity. Attributes with the same name but different values and rarity will be distributed amongst the NFT's in the collection based on their rarity level. </div> */}
                 <div className="metadata-attributes-modal">
                     <div className="metadata-attributes-header">
                         <div>Attribute Name</div>
@@ -283,7 +296,7 @@ function StepThree () {
                     </div>
                 </div>
                     <AttributeInputList/>
-                <div className='step-two-label'>Connect uploaded assets to your attributes</div>
+                <div className='step-three-label'>Connect uploaded assets to your attributes</div>
                     <AssetsConnectionList/>
                 {/* <div className='step-two-checkbox-section'>
                     <div className='step-two-label'>Select blockchain for NFT collection</div>
