@@ -85,3 +85,28 @@
     color: #FFFFFF;
     max-width: 800px;
 }
+
+.unique-name-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 600px;
+    padding-top: 50px;
+}
+
+.unique-name {
+    padding: 5px;
+    border: 1px solid #ffffff;
+    opacity: 0.5;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+    width: 150px;
+    cursor: pointer;
+}
+
+.unique-name--active {
+    border: 1px solid #F187FB !important;
+    opacity: 1 !important;
+}

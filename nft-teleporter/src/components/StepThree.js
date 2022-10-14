@@ -12,6 +12,9 @@ let counter = 1
 let fileListUpdated = false
 let currentlySelectedAsset = null
 
+let attributeNames = []
+let uniqueNames = []
+
 let assetButtonList = []
 
 let attributeSelectedArray = [] // Multi-Dimensional Array - attributeSelectedArray[ASSET INDEX][CHECKBOX INDEX] - Checkbox index will hold a TRUE/FALSE value corresponding to CHECKED/UNCHECKED
@@ -58,12 +61,14 @@ function AttributeInput () {
     ];
 
     function handleNameChange(event) {
-        console.log(event.target.value);
+        console.log('IM HERE')
         let allInputs = document.querySelectorAll('.attribute-name-input')
         let allCreated = document.querySelectorAll('.attribute-element-name')
         for (let i = 0; i < allInputs.length; i++) {
             if (allInputs[i] === event.target) { // Locate input box index in node list
                 allCreated[i].innerHTML = event.target.value // Update corresponding div inside div nodelist
+                attributeNames[i] = event.target.value
+                console.log('ATTRIBUTE ARRAY -->', attributeNames)
             }
         }
 
@@ -264,17 +269,75 @@ function AssetsConnectionList() {
                     </div>
                 </div>
             </div>
-            <MetadataImage fileList = {fileList}/>
+            <MetadataImage attributeList = {fileList}/>
         </div>
     )
 }
 
+const selectButton = event => {
+    event.currentTarget.classList.toggle('step-one-single-button-container-active');
+    event.currentTarget.classList.toggle('step-one-single-button-container');
+  };
+
+function showAttributes () {
+    console.log('triggered')
+    attributeNames.forEach((attribute) => {
+        if (!uniqueNames.includes(attribute)) {
+            uniqueNames.push(attribute)
+            console.log(uniqueNames)
+        }
+    })
+
+    document.querySelector('.unique-name-container').style.display = "flex"
+    document.querySelector('.unique-name-container').innerHTML = ""
+
+    uniqueNames.forEach((uniqueName) => {
+        // Create new div element for unique attribute
+        let nameDiv = document.createElement('div')
+        nameDiv.innerHTML = `${uniqueName}`
+        nameDiv.classList.add('unique-name')
+        // Add event listenter to div, so we can add/remove active class
+        nameDiv.addEventListener('click', () => {
+            nameDiv.classList.toggle('unique-name--active')
+            for (let i = 0; i < document.querySelectorAll('.unique-name').length; i++) {
+                if (nameDiv !== document.querySelectorAll('.unique-name')[i]) {
+                    document.querySelectorAll('.unique-name')[i].classList.remove('unique-name--active')
+                }
+            }
+        })
+        document.querySelector('.unique-name-container').append(nameDiv)
+    })
+}
+
+function hideAttributes () {
+    document.querySelector('.unique-name-container').style.display = "none"
+}
+
 function MetadataImage(props) {
+
     return(
         <div>
-            <div className='step-three-label'>Which attribute type will determine your NFT's main image?</div>
-            <div>
-                {parse((`${props.fileList}`).replaceAll(',', ''))}
+            <div className='step-three-label'>Would you like to proceed with your current Metadata selection?</div>
+                <div className='step-one-buttons-container'>
+                    <div className='step-one-single-button-container' onClick={selectButton} style={{marginRight: '15px'}}>
+                        <div className='step-one-single-button' onClick={showAttributes}>
+                            <div className='step-one-single-button-icon'>
+                                <div className='step-one-single-button-icon-inner'></div>
+                            </div>
+                            <div>Yes</div>
+                        </div>
+                    </div>
+                    <div className='step-one-single-button-container' onClick={selectButton} style={{marginRight: '15px'}}>
+                        <div className='step-one-single-button' onClick={hideAttributes}>
+                            <div className='step-one-single-button-icon'>
+                                <div className='step-one-single-button-icon-inner'></div>
+                            </div>
+                            <div>No</div>
+                        </div>
+                    </div>
+                </div>
+            <div className='unique-name-container'>
+                {parse((`${uniqueNames}`).replaceAll(',', ''))}
             </div>
         </div>
     )
