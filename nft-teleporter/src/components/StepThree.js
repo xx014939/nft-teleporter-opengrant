@@ -327,25 +327,29 @@ function generateMetadata() {
             currentRarity = 'Legendary'
         }
 
+        console.log('CURRENT ITERATION + RARITY = ', i, currentRarity)
+
         for (let j = 0; j < rarities.length; j++) {
             if (rarities[j].value === currentRarity && uniqueNames[i].toString() === attributeNames[j].toString()) {
                 relevantIndexes.push(j)
-                tempAttributeValueArray.push([attributeNames[j], attributeValues[j].innerHtml]) // Save all attributes which the proper name and rarity
+                tempAttributeValueArray.push([attributeNames[j], attributeValues[j].value]) // Save all attributes which the proper name and rarity
             }
         }
 
         // Randomly pick one attribute with equal probability
-        if (tempAttributeValueArray[0]) {
-            finalAttributesArray.push(tempAttributeValueArray[0])
-            console.log(finalAttributesArray)
+        if (tempAttributeValueArray.length > 0) {
+            let randomIndex = Math.floor(Math.random() * ((tempAttributeValueArray.length - 1) - 0 + 1) + 0)
+            console.log('THE RANDOM INDEX IS -->', randomIndex)
+            finalAttributesArray.push(tempAttributeValueArray[randomIndex])
+            //console.log(finalAttributesArray)
         }
 
 
     
         console.log('The current rarity is -->', currentRarity)
         console.log('The relevant rarity indexes are -->', relevantIndexes)
-        console.log('The relevant rarity indexes are -->', tempAttributeValueArray)
-        console.log('The relevant rarity indexes are -->', finalAttributesArray)
+        console.log('The temp attribute array is -->', tempAttributeValueArray)
+        console.log('The final attribute array is -->', finalAttributesArray)
         console.log(uniqueNames)
     }
 
