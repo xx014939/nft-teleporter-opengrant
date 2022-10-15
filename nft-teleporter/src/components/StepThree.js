@@ -8,10 +8,25 @@ import React, { useState, useEffect  } from 'react';
 import axios from 'axios'; 
 import parse from 'html-react-parser';
 
+let attributeValueArray = [] // Multi-dimensional array attributeValueArray[ATTRIBUTE INDEX][VALUE INDEX][VALUE VALUE, VALUE RARITY]. These coordinates should be mapped to a probability table.
+let rarities = []
+
+let emptyMetaData = `{
+    "description": "Friendly OpenSea Creature that enjoys long swims in the ocean.", 
+    "external_url": "https://openseacreatures.io/3", 
+    "image": "https://storage.googleapis.com/opensea-prod.appspot.com/puffs/3.png", 
+    "name": "Dave Starbelly",
+    "attributes": ${attributeValueArray}, 
+  }`
+
+let selectedHash = null
+let assetURL = `https://yourmetaworld.mypinata.cloud/ipfs/${selectedHash}`
+
 let counter = 1
 let fileListUpdated = false
 let currentlySelectedAsset = null
 
+// uniqueNames array used to save unique attributes (not their values)
 let attributeNames = []
 let uniqueNames = []
 
@@ -93,6 +108,7 @@ function AttributeInput () {
                 defaultValue={selectedOption}
                 onChange={setSelectedOption}
                 options={options}
+                onChange={(choice) => rarities[(counter - 1)] = (choice)}
                 />
             </div>
         </div>
@@ -104,7 +120,7 @@ function AttributeInputList () {
     const [inputList, setInputList] = useState([]);   
 
     function newAttribute() {
-        setInputList(inputList.concat(<AttributeInput key={inputList.length}/>)); // Create new attribute element
+        setInputList(inputList.concat(<AttributeInput key={inputList.length} />)); // Create new attribute element
 
         let attributeCounter = document.querySelector('.attributes-created') // Attribute div container
 
@@ -278,6 +294,62 @@ const selectButton = event => {
     event.currentTarget.classList.toggle('step-one-single-button-container-active');
     event.currentTarget.classList.toggle('step-one-single-button-container');
   };
+function generateMetadata() {
+
+    // For every unique attribute name
+    // Perform a dice roll to determine rarity
+    // Find a corresponding value which = rarity
+    // If no value = current rarity, then re-roll
+    // Repeat the above
+    let relevantIndexes = []
+    let attributeValues = document.querySelectorAll('.attribute-value-input')
+    let finalAttributesArray = []
+
+    for (let i = 0; i < uniqueNames.length; i++) {
+        
+        let tempAttributeValueArray = []
+        let currentRarity = null
+        let diceRoll = Math.floor(Math.random() * 1001) // Random number between 0 - 1000
+    
+        // For every thousand
+        // Common - 499, Uncommon - 400, Rare - 50, Very Rare - 35, Ultra Rare - 15, Legendary - 1
+        if (diceRoll < 500) {
+            currentRarity = 'Common'
+        } else if (diceRoll > 499 && diceRoll < 900) {
+            currentRarity = 'Uncommon'
+        } else if (diceRoll > 899 && diceRoll < 950) {
+            currentRarity = 'Rare'
+        } else if (diceRoll > 949 && diceRoll < 985) {
+            currentRarity = 'Very rare'
+        } else if (diceRoll > 984 && diceRoll < 1000) {
+            currentRarity = 'Ultra rare'
+        } else {
+            currentRarity = 'Legendary'
+        }
+
+        for (let j = 0; j < rarities.length; j++) {
+            if (rarities[j].value === currentRarity && uniqueNames[i].toString() === attributeNames[j].toString()) {
+                relevantIndexes.push(j)
+                tempAttributeValueArray.push([attributeNames[j], attributeValues[j].innerHtml]) // Save all attributes which the proper name and rarity
+            }
+        }
+
+        // Randomly pick one attribute with equal probability
+        if (tempAttributeValueArray[0]) {
+            finalAttributesArray.push(tempAttributeValueArray[0])
+            console.log(finalAttributesArray)
+        }
+
+
+    
+        console.log('The current rarity is -->', currentRarity)
+        console.log('The relevant rarity indexes are -->', relevantIndexes)
+        console.log('The relevant rarity indexes are -->', tempAttributeValueArray)
+        console.log('The relevant rarity indexes are -->', finalAttributesArray)
+        console.log(uniqueNames)
+    }
+
+}
 
 function showAttributes () {
 
@@ -306,11 +378,17 @@ function showAttributes () {
                     document.querySelectorAll('.unique-name')[i].classList.remove('unique-name--active')
                 }
             }
+            generateMetadata()
+            console.log(rarities)
         })
         document.querySelector('.unique-name-container').append(nameDiv) 
     })
 
     document.getElementById('hidden-section-label').style.display = 'block'
+
+    // Generate metadata JSON for entire collection
+    // generateMetadata()
+    console.log(rarities)
 }
 
 function hideAttributes () {
