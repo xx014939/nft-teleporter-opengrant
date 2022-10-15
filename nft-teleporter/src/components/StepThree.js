@@ -280,7 +280,8 @@ const selectButton = event => {
   };
 
 function showAttributes () {
-    console.log('triggered')
+
+    // Add unique attribute names to array
     attributeNames.forEach((attribute) => {
         if (!uniqueNames.includes(attribute)) {
             uniqueNames.push(attribute)
@@ -288,6 +289,7 @@ function showAttributes () {
         }
     })
 
+    // Show attribute container and reset the inner HTML
     document.querySelector('.unique-name-container').style.display = "flex"
     document.querySelector('.unique-name-container').innerHTML = ""
 
@@ -305,12 +307,15 @@ function showAttributes () {
                 }
             }
         })
-        document.querySelector('.unique-name-container').append(nameDiv)
+        document.querySelector('.unique-name-container').append(nameDiv) 
     })
+
+    document.getElementById('hidden-section-label').style.display = 'block'
 }
 
 function hideAttributes () {
     document.querySelector('.unique-name-container').style.display = "none"
+    document.getElementById('hidden-section-label').style.display = 'none'
 }
 
 function MetadataImage() {
@@ -336,6 +341,7 @@ function MetadataImage() {
                         </div>
                     </div>
                 </div>
+            <div style={{display: 'none', marginTop: '50px'}} id='hidden-section-label' className='step-three-label'>Which attribute will determine your main NFT's image?</div> 
             <div className='unique-name-container'>
                 
             </div>
