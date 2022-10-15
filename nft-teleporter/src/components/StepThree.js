@@ -11,14 +11,6 @@ import parse from 'html-react-parser';
 let attributeValueArray = [] // Multi-dimensional array attributeValueArray[ATTRIBUTE INDEX][VALUE INDEX][VALUE VALUE, VALUE RARITY]. These coordinates should be mapped to a probability table.
 let rarities = []
 
-let emptyMetaData = `{
-    "description": "Friendly OpenSea Creature that enjoys long swims in the ocean.", 
-    "external_url": "https://openseacreatures.io/3", 
-    "image": "https://storage.googleapis.com/opensea-prod.appspot.com/puffs/3.png", 
-    "name": "Dave Starbelly",
-    "attributes": ${attributeValueArray}, 
-  }`
-
 let selectedHash = null
 let assetURL = `https://yourmetaworld.mypinata.cloud/ipfs/${selectedHash}`
 
@@ -351,6 +343,26 @@ function generateMetadata() {
         console.log('The temp attribute array is -->', tempAttributeValueArray)
         console.log('The final attribute array is -->', finalAttributesArray)
         console.log(uniqueNames)
+
+        let arrayToObject = ''
+        for (let i = 0; i < finalAttributesArray.length; i++) {
+            if (i > 0) { // Add comma at the front if there is an element before it
+                arrayToObject = arrayToObject + `,{"trait_type": "${finalAttributesArray[i][0]}", "value": "${finalAttributesArray[i][1]}"}`    
+            } else {
+                arrayToObject = arrayToObject + `{"trait_type": "${finalAttributesArray[i][0]}", "value": "${finalAttributesArray[i][1]}"}`
+            }
+        }
+
+        let metaData = `{
+            "description": "Generic Description", 
+            "external_url": "https://nftteleporter.com/", 
+            "image": "https://storage.googleapis.com/opensea-prod.appspot.com/puffs/3.png", 
+            "name": "NFT Collection Name + NFT Number",
+            "attributes": [${arrayToObject}], 
+          }`
+
+        console.log('THE METADATA FOR THIS NFT IS -->', metaData)
+        
     }
 
 }
