@@ -297,72 +297,72 @@ function generateMetadata() {
     let attributeValues = document.querySelectorAll('.attribute-value-input')
     let finalAttributesArray = []
 
-    for (let i = 0; i < uniqueNames.length; i++) {
+    let collectionSize = getCookie('collectionSize')
+    let metadataArray = []
+
+    for (let i = 0; i < collectionSize; i++) {
+        for (let j = 0; j < uniqueNames.length; j++) {
         
-        let tempAttributeValueArray = []
-        let currentRarity = null
-        let diceRoll = Math.floor(Math.random() * 1001) // Random number between 0 - 1000
-    
-        // For every thousand
-        // Common - 499, Uncommon - 400, Rare - 50, Very Rare - 35, Ultra Rare - 15, Legendary - 1
-        if (diceRoll < 500) {
-            currentRarity = 'Common'
-        } else if (diceRoll > 499 && diceRoll < 900) {
-            currentRarity = 'Uncommon'
-        } else if (diceRoll > 899 && diceRoll < 950) {
-            currentRarity = 'Rare'
-        } else if (diceRoll > 949 && diceRoll < 985) {
-            currentRarity = 'Very rare'
-        } else if (diceRoll > 984 && diceRoll < 1000) {
-            currentRarity = 'Ultra rare'
-        } else {
-            currentRarity = 'Legendary'
-        }
-
-        console.log('CURRENT ITERATION + RARITY = ', i, currentRarity)
-
-        for (let j = 0; j < rarities.length; j++) {
-            if (rarities[j].value === currentRarity && uniqueNames[i].toString() === attributeNames[j].toString()) {
-                relevantIndexes.push(j)
-                tempAttributeValueArray.push([attributeNames[j], attributeValues[j].value]) // Save all attributes which the proper name and rarity
-            }
-        }
-
-        // Randomly pick one attribute with equal probability
-        if (tempAttributeValueArray.length > 0) {
-            let randomIndex = Math.floor(Math.random() * ((tempAttributeValueArray.length - 1) - 0 + 1) + 0)
-            console.log('THE RANDOM INDEX IS -->', randomIndex)
-            finalAttributesArray.push(tempAttributeValueArray[randomIndex])
-            //console.log(finalAttributesArray)
-        }
-
-
-    
-        console.log('The current rarity is -->', currentRarity)
-        console.log('The relevant rarity indexes are -->', relevantIndexes)
-        console.log('The temp attribute array is -->', tempAttributeValueArray)
-        console.log('The final attribute array is -->', finalAttributesArray)
-        console.log(uniqueNames)
-
-        let arrayToObject = ''
-        for (let i = 0; i < finalAttributesArray.length; i++) {
-            if (i > 0) { // Add comma at the front if there is an element before it
-                arrayToObject = arrayToObject + `,{"trait_type": "${finalAttributesArray[i][0]}", "value": "${finalAttributesArray[i][1]}"}`    
+            let tempAttributeValueArray = []
+            let currentRarity = null
+            let diceRoll = Math.floor(Math.random() * 1001) // Random number between 0 - 1000
+        
+            // For every thousand
+            // Common - 499, Uncommon - 400, Rare - 50, Very Rare - 35, Ultra Rare - 15, Legendary - 1
+            if (diceRoll < 500) {
+                currentRarity = 'Common'
+            } else if (diceRoll > 499 && diceRoll < 900) {
+                currentRarity = 'Uncommon'
+            } else if (diceRoll > 899 && diceRoll < 950) {
+                currentRarity = 'Rare'
+            } else if (diceRoll > 949 && diceRoll < 985) {
+                currentRarity = 'Very rare'
+            } else if (diceRoll > 984 && diceRoll < 1000) {
+                currentRarity = 'Ultra rare'
             } else {
-                arrayToObject = arrayToObject + `{"trait_type": "${finalAttributesArray[i][0]}", "value": "${finalAttributesArray[i][1]}"}`
+                currentRarity = 'Legendary'
             }
-        }
-
-        let metaData = `{
-            "description": "Generic Description", 
-            "external_url": "https://nftteleporter.com/", 
-            "image": "https://storage.googleapis.com/opensea-prod.appspot.com/puffs/3.png", 
-            "name": "NFT Collection Name + NFT Number",
-            "attributes": [${arrayToObject}], 
-          }`
-
-        console.log('THE METADATA FOR THIS NFT IS -->', metaData)
+    
+            console.log('CURRENT ITERATION + RARITY = ', j, currentRarity)
+    
+            for (let k = 0; k < rarities.length; k++) {
+                if (rarities[k].value === currentRarity && uniqueNames[j].toString() === attributeNames[k].toString()) {
+                    relevantIndexes.push(k)
+                    tempAttributeValueArray.push([attributeNames[k], attributeValues[k].value]) // Save all attributes which the proper name and rarity
+                }
+                
+            }
+    
+            // Randomly pick one attribute with equal probability
+            if (tempAttributeValueArray.length > 0) {
+                let randomIndex = Math.floor(Math.random() * ((tempAttributeValueArray.length - 1) - 0 + 1) + 0)
+                console.log('THE RANDOM INDEX IS -->', randomIndex)
+                finalAttributesArray.push(tempAttributeValueArray[randomIndex])
+                //console.log(finalAttributesArray)
+            }
+    
+    
         
+            console.log('The current rarity is -->', currentRarity)
+            console.log('The relevant rarity indexes are -->', relevantIndexes)
+            console.log('The temp attribute array is -->', tempAttributeValueArray)
+            console.log('The final attribute array is -->', finalAttributesArray)
+            console.log(uniqueNames)
+    
+            let arrayToObject = ''
+            for (let i = 0; i < finalAttributesArray.length; i++) {
+                if (i > 0) { // Add comma at the front if there is an element before it
+                    arrayToObject = arrayToObject + `,{"trait_type": "${finalAttributesArray[i][0]}", "value": "${finalAttributesArray[i][1]}"}`    
+                } else {
+                    arrayToObject = arrayToObject + `{"trait_type": "${finalAttributesArray[i][0]}", "value": "${finalAttributesArray[i][1]}"}`
+                }
+            }
+    
+            let metaData = `{"description": "Generic Description", "external_url": "https://nftteleporter.com/", "image": "https://storage.googleapis.com/opensea-prod.appspot.com/puffs/3.png", "name": "NFT Collection Name + NFT Number","attributes": [${arrayToObject}]}`
+    
+            metadataArray.push(metaData)
+            console.log('THE METADATA FOR THIS NFT IS -->', metadataArray) 
+        }
     }
 
 }

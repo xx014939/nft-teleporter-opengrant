@@ -18,6 +18,7 @@ function checkFormCompleted() {
 
     if (sizeInput) {
         if (sizeInput.value > 0 && nameInput.value.length > 0) {
+            document.cookie = 'collectionSize=' + sizeInput.value
             return true
         } else {
             return false
