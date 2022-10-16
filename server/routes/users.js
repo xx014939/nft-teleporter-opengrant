@@ -1,7 +1,7 @@
 const express = require("express");
 const User = require('../models/userModel')
 const cors = require('cors'); 
-const { registerUser, getUser, loginUser, compileContract, getKeys } = require("../controllers/userController");
+const { registerUser, getUser, loginUser, compileContract, createAndPinDirectory, getKeys } = require("../controllers/userController");
 const router = express.Router();
 const {protect} = require('../middleware/authMiddleware')
  
@@ -75,5 +75,8 @@ router.delete('/:id', getUser, async (req, res) => {
     res.status(500).json({ message: err.message })
   }
 })
+
+// Metadata Directory 
+router.post('/metadata-creation', createAndPinDirectory)
 
 module.exports = router;

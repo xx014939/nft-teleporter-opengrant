@@ -95,6 +95,11 @@ const getUser = asyncHandler(async (req, res, next) => {
     next()
   })
 
+// Create Metadata Directory and Pin Folder to Pinata
+const createAndPinDirectory = asyncHandler(async (req,res) => {
+  console.log('Function is being called!')
+})
+
 // Generate Token
 const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {expiresIn: '30d'})
@@ -190,5 +195,6 @@ module.exports = {
     loginUser,
     getUser,
     compileContract,
+    createAndPinDirectory,
     getKeys
 }
