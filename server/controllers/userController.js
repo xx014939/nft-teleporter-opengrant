@@ -98,6 +98,10 @@ const getUser = asyncHandler(async (req, res, next) => {
 // Create Metadata Directory and Pin Folder to Pinata
 const createAndPinDirectory = asyncHandler(async (req,res) => {
   console.log('Function is being called!')
+  // Recieve an array of JSON metadata
+  // Foreach element inside array, create a new JSON file in directory
+  // Copy Pinata directory pinning doc example for node server
+  // Save hash / base URL to DB and send inside of response
 })
 
 // Generate Token
