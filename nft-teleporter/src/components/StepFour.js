@@ -7,7 +7,10 @@ import walletIDSVG from '../assets/walletIDSVG.svg';
 import keySVG from '../assets/keySVG.svg';
 import axios from 'axios';
 import Web3 from 'web3';
-const web3 = new Web3(Web3.givenProvider || "http://localhost:3000");
+// const web3 = new Web3(Web3.givenProvider || "http://localhost:3000"); 
+var web3 = new Web3(new Web3.providers.HttpProvider(
+    'https://goerli.infura.io/v3/f6ea9a5670444f3b8f2221aa4d57149b'
+));
 
 function getCookie(cookieName) {
     let cookieValue = document.cookie
@@ -53,12 +56,18 @@ async function deployContract() {
     // Deploy contract using ABI + BYTECODE recieved from compile method 
     let accountList = await web3.eth.accounts.wallet;
     let account = accountList[0].address
+
+    let networkType = await web3.eth.net.getNetworkType()
+    console.log('THE NETWORK TYPE IS -->', networkType)
+
     
-    const { _address } = await new web3.eth.Contract(ABI).deploy({ data: `${bytecode}` }).send({from: account, gas: 1000000 });
+    const { _address } = await new web3.eth.Contract(ABI).deploy({ data: `${bytecode}` }).send({from: account, gas: 5000000 });
     console.log('deploying', _address)
 
     // Show completion certificate
     showSuccess(); 
+
+    mintNFT(ABI, _address, account)
 
 }
   
@@ -109,6 +118,12 @@ async function compileContract() {
       .catch(function (error) {
         console.log(error);
       });
+}
+
+function mintNFT(contract_abi, contract_address, account) {
+    const userContract = new web3.eth.Contract(contract_abi, contract_address);
+    userContract.methods.createToken("1").send({from: account, gas: 5000000 })
+    console.log('done')
 }
 
 function SuccessfulDeploy () {
