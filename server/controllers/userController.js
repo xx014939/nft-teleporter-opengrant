@@ -107,18 +107,21 @@ const createAndPinDirectory = asyncHandler(async (req,res) => {
   
   const {metadata} = req.body // Recieve an array of JSON metadata
 
-    fs.mkdirSync(`./temp-metadata/new-collection-${counter}`); // Create dir for metada
+    if (fs.exists(`./temp-metadata/new-nft-collection-${counter}`)) {
+      counter = counter + 1
+    }
+    fs.mkdirSync(`./temp-metadata/new-nft-collection-${counter}`); // Create dir for metada
 
     // Foreach element inside array, create a new JSON file in directory
     for (let i = 0; i < metadata.length; i++) {
-      fs.writeFile(`./temp-metadata/new-collection-${counter}/${i}.json`, `${metadata[i]}`, function (err) {
+      fs.writeFile(`./temp-metadata/new-nft-collection-${counter}/${i}.json`, `${metadata[i]}`, function (err) {
         if (err) throw err;
         console.log('File is created successfully.');
       });
     }
 
     const url = `https://api.pinata.cloud/pinning/pinFileToIPFS`;
-    const src = `./temp-metadata/new-collection-${counter}`;
+    const src = `./temp-metadata/new-nft-collection-${counter}`;
 
     const { dirs, files } = await rfs.read(src);
     let data = new FormData();
@@ -142,7 +145,7 @@ const createAndPinDirectory = asyncHandler(async (req,res) => {
         console.log(progress);
       });
   
-      counter++
+      counter = counter + 1
 
       res.json({
         message: 'Success!',
