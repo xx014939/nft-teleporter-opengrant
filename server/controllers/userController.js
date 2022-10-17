@@ -117,11 +117,43 @@ const createAndPinDirectory = asyncHandler(async (req,res) => {
       });
     }
 
-    counter++
+    const url = `https://api.pinata.cloud/pinning/pinFileToIPFS`;
+    const src = `./temp-metadata/new-collection-${counter}`;
 
-    res.json({
-      message: 'Success'
-    })
+    const { dirs, files } = await rfs.read(src);
+    let data = new FormData();
+    for (const file of files) {
+      data.append(`file`, fs.createReadStream(file), {
+        filepath: basePathConverter(src, file),
+      });
+    }    
+
+    try {
+      const response = await got(url, {
+        method: 'POST',
+        headers: {
+          "Content-Type": `multipart/form-data; boundary=${data._boundary}`,
+          'pinata_api_key': `${process.env.PINATA_API_KEY}`,
+          'pinata_secret_api_key': `${process.env.PINATA_API_SECRET}`
+        },
+        body: data
+       })		
+      .on('uploadProgress', progress => {
+        console.log(progress);
+      });
+  
+      counter++
+
+      res.json({
+        message: 'Success!',
+        response: `${response.body}`
+      })
+    } catch (error) {
+      res.json({
+        message: 'Error!',
+        error: `${error}`
+      })
+    }
   
 })
 
