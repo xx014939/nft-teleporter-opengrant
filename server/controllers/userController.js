@@ -6,6 +6,13 @@ const e = require('cors')
 const solc = require('solc');
 const path = require("path");
 const fs = require("fs-extra");
+const { response } = require('express')
+const FormData = require("form-data");
+const rfs = require("recursive-fs");
+const basePathConverter = require("base-path-converter");
+const got = require("got")
+
+let counter = 0
 
 const registerUser = asyncHandler ( async (req, res) => {
 
@@ -97,11 +104,25 @@ const getUser = asyncHandler(async (req, res, next) => {
 
 // Create Metadata Directory and Pin Folder to Pinata
 const createAndPinDirectory = asyncHandler(async (req,res) => {
-  console.log('Function is being called!')
-  // Recieve an array of JSON metadata
-  // Foreach element inside array, create a new JSON file in directory
-  // Copy Pinata directory pinning doc example for node server
-  // Save hash / base URL to DB and send inside of response
+  
+  const {metadata} = req.body // Recieve an array of JSON metadata
+
+    fs.mkdirSync(`./temp-metadata/new-collection-${counter}`); // Create dir for metada
+
+    // Foreach element inside array, create a new JSON file in directory
+    for (let i = 0; i < metadata.length; i++) {
+      fs.writeFile(`./temp-metadata/new-collection-${counter}/${i}.json`, `${metadata[i]}`, function (err) {
+        if (err) throw err;
+        console.log('File is created successfully.');
+      });
+    }
+
+    counter++
+
+    res.json({
+      message: 'Success'
+    })
+  
 })
 
 // Generate Token
