@@ -286,7 +286,7 @@ const selectButton = event => {
     event.currentTarget.classList.toggle('step-one-single-button-container-active');
     event.currentTarget.classList.toggle('step-one-single-button-container');
   };
-function generateMetadata() {
+async function generateMetadata() {
 
     // For every unique attribute name
     // Perform a dice roll to determine rarity
@@ -362,8 +362,13 @@ function generateMetadata() {
     
             metadataArray.push(metaData)
             console.log('THE METADATA FOR THIS NFT IS -->', metadataArray) 
+            finalAttributesArray = []
         }
     }
+
+        // Host metadata on IPFS 
+        let baseURI = await axios.post('http://localhost:5000/users/metadata-creation', {metadata: metadataArray})
+        console.log('THE BASE URI IS -->', baseURI)
 
 }
 

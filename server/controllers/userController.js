@@ -155,7 +155,8 @@ const createAndPinDirectory = asyncHandler(async (req,res) => {
   
         res.json({
           message: 'Success!',
-          response: `${response.body}`
+          response: `${response.body}`,
+          hash: `${response.IpfsHash}`
         })
       } catch (error) {
         res.json({
@@ -194,7 +195,8 @@ const createAndPinDirectory = asyncHandler(async (req,res) => {
   
         res.json({
           message: 'Success!',
-          response: `${response.body}`
+          response: `${response.body}`,
+          hash: `${response.IpfsHash}`
         })
       } catch (error) {
         res.json({
