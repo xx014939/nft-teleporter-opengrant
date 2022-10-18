@@ -332,13 +332,27 @@ async function generateMetadata() {
                 }
                 
             }
+
+            // If rarity doesn't match any existing attribute, then re-roll
+            if (tempAttributeValueArray.length === 0) {
+                
+                currentRarity = 'Common'
+        
+                for (let k = 0; k < rarities.length; k++) {
+                    if (rarities[k].value === currentRarity && uniqueNames[j].toString() === attributeNames[k].toString()) {
+                        relevantIndexes.push(k)
+                        tempAttributeValueArray.push([attributeNames[k], attributeValues[k].value]) // Save all attributes which the proper name and rarity
+                    }
+                    
+                }
+
+            }
     
             // Randomly pick one attribute with equal probability
             if (tempAttributeValueArray.length > 0) {
                 let randomIndex = Math.floor(Math.random() * ((tempAttributeValueArray.length - 1) - 0 + 1) + 0)
                 console.log('THE RANDOM INDEX IS -->', randomIndex)
                 finalAttributesArray.push(tempAttributeValueArray[randomIndex])
-                //console.log(finalAttributesArray)
             }
     
     
@@ -349,26 +363,27 @@ async function generateMetadata() {
             console.log('The final attribute array is -->', finalAttributesArray)
             console.log(uniqueNames)
     
-            let arrayToObject = ''
-            for (let i = 0; i < finalAttributesArray.length; i++) {
-                if (i > 0) { // Add comma at the front if there is an element before it
-                    arrayToObject = arrayToObject + `,{"trait_type": "${finalAttributesArray[i][0]}", "value": "${finalAttributesArray[i][1]}"}`    
-                } else {
-                    arrayToObject = arrayToObject + `{"trait_type": "${finalAttributesArray[i][0]}", "value": "${finalAttributesArray[i][1]}"}`
-                }
-            }
-    
-            let metaData = `{"description": "Generic Description", "external_url": "https://nftteleporter.com/", "image": "https://storage.googleapis.com/opensea-prod.appspot.com/puffs/3.png", "name": "NFT Collection Name + NFT Number","attributes": [${arrayToObject}]}`
-    
-            metadataArray.push(metaData)
-            console.log('THE METADATA FOR THIS NFT IS -->', metadataArray) 
-            finalAttributesArray = []
         }
+
+        let arrayToObject = ''
+        for (let i = 0; i < finalAttributesArray.length; i++) {
+            if (i > 0) { // Add comma at the front if there is an element before it
+                arrayToObject = arrayToObject + `,{"trait_type": "${finalAttributesArray[i][0]}", "value": "${finalAttributesArray[i][1]}"}`    
+            } else {
+                arrayToObject = arrayToObject + `{"trait_type": "${finalAttributesArray[i][0]}", "value": "${finalAttributesArray[i][1]}"}`
+            }
+        }
+
+        let metaData = `{"description": "Generic Description", "external_url": "https://nftteleporter.com/", "image": "https://storage.googleapis.com/opensea-prod.appspot.com/puffs/3.png", "name": "NFT Collection Name + NFT Number","attributes": [${arrayToObject}]}`
+
+        metadataArray.push(metaData)
+        console.log('THE METADATA FOR THIS NFT IS -->', metadataArray) 
+        finalAttributesArray = []
     }
 
-        // Host metadata on IPFS 
-        let baseURI = await axios.post('http://localhost:5000/users/metadata-creation', {metadata: metadataArray})
-        console.log('THE BASE URI IS -->', baseURI)
+    // Host metadata on IPFS 
+    let baseURI = await axios.post('http://localhost:5000/users/metadata-creation', {metadata: metadataArray})
+    console.log('THE BASE URI IS -->', baseURI)
 
 }
 
