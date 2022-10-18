@@ -8,14 +8,13 @@ import React, { useState, useEffect  } from 'react';
 import axios from 'axios'; 
 import parse from 'html-react-parser';
 
-let attributeValueArray = [] // Multi-dimensional array attributeValueArray[ATTRIBUTE INDEX][VALUE INDEX][VALUE VALUE, VALUE RARITY]. These coordinates should be mapped to a probability table.
+let selectedAttributeIndexes = [] // After user selects the image attribute, the indexes of attribute are saved here
+let currentlySelectedAttributeIndex = null
 let rarities = []
-
-let selectedHash = null
-let assetURL = `https://yourmetaworld.mypinata.cloud/ipfs/${selectedHash}`
 
 let counter = 1
 let fileListUpdated = false
+let fileListHashes = []
 let currentlySelectedAsset = null
 
 // uniqueNames array used to save unique attributes (not their values)
@@ -68,14 +67,12 @@ function AttributeInput () {
     ];
 
     function handleNameChange(event) {
-        console.log('IM HERE')
         let allInputs = document.querySelectorAll('.attribute-name-input')
         let allCreated = document.querySelectorAll('.attribute-element-name')
         for (let i = 0; i < allInputs.length; i++) {
             if (allInputs[i] === event.target) { // Locate input box index in node list
                 allCreated[i].innerHTML = event.target.value // Update corresponding div inside div nodelist
                 attributeNames[i] = event.target.value
-                console.log('ATTRIBUTE ARRAY -->', attributeNames)
             }
         }
 
@@ -187,21 +184,28 @@ function AssetsConnectionList() {
         console.log('working')
         console.log(currentCollectionFileList)
         if (fileListUpdated === false) {
+
+            // 3D
             if (currentCollectionFileList[0].length > 1) {
                 for (let i = 1; i < currentCollectionFileList[0].length; i++) {
                     setFileList(current => [...current, `<div>${currentCollectionFileList[0][i][0]}</div>`])
+                    fileListHashes.push(currentCollectionFileList[0][i][1])
                 }
             }
     
+            // 2D
             if (currentCollectionFileList[1].length > 1) {
                 for (let i = 1; i < currentCollectionFileList[1].length; i++) {
                     setFileList(current => [...current, `<div>${currentCollectionFileList[1][i][0]}</div>`]);
+                    fileListHashes.push(currentCollectionFileList[1][i][1])
                 }
             }
     
+            // MP4
             if (currentCollectionFileList[2].length > 1) {
                 for (let i = 1; i < currentCollectionFileList[2].length; i++) {
                     setFileList(current => [...current, `<div>${currentCollectionFileList[2][i][0]}</div>`])
+                    fileListHashes.push(currentCollectionFileList[2][i][1])
                 }   
             }
     
@@ -288,11 +292,6 @@ const selectButton = event => {
   };
 async function generateMetadata() {
 
-    // For every unique attribute name
-    // Perform a dice roll to determine rarity
-    // Find a corresponding value which = rarity
-    // If no value = current rarity, then re-roll
-    // Repeat the above
     let relevantIndexes = []
     let attributeValues = document.querySelectorAll('.attribute-value-input')
     let finalAttributesArray = []
@@ -374,7 +373,35 @@ async function generateMetadata() {
             }
         }
 
-        let metaData = `{"description": "Generic Description", "external_url": "https://nftteleporter.com/", "image": "https://storage.googleapis.com/opensea-prod.appspot.com/puffs/3.png", "name": "NFT Collection Name + NFT Number","attributes": [${arrayToObject}]}`
+        let imageHash = ''
+
+        // attributeSelectedArray has multi dimensions [ASSET INDEX][ATTRIBUTE INDEX]
+        // For every asset
+        for (let k = 0; k < attributeSelectedArray.length; k++) {
+            for (let n = 0; n < selectedAttributeIndexes.length; n++) { // For every attribute index with the selected name
+                if (attributeSelectedArray[k][selectedAttributeIndexes[n]] === true) { // If true then checkbox is selected for this asset
+                    
+                    // Compare the checbox with the selectedAttributeIndexes[n] index to the current metadata value
+                    let allCheckboxNames = document.querySelectorAll('.attribute-element-name')
+                    let allCheckboxValues = document.querySelectorAll('.attribute-element-value')
+                    
+                    for (let s = 0; s < finalAttributesArray.length; s++) {
+                        if (finalAttributesArray[s][0] === allCheckboxNames[selectedAttributeIndexes[n]].innerHTML && finalAttributesArray[s][1] === allCheckboxValues[selectedAttributeIndexes[n]].innerHTML) {
+                            imageHash = fileListHashes[selectedAttributeIndexes[n]]
+                            console.log('The file hash is -->', imageHash)
+                        }
+                    }
+                }
+            }
+        }
+
+
+        let collectionDescription = getCookie('currentCollectionDescription')
+        let collectionName = getCookie('currentCollectionName')
+        let nftName = `${collectionName} - #${i + 1}`
+        let collectionURL = "https://nftteleporter.com/"
+
+        let metaData = `{"description": "${collectionDescription}", "external_url": "${collectionURL}", "image": "https://yourmetaworld.mypinata.cloud/ipfs/${imageHash}", "name": "${nftName}","attributes": [${arrayToObject}]}`
 
         metadataArray.push(metaData)
         console.log('THE METADATA FOR THIS NFT IS -->', metadataArray) 
@@ -414,6 +441,20 @@ function showAttributes () {
                     document.querySelectorAll('.unique-name')[i].classList.remove('unique-name--active')
                 }
             }
+
+            document.cookie = 'imageAttributeName=' + nameDiv.innerHTML // Save selected attribute to cookies
+
+            // Find indexes of all attributes - value pairs with the same attribute name
+            let allAttributes = document.querySelectorAll('.attribute-element-name')
+            selectedAttributeIndexes = []
+            for (let j = 0; j < allAttributes.length; j++) {
+                console.log('adding elements', allAttributes[j].innerHTML, getCookie('imageAttributeName'))
+                if (allAttributes[j].innerHTML === getCookie('imageAttributeName')) {
+                    console.log('adding elements')
+                    selectedAttributeIndexes.push(j)
+                }
+            }
+
             generateMetadata()
             console.log(rarities)
         })
