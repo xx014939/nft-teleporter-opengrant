@@ -398,7 +398,7 @@ async function generateMetadata() {
 
         let collectionDescription = getCookie('currentCollectionDescription')
         let collectionName = getCookie('currentCollectionName')
-        let nftName = `${collectionName} - #${i + 1}`
+        let nftName = `${collectionName} - #${i}`
         let collectionURL = "https://nftteleporter.com/"
 
         let metaData = `{"description": "${collectionDescription}", "external_url": "${collectionURL}", "image": "https://yourmetaworld.mypinata.cloud/ipfs/${imageHash}", "name": "${nftName}","attributes": [${arrayToObject}]}`

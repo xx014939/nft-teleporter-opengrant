@@ -12,6 +12,9 @@ var web3 = new Web3(new Web3.providers.HttpProvider(
     'https://goerli.infura.io/v3/f6ea9a5670444f3b8f2221aa4d57149b'
 ));
 
+let ABI = ''
+let account = ''
+
 function getCookie(cookieName) {
     let cookieValue = document.cookie
     .split('; ')
@@ -24,6 +27,7 @@ function getCookie(cookieName) {
 
 function showSuccess () {
     document.querySelector('.step-four-success-container').style.display = 'block'
+    document.getElementById('contractHash').innerHTML = `${getCookie('currentContractHash')}`
 }
 
 async function connectNewWallet(privateKey) {
@@ -44,7 +48,7 @@ async function deployContract() {
     console.log('The keys are -->', keysResponse)
     console.log('The private key is -->', keysResponse.data.private_key[0])
     // Retrieve ABI & Bytecode from cookies
-    let ABI =  JSON.parse(getCookie("currentABI"))
+    ABI =  JSON.parse(getCookie("currentABI"))
     let bytecode = `0x${localStorage.getItem('currentBytecode').replace(/['"]+/g, '')}`
 
     console.log('THE ABI IS -->', ABI)
@@ -55,7 +59,7 @@ async function deployContract() {
 
     // Deploy contract using ABI + BYTECODE recieved from compile method 
     let accountList = await web3.eth.accounts.wallet;
-    let account = accountList[0].address
+    account = accountList[0].address
 
     let networkType = await web3.eth.net.getNetworkType()
     console.log('THE NETWORK TYPE IS -->', networkType)
@@ -63,6 +67,7 @@ async function deployContract() {
     
     const { _address } = await new web3.eth.Contract(ABI).deploy({ data: `${bytecode}` }).send({from: account, gas: 5000000 });
     console.log('deploying', _address)
+    document.cookie = 'currentContractHash=' + _address
 
     // Show completion certificate
     showSuccess(); 
@@ -143,7 +148,7 @@ function SuccessfulDeploy () {
                         <div>Please view your transaction hash below</div>
                     </div>
                     <div className="successful-deploy-transaction-id-container">
-                        <div>628301fb10b951006405ba3f</div>
+                        <div id="contractHash">628301fb10b951006405ba3f</div>
                         <div className='copy-button-container'>
                             <div><img src={copySVG} alt=""/></div>
                             <div>Copy</div>
@@ -162,14 +167,14 @@ function StepFour () {
     return (
         <div className='page-container--255 step-four-container'>
             <div className='step-four-title'><h2>Smart Contract</h2></div>
-            <div className='step-four-input-container'>
+            <div className='step-four-input-container' style={{display: 'none'}}>
                 <div className='step-four-input-label'>Treasury Public Wallet Address</div>
                 <div className='step-four-input-subcontainer'>
                     <div><img src={walletIDSVG} alt=""/></div>
                     <input type="text" placeholder='Wallet Address'></input>
                 </div>
             </div>
-            <div className='step-four-input-container' style={{marginTop: '38px'}}>
+            <div className='step-four-input-container' style={{marginTop: '38px', display: 'none'}}>
                 <div className='step-four-input-label'>Treasury Private Wallet Key</div>
                 <div className='step-four-input-subcontainer'>
                     <div><img src={keySVG} alt=""/></div>
@@ -183,7 +188,12 @@ function StepFour () {
             </div>
             <div onClick={() => {deployContract()}}>
                 <div className='view-experiences-button' style={{padding: '17px 27px', textAlign: 'center'}} >
-                    Deploy Smart Contract
+                    Deploy Smart Contract and Mint
+                </div>
+            </div>
+            <div onClick={() => {mintNFT(ABI, getCookie('currentContractHash'), account, getCookie('collectionURIHash'))}}>
+                <div className='view-experiences-button' style={{padding: '17px 27px', textAlign: 'center'}} >
+                    Mint Another NFT
                 </div>
             </div>
             <div className='step-four-success-container'>
