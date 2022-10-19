@@ -51,7 +51,7 @@ return (
                 <div className='step-one-single-button-container' onClick={selectButton} style={{marginRight: '15px'}}>
                     <div className='step-one-single-button' onClick={() => {
                         // Set Cookie Data onClick
-                        setCookie("randomdata", true) // Metadata 
+                        setCookie("randomdata", false) // Metadata 
                         setCookie("currentCollectionName", document.querySelector('.input-name').value) // Collection Name
                         setCookie("currentCollectionDescription", document.querySelector('.input-description').value) // Collection Description
                         setCookie("currentCollectionCount", document.querySelector(".collectionNumber").value.toString()) // Collectio Count (numbe of NFT's in collection)
