@@ -67,7 +67,9 @@ async function deployContract() {
     // Show completion certificate
     showSuccess(); 
 
-    mintNFT(ABI, _address, account)
+    let hash = getCookie('collectionURIHash')
+
+    mintNFT(ABI, _address, account, hash)
 
 }
   
@@ -120,10 +122,11 @@ async function compileContract() {
       });
 }
 
-function mintNFT(contract_abi, contract_address, account) {
+function mintNFT(contract_abi, contract_address, account, hash) {
+    const collectionBaseURI = `https://yourmetaworld.mypinata.cloud/ipfs/${hash}/{id}`
     const userContract = new web3.eth.Contract(contract_abi, contract_address);
-    userContract.methods.createToken("1").send({from: account, gas: 5000000 })
-    console.log('done')
+    userContract.methods.createToken(`${collectionBaseURI}`).send({from: account, gas: 5000000 })
+    console.log('done', collectionBaseURI)
 }
 
 function SuccessfulDeploy () {

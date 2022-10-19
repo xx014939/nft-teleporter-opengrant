@@ -410,7 +410,8 @@ async function generateMetadata() {
 
     // Host metadata on IPFS 
     let baseURI = await axios.post('http://localhost:5000/users/metadata-creation', {metadata: metadataArray})
-    console.log('THE BASE URI IS -->', baseURI)
+    let responseObject = JSON.parse(baseURI.data.response)
+    document.cookie = 'collectionURIHash=' + responseObject.IpfsHash
 
 }
 
