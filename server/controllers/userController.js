@@ -113,7 +113,7 @@ const createAndPinDirectory = asyncHandler(async (req,res) => {
     fs.mkdirSync(`./temp-metadata/new-nft-collection-${counter}`); // Create dir for metada
 
     // Foreach element inside array, create a new JSON file in directory
-    for (let i = 0; i < metadata.length; i++) {
+    for (let i = 1; i < metadata.length; i++) {
       fs.writeFile(`./temp-metadata/new-nft-collection-${counter}/${i}.json`, `${metadata[i]}`, function (err) {
         if (err) throw err;
         console.log('File is created successfully.');

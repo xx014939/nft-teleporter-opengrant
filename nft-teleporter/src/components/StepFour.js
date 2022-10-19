@@ -123,7 +123,7 @@ async function compileContract() {
 }
 
 function mintNFT(contract_abi, contract_address, account, hash) {
-    const collectionBaseURI = `https://yourmetaworld.mypinata.cloud/ipfs/${hash}/{id}`
+    const collectionBaseURI = `https://yourmetaworld.mypinata.cloud/ipfs/${hash}/{id}.json`
     const userContract = new web3.eth.Contract(contract_abi, contract_address);
     userContract.methods.createToken(`${collectionBaseURI}`).send({from: account, gas: 5000000 })
     console.log('done', collectionBaseURI)
