@@ -11,12 +11,18 @@ import Web3 from 'web3';
 import ETHIcon from '../assets/eth-icon.svg'
 import ETHGreyIcon from '../assets/eth-grey-icon.svg'
 
+import POLYIcon from '../assets/poly-icon.svg'
+import POLYGreyIcon from '../assets/poly-grey-icon.svg'
+
 import BSCIcon from '../assets/bsc-icon.svg'
 import BSCGreyIcon from '../assets/bsc-grey-icon.svg'
 // const web3 = new Web3(Web3.givenProvider || "http://localhost:3000"); 
-var web3 = new Web3(new Web3.providers.HttpProvider(
+let web3 = new Web3(new Web3.providers.HttpProvider(
     'https://goerli.infura.io/v3/f6ea9a5670444f3b8f2221aa4d57149b'
 ));
+
+// https://orbital-palpable-patina.bsc-testnet.discover.quiknode.pro/b313e9db5a5c399e10e42eb9ec68cf182f20de01/
+
 
 let ABI = ''
 let account = ''
@@ -140,8 +146,21 @@ function mintNFT(contract_abi, contract_address, account, hash) {
     console.log('done', collectionBaseURI)
 }
 
-function switchChain (chain) {
+async function switchChain (chain) {
     console.log(`switch to the ${chain} chain`)
+    if (chain === 'ETH') {
+        web3 = await new Web3(new Web3.providers.HttpProvider(
+            'https://goerli.infura.io/v3/f6ea9a5670444f3b8f2221aa4d57149b'
+        ));
+    } else if (chain === 'BSC') {
+        web3 = await new Web3(new Web3.providers.HttpProvider(
+            'https://orbital-palpable-patina.bsc-testnet.discover.quiknode.pro/b313e9db5a5c399e10e42eb9ec68cf182f20de01/'
+        ));
+    } else if (chain === 'POLY') {
+        web3 = await new Web3(new Web3.providers.HttpProvider(
+            'https://polygon-mumbai.infura.io/v3/f6ea9a5670444f3b8f2221aa4d57149b'
+        ));
+    }
 }
 
 function SuccessfulDeploy () {
@@ -206,6 +225,13 @@ function StepFour () {
                         <div className='active-icon'><img src={BSCIcon}/></div>
                         <div className='inactive-icon'><img src={BSCGreyIcon}/></div>
                         <div>BSC</div>
+                    </div>
+                </div>
+                <div id='poly-btn' className='step-four-chain-selection-button-bg--inactive chain-button' onClick={() => {switchChain('POLY')}}>
+                    <div className='step-four-chain-selection-button'>
+                        <div style={{minWidth: '60px !important'}} className='active-icon'><img src={POLYIcon}/></div>
+                        <div style={{minWidth: '60px !important'}} className='inactive-icon'><img src={POLYGreyIcon}/></div>
+                        <div>Polygon</div>
                     </div>
                 </div>
                 </div>

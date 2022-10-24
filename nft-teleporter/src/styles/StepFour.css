@@ -237,3 +237,7 @@
     cursor: pointer;
     max-height: 20px;
 }
+
+.chain-button {
+    margin-top: 20px;
+}
