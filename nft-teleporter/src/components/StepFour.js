@@ -140,6 +140,10 @@ function mintNFT(contract_abi, contract_address, account, hash) {
     console.log('done', collectionBaseURI)
 }
 
+function switchChain (chain) {
+    console.log(`switch to the ${chain} chain`)
+}
+
 function SuccessfulDeploy () {
     return (
         <div className="successful-deploy-container">
@@ -190,14 +194,14 @@ function StepFour () {
             <div className='step-four-chain-selection-container'>
                 <div className='step-four-input-label'>Which Chain Would You Like to Deploy With?</div>
                 <div className='step-four-chain-selection-button-container'>
-                <div className='step-four-chain-selection-button-bg--active'>
+                <div id='eth-btn' className='step-four-chain-selection-button-bg--active chain-button' onClick={() => {switchChain('ETH')}}>
                     <div className='step-four-chain-selection-button'>
                         <div className='active-icon'><img src={ETHIcon}/></div>
                         <div className='inactive-icon'><img src={ETHGreyIcon}/></div>
                         <div>ETH</div>
                     </div>
                 </div>
-                <div className='step-four-chain-selection-button-bg--inactive'>
+                <div id='bsc-btn' className='step-four-chain-selection-button-bg--inactive chain-button' onClick={() => {switchChain('BSC')}}>
                     <div className='step-four-chain-selection-button'>
                         <div className='active-icon'><img src={BSCIcon}/></div>
                         <div className='inactive-icon'><img src={BSCGreyIcon}/></div>
