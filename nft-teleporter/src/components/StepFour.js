@@ -93,6 +93,8 @@ async function deployContract() {
 
 async function compileContract() {
     console.log('working')
+    let loader = document.getElementById('loading')
+    loader.classList.toggle('display')
     let collectionNumber = `${parseInt(getCookie('currentCollectionCount'))}`
     let collectionName = `${getCookie('currentCollectionName')}`
     let collectionContract = `
@@ -133,6 +135,8 @@ async function compileContract() {
         document.cookie = "currentABI=" + res.data.abi
         // document.cookie = "currentBytecode=" + res.data.bytecode
         localStorage.setItem('currentBytecode', res.data.bytecode);
+
+        loader.classList.toggle('display')
       })
       .catch(function (error) {
         console.log(error);
@@ -236,11 +240,15 @@ function StepFour () {
                 </div>
                 </div>
             </div>
+            <div style={{marginTop: '40px'}} className='step-four-input-label'>Compile &amp; Deploy Your Smart Contract</div>
             <div onClick={() => {compileContract()}}>
                 <div className='view-experiences-button' style={{padding: '17px 27px', textAlign: 'center'}} >
                     Compile Smart Contract
                 </div>
             </div>
+
+            <div id='loading'></div>
+
             <div onClick={() => {deployContract()}}>
                 <div className='view-experiences-button' style={{padding: '17px 27px', textAlign: 'center'}} >
                     Deploy Smart Contract and Mint
