@@ -7,6 +7,12 @@ import walletIDSVG from '../assets/walletIDSVG.svg';
 import keySVG from '../assets/keySVG.svg';
 import axios from 'axios';
 import Web3 from 'web3';
+
+import ETHIcon from '../assets/eth-icon.svg'
+import ETHGreyIcon from '../assets/eth-grey-icon.svg'
+
+import BSCIcon from '../assets/bsc-icon.svg'
+import BSCGreyIcon from '../assets/bsc-grey-icon.svg'
 // const web3 = new Web3(Web3.givenProvider || "http://localhost:3000"); 
 var web3 = new Web3(new Web3.providers.HttpProvider(
     'https://goerli.infura.io/v3/f6ea9a5670444f3b8f2221aa4d57149b'
@@ -179,6 +185,25 @@ function StepFour () {
                 <div className='step-four-input-subcontainer'>
                     <div><img src={keySVG} alt=""/></div>
                     <input type="text" placeholder='Private Wallet Address'></input>
+                </div>
+            </div>
+            <div className='step-four-chain-selection-container'>
+                <div className='step-four-input-label'>Which Chain Would You Like to Deploy With?</div>
+                <div className='step-four-chain-selection-button-container'>
+                <div className='step-four-chain-selection-button-bg--active'>
+                    <div className='step-four-chain-selection-button'>
+                        <div className='active-icon'><img src={ETHIcon}/></div>
+                        <div className='inactive-icon'><img src={ETHGreyIcon}/></div>
+                        <div>ETH</div>
+                    </div>
+                </div>
+                <div className='step-four-chain-selection-button-bg--inactive'>
+                    <div className='step-four-chain-selection-button'>
+                        <div className='active-icon'><img src={BSCIcon}/></div>
+                        <div className='inactive-icon'><img src={BSCGreyIcon}/></div>
+                        <div>BSC</div>
+                    </div>
+                </div>
                 </div>
             </div>
             <div onClick={() => {compileContract()}}>
