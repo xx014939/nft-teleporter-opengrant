@@ -255,3 +255,8 @@ code {
   border-color: #000000 !important;
   color: #000000 !important;
 }
+
+.inactive-button {
+  opacity: 0.5;
+  cursor: not-allowed !important;
+}

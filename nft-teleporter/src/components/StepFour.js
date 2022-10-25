@@ -26,6 +26,7 @@ let web3 = new Web3(new Web3.providers.HttpProvider(
 
 let ABI = ''
 let account = ''
+let deployAllowed = false
 
 function getCookie(cookieName) {
     let cookieValue = document.cookie
@@ -50,6 +51,11 @@ async function connectNewWallet(privateKey) {
   }
 
 async function deployContract() {
+
+    // Start Loading Icon
+    let loader = document.getElementById('loading-two')
+    loader.classList.toggle('display')
+
     // Retrieve username
     let currentUsername = getCookie("currentUsername")
     // Ask for password
@@ -81,8 +87,9 @@ async function deployContract() {
     console.log('deploying', _address)
     document.cookie = 'currentContractHash=' + _address
 
-    // Show completion certificate
-    showSuccess(); 
+    loader.classList.toggle('display') // Hide loading wheel
+
+    showSuccess(); // Show completion certificate
 
     let hash = getCookie('collectionURIHash')
 
@@ -139,6 +146,8 @@ async function compileContract() {
 
         loader.classList.toggle('display')
         document.querySelector('.abi-bytecode-container').style.display = 'flex'
+        document.getElementById('deploy-button').classList.remove('inactive-button')
+        deployAllowed = true
       })
       .catch(function (error) {
         console.log(error);
@@ -167,6 +176,9 @@ async function switchChain (chain) {
             'https://polygon-mumbai.infura.io/v3/f6ea9a5670444f3b8f2221aa4d57149b'
         ));
     }
+
+    document.getElementById('deploy-button').classList.add('inactive-button')
+    deployAllowed = false
 }
 
 const activateChainBtn = event => {
@@ -281,19 +293,23 @@ function StepFour () {
                     <div><img src={copySVG}/></div>
                 </div>
             </div>
-            <div onClick={() => {deployContract()}}>
-                <div className='view-experiences-button' style={{padding: '17px 27px', textAlign: 'center', maxWidth: '560px'}} >
+            <div onClick={() => {if (deployAllowed) {deployContract()}}}>
+                <div id='deploy-button' className='view-experiences-button inactive-button' style={{padding: '17px 27px', textAlign: 'center', maxWidth: '560px'}} >
                     Deploy Smart Contract
                 </div>
             </div>
+
+            <div className='loading-container'>
+                    <div id='loading-two'></div>
+                </div>
+                <div className='step-four-success-container'>
+                    <SuccessfulDeploy/>
+                </div>
             <div style={{marginTop: '40px'}} className='step-four-input-label'>Mint Your Collection</div>
             <div onClick={() => {mintNFT(ABI, getCookie('currentContractHash'), account, getCookie('collectionURIHash'))}}>
                 <div className='view-experiences-button' style={{padding: '17px 27px', textAlign: 'center', maxWidth: '560px'}} >
                     Mint An NFT
                 </div>
-            </div>
-            <div className='step-four-success-container'>
-                <SuccessfulDeploy/>
             </div>
         </div>
     ) 
