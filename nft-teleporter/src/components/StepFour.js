@@ -95,6 +95,7 @@ async function compileContract() {
     console.log('working')
     let loader = document.getElementById('loading')
     loader.classList.toggle('display')
+
     let collectionNumber = `${parseInt(getCookie('currentCollectionCount'))}`
     let collectionName = `${getCookie('currentCollectionName')}`
     let collectionContract = `
@@ -137,6 +138,7 @@ async function compileContract() {
         localStorage.setItem('currentBytecode', res.data.bytecode);
 
         loader.classList.toggle('display')
+        document.querySelector('.abi-bytecode-container').style.display = 'flex'
       })
       .catch(function (error) {
         console.log(error);
@@ -178,6 +180,11 @@ const activateChainBtn = event => {
             allBtns[i].classList.add('step-four-chain-selection-button-bg--inactive')
         }
     }
+}
+
+function copyToClipboard (string) {
+    let textToCopy = `${string}`
+    navigator.clipboard.writeText(textToCopy)
 }
 
 function SuccessfulDeploy () {
@@ -255,21 +262,34 @@ function StepFour () {
             </div>
             <div style={{marginTop: '40px'}} className='step-four-input-label'>Compile &amp; Deploy Your Smart Contract</div>
             <div onClick={() => {compileContract()}}>
-                <div className='view-experiences-button' style={{padding: '17px 27px', textAlign: 'center'}} >
+                <div className='view-experiences-button' style={{padding: '17px 27px', textAlign: 'center', maxWidth: '560px'}} >
                     Compile Smart Contract
                 </div>
             </div>
 
-            <div id='loading'></div>
+            <div className='loading-container'>
+                <div id='loading'></div>
+            </div>
 
-            <div onClick={() => {deployContract()}}>
-                <div className='view-experiences-button' style={{padding: '17px 27px', textAlign: 'center'}} >
-                    Deploy Smart Contract and Mint
+            <div className='abi-bytecode-container'>
+                <div className='abi-bytecode-element' onClick={() => {copyToClipboard(getCookie('currentABI'))}}>
+                    <div>ABI</div>
+                    <div><img src={copySVG}/></div>
+                </div>
+                <div className='abi-bytecode-element' onClick={() => {copyToClipboard(localStorage.getItem('currentBytecode'))}}>
+                    <div>Bytecode</div>
+                    <div><img src={copySVG}/></div>
                 </div>
             </div>
+            <div onClick={() => {deployContract()}}>
+                <div className='view-experiences-button' style={{padding: '17px 27px', textAlign: 'center', maxWidth: '560px'}} >
+                    Deploy Smart Contract
+                </div>
+            </div>
+            <div style={{marginTop: '40px'}} className='step-four-input-label'>Mint Your Collection</div>
             <div onClick={() => {mintNFT(ABI, getCookie('currentContractHash'), account, getCookie('collectionURIHash'))}}>
-                <div className='view-experiences-button' style={{padding: '17px 27px', textAlign: 'center'}} >
-                    Mint Another NFT
+                <div className='view-experiences-button' style={{padding: '17px 27px', textAlign: 'center', maxWidth: '560px'}} >
+                    Mint An NFT
                 </div>
             </div>
             <div className='step-four-success-container'>

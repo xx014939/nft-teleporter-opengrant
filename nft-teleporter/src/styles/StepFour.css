@@ -242,6 +242,10 @@
     margin-top: 20px;
 }
 
+.loading-container {
+    width: 560px;
+}
+
 #loading {
     width: 2rem;
     height: 2rem;
@@ -250,7 +254,7 @@
     border-radius: 100%;
     visibility: hidden;
     animation: spin 1s infinite linear;
-    margin-left: 140px;
+    margin: auto;
     margin-top: 20px;
 }
 
@@ -265,4 +269,22 @@
      to {
          transform: rotate(360deg);
      }
+}
+
+.abi-bytecode-container {
+    display: none;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.abi-bytecode-element {
+    display: flex;
+    width: 95px;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.abi-bytecode-element:first-child {
+    margin-right: 50px;
+    width: 48px;
 }
