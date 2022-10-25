@@ -167,6 +167,19 @@ async function switchChain (chain) {
     }
 }
 
+const activateChainBtn = event => {
+    let allBtns = document.querySelectorAll('.chain-button')
+    for (let i = 0; i < allBtns.length; i ++) {
+        if (allBtns[i] === event.currentTarget) {
+            allBtns[i].classList.add('step-four-chain-selection-button-bg--active')
+            allBtns[i].classList.remove('step-four-chain-selection-button-bg--inactive')
+        } else {
+            allBtns[i].classList.remove('step-four-chain-selection-button-bg--active')
+            allBtns[i].classList.add('step-four-chain-selection-button-bg--inactive')
+        }
+    }
+}
+
 function SuccessfulDeploy () {
     return (
         <div className="successful-deploy-container">
@@ -217,24 +230,24 @@ function StepFour () {
             <div className='step-four-chain-selection-container'>
                 <div className='step-four-input-label'>Which Chain Would You Like to Deploy With?</div>
                 <div className='step-four-chain-selection-button-container'>
-                <div id='eth-btn' className='step-four-chain-selection-button-bg--active chain-button' onClick={() => {switchChain('ETH')}}>
+                <div id='eth-btn' className='step-four-chain-selection-button-bg--active chain-button' onClick={(event) => {switchChain('ETH'); activateChainBtn(event)}}>
                     <div className='step-four-chain-selection-button'>
                         <div className='active-icon'><img src={ETHIcon}/></div>
                         <div className='inactive-icon'><img src={ETHGreyIcon}/></div>
                         <div>ETH</div>
                     </div>
                 </div>
-                <div id='bsc-btn' className='step-four-chain-selection-button-bg--inactive chain-button' onClick={() => {switchChain('BSC')}}>
+                <div id='bsc-btn' className='step-four-chain-selection-button-bg--inactive chain-button' onClick={(event) => {switchChain('BSC'); activateChainBtn(event)}}>
                     <div className='step-four-chain-selection-button'>
                         <div className='active-icon'><img src={BSCIcon}/></div>
                         <div className='inactive-icon'><img src={BSCGreyIcon}/></div>
                         <div>BSC</div>
                     </div>
                 </div>
-                <div id='poly-btn' className='step-four-chain-selection-button-bg--inactive chain-button' onClick={() => {switchChain('POLY')}}>
+                <div id='poly-btn' className='step-four-chain-selection-button-bg--inactive chain-button' onClick={(event) => {switchChain('POLY'); activateChainBtn(event)}}>
                     <div className='step-four-chain-selection-button'>
-                        <div style={{minWidth: '60px !important'}} className='active-icon'><img src={POLYIcon}/></div>
-                        <div style={{minWidth: '60px !important'}} className='inactive-icon'><img src={POLYGreyIcon}/></div>
+                        <div className='active-icon'><img src={POLYIcon} style={{minWidth: '60px', marginRight: '0px'}}/></div>
+                        <div className='inactive-icon'>< img src={POLYGreyIcon} style={{minWidth: '60px', marginRight: '0px'}}/></div>
                         <div>Polygon</div>
                     </div>
                 </div>
