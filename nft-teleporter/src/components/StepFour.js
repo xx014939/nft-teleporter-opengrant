@@ -41,6 +41,8 @@ function getCookie(cookieName) {
 function showSuccess () {
     document.querySelector('.step-four-success-container').style.display = 'block'
     document.getElementById('contractHash').innerHTML = `${getCookie('currentContractHash')}`
+
+    document.getElementById('minting-section').style.display = 'block'
 }
 
 async function connectNewWallet(privateKey) {
@@ -305,10 +307,12 @@ function StepFour () {
                 <div className='step-four-success-container'>
                     <SuccessfulDeploy/>
                 </div>
-            <div style={{marginTop: '40px'}} className='step-four-input-label'>Mint Your Collection</div>
-            <div onClick={() => {mintNFT(ABI, getCookie('currentContractHash'), account, getCookie('collectionURIHash'))}}>
-                <div className='view-experiences-button' style={{padding: '17px 27px', textAlign: 'center', maxWidth: '560px'}} >
-                    Mint An NFT
+            <div id="minting-section" style={{display: 'none'}}>
+                <div style={{marginTop: '40px'}} className='step-four-input-label'>Mint Your Collection</div>
+                <div onClick={() => {mintNFT(ABI, getCookie('currentContractHash'), account, getCookie('collectionURIHash'))}}>
+                    <div className='view-experiences-button' style={{padding: '17px 27px', textAlign: 'center', maxWidth: '560px'}} >
+                        Mint An NFT
+                    </div>
                 </div>
             </div>
         </div>
