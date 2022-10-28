@@ -5,6 +5,7 @@ import {
   PerspectiveCamera,
 } from "@react-three/drei";
 import Ground from "./3D/Ground.js";
+import Model from '../GLTF/Model.js'
 
 
 
@@ -34,6 +35,7 @@ function CarShow() {
         castShadow
         shadow-bias={-0.0001}
       />
+      <Model position={[0, 1.25, 0]}/>
       <Ground />
     </>
   )
@@ -48,6 +50,10 @@ function ThreeDScene() {
         <CarShow />
       </Canvas>
     </Suspense>
+    <div style={{color: 'white', background: 'transparent', position: 'fixed', bottom: '250px', paddingLeft: '50px'}}>
+      <h2>NFT STATS</h2>
+      <div>Attribute One - Value</div>
+    </div>
     </div>
   )
 }
