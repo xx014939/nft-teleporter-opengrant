@@ -1,42 +1,53 @@
-import React, { useEffect } from "react";
-import { Suspense } from 'react'
-import { Canvas, useThree } from '@react-three/fiber'
-import { Environment } from '@react-three/drei'
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import React, { Suspense } from "react";
+import { Canvas } from "@react-three/fiber";
+import {
+  OrbitControls,
+  PerspectiveCamera,
+} from "@react-three/drei";
+import Ground from "./3D/Ground.js";
 
-// import backgroundPNG from '../HDR/background.png'
-// import background from '../HDR/background.hdr'
-import Model from '../GLTF/Model.js'
 
-const CameraController = () => {
-  const { camera, gl } = useThree();
-  useEffect(
-    () => {
-      const controls = new OrbitControls(camera, gl.domElement);
 
-      controls.minDistance = 3;
-      controls.maxDistance = 20;
-      return () => {
-        controls.dispose();
-      };
-    },
-    [camera, gl]
-  );
-  return null;
-};
+function CarShow() {
+  return (
+    <>
+      <OrbitControls target={[0, 0.35, 0]} maxPolarAngle={1.45} />
+      <PerspectiveCamera makeDefault fov={50} position={[3, 2, 5]} />
+
+      <color arg={[0, 0, 0]} attach=" background"/>
+
+      <spotLight
+        color={[1, 0.25, 0.7]}
+        intensity={1.5}
+        angle={0.6}
+        penumbra={0.5}
+        position={[5, 5, 0]}
+        castShadow
+        shadow-bias={-0.0001}
+      />
+      <spotLight
+        color={[0.14, 0.5, 1]}
+        intensity={2}
+        angle={0.6}
+        penumbra={0.5}
+        position={[-5, 5, 0]}
+        castShadow
+        shadow-bias={-0.0001}
+      />
+      <Ground />
+    </>
+  )
+}
+
 
 function ThreeDScene() {
   return (
     <div style={{height: '100vh'}}>
-      <Canvas>
-      <CameraController />
-      <ambientLight />
-        <Suspense fallback={null}>
-          <Model/>
-          <spotLight intensity={0.3} position={[5, 10, 50]} />
-          <Environment preset="sunset" background/>
-        </Suspense>
+    <Suspense fallback={null}>
+      <Canvas shadows>
+        <CarShow />
       </Canvas>
+    </Suspense>
     </div>
   )
 }
