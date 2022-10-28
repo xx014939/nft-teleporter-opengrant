@@ -2,8 +2,6 @@ import React, { useEffect } from "react";
 import { useFrame, useLoader } from "@react-three/fiber";
 import { MeshReflectorMaterial } from "@react-three/drei";
 import { LinearEncoding, RepeatWrapping, TextureLoader } from "three";
-import tRoughness from "../../assets/textures/terrain-roughness.jpg"
-import tNormal from "../../assets/textures/terrain-normal.jpg"
 
 function Ground() {
     const [roughness, normal] = useLoader(TextureLoader, [
