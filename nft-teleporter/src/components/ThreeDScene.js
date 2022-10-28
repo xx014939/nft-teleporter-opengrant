@@ -19,7 +19,7 @@ function CarShow() {
 
       <spotLight
         color={[1, 0.25, 0.7]}
-        intensity={1.5}
+        intensity={5}
         angle={0.6}
         penumbra={0.5}
         position={[5, 5, 0]}
@@ -28,7 +28,7 @@ function CarShow() {
       />
       <spotLight
         color={[0.14, 0.5, 1]}
-        intensity={2}
+        intensity={3}
         angle={0.6}
         penumbra={0.5}
         position={[-5, 5, 0]}
@@ -52,7 +52,9 @@ function ThreeDScene() {
     </Suspense>
     <div style={{color: 'white', background: 'transparent', position: 'fixed', bottom: '250px', paddingLeft: '50px'}}>
       <h2>NFT STATS</h2>
-      <div>Attribute One - Value</div>
+      <div>Example Attribute One - Value</div>
+      <div>Example Attribute Two - Value</div>
+      <div>Example Attribute Three - Value</div>
     </div>
     </div>
   )
