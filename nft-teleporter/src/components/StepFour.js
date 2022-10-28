@@ -303,10 +303,10 @@ function StepFour () {
 
             <div className='loading-container'>
                     <div id='loading-two'></div>
-                </div>
-                <div className='step-four-success-container'>
-                    <SuccessfulDeploy/>
-                </div>
+            </div>
+            <div className='step-four-success-container'>
+                <SuccessfulDeploy/>
+            </div>
             <div id="minting-section" style={{display: 'none'}}>
                 <div style={{marginTop: '40px'}} className='step-four-input-label'>Mint Your Collection</div>
                 <div onClick={() => {mintNFT(ABI, getCookie('currentContractHash'), account, getCookie('collectionURIHash'))}}>

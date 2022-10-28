@@ -11,6 +11,7 @@ import VRExperience from './components/VRExperience';
 import ARExperience from './components/ARExperience';
 import TwoDExperience from './components/TwoDExperience';
 import GLTFScene from './components/GLTFScene';
+import ThreeDScene from './components/ThreeDScene';
 import GenerateETHWallet from './components/GenerateETHWallet';
 import {
   BrowserRouter,
@@ -41,6 +42,7 @@ root.render(
       <Route path="ar-experience" element={<ARExperience />} />
       <Route path="2d-experience" element={<TwoDExperience />} />
       <Route path="gltf" element={<GLTFScene />} />
+      <Route path="3d-experience" element={<ThreeDScene />} />
       <Route path="generate-wallet" element={<GenerateETHWallet/>}/>
     </Routes>
   </BrowserRouter>
