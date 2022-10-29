@@ -5,11 +5,60 @@ import {
   PerspectiveCamera,
 } from "@react-three/drei";
 import Ground from "./3D/Ground.js";
-import Model from '../GLTF/Model.js'
+import Model from '../GLTF/Model.js';
+import { useGLTF } from "@react-three/drei";
+import axios from "axios";
 
+function getCookie(cookieName) {
+  let cookieValue = document.cookie
+  .split('; ')
+  .find((row) => row.startsWith(`${cookieName}=`))
+  ?.split('=')[1];
+  console.log(cookieValue)
+
+  return cookieValue;
+}
+
+
+function NFT (props) {
+  const { nodes, materials } = useGLTF(props.Json);
+  return (
+    <group {...props} dispose={null}>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes[`${props.Name}`].geometry}
+        material={materials.Material_MR}
+        rotation={[Math.PI / 2, 0, 0]}
+      />
+    </group>
+  );
+}
+
+
+function NFTModel() {
+  async function retrieveModel() {
+    const modelData = await axios.get('https://yourmetaworld.mypinata.cloud/ipfs/QmbqbZ32qXUuLdVoMY7EeKqQPDHWaSCnQet25ndog3TJ4K')
+
+    let nodeName = modelData.data.nodes[0].name
+    let objectJson = JSON.stringify(modelData.data)
+    
+    localStorage.setItem('modelJSON', objectJson);
+    localStorage.setItem('modelName', nodeName);
+  }
+  retrieveModel()
+
+  let modelJSON = localStorage.getItem('modelJSON')
+  let modelName = localStorage.getItem('modelName')
+
+  return (
+    <NFT Json = {modelJSON} Name = {modelName} />
+  )
+}
 
 
 function CarShow() {
+
   return (
     <>
       <OrbitControls target={[0, 0.35, 0]} maxPolarAngle={1.45} />
@@ -36,6 +85,7 @@ function CarShow() {
         shadow-bias={-0.0001}
       />
       <Model position={[0, 1.25, 0]}/>
+      {/* <NFTModel/> */}
       <Ground />
     </>
   )
