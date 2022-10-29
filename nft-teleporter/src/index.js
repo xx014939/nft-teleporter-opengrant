@@ -13,6 +13,7 @@ import TwoDExperience from './components/TwoDExperience';
 import GLTFScene from './components/GLTFScene';
 import ThreeDScene from './components/ThreeDScene';
 import GenerateETHWallet from './components/GenerateETHWallet';
+import XRTest from './components/3D/XRTest';
 import {
   BrowserRouter,
   Routes,
@@ -44,6 +45,7 @@ root.render(
       <Route path="gltf" element={<GLTFScene />} />
       <Route path="3d-experience" element={<ThreeDScene />} />
       <Route path="generate-wallet" element={<GenerateETHWallet/>}/>
+      <Route path="xr" element={<XRTest/>}/>
     </Routes>
   </BrowserRouter>
 );

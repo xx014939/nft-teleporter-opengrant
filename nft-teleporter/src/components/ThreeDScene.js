@@ -1,13 +1,9 @@
 import React, { Suspense } from "react";
 import { Canvas, useLoader } from "@react-three/fiber";
-import {
-  OrbitControls,
-  PerspectiveCamera,
-} from "@react-three/drei";
+import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import Ground from "./3D/Ground.js";
-import { useGLTF } from "@react-three/drei";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
-import axios from "axios";
+import { VRButton, XR, Controllers, Hands } from '@react-three/xr'
 
 // GLTF HELMET - https://yourmetaworld.mypinata.cloud/ipfs/QmbqbZ32qXUuLdVoMY7EeKqQPDHWaSCnQet25ndog3TJ4K
 // GLB TROLLEY - https://yourmetaworld.mypinata.cloud/ipfs/QmfGcoY5KehXkUjNsQTEApFnNLAkwqLF9S2PntcokW2RvF 
@@ -54,11 +50,14 @@ function CarShow() {
 function ThreeDScene() {
   return (
     <div style={{height: '100vh'}}>
-    <Suspense fallback={null}>
+      <VRButton />
       <Canvas shadows>
-        <CarShow />
+        <XR>
+          <Controllers />
+          <Hands />
+          <CarShow />
+        </XR>
       </Canvas>
-    </Suspense>
     <div style={{color: 'white', background: 'transparent', position: 'fixed', bottom: '250px', paddingLeft: '50px'}}>
       <h2>NFT STATS</h2>
       <div>Example Attribute One - Value</div>
