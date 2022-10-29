@@ -5,7 +5,6 @@ import {
   PerspectiveCamera,
 } from "@react-three/drei";
 import Ground from "./3D/Ground.js";
-import Model from '../GLTF/Model.js';
 import { useGLTF } from "@react-three/drei";
 import axios from "axios";
 
@@ -21,7 +20,7 @@ function getCookie(cookieName) {
 
 
 function NFT (props) {
-  const { nodes, materials } = useGLTF(props.Json);
+  const { nodes, materials } = useGLTF(`https://yourmetaworld.mypinata.cloud/ipfs/QmbqbZ32qXUuLdVoMY7EeKqQPDHWaSCnQet25ndog3TJ4K`);
   return (
     <group {...props} dispose={null}>
       <mesh
@@ -30,6 +29,7 @@ function NFT (props) {
         geometry={nodes[`${props.Name}`].geometry}
         material={materials.Material_MR}
         rotation={[Math.PI / 2, 0, 0]}
+        position={[0,1,0]}
       />
     </group>
   );
@@ -84,8 +84,8 @@ function CarShow() {
         castShadow
         shadow-bias={-0.0001}
       />
-      <Model position={[0, 1.25, 0]}/>
-      {/* <NFTModel/> */}
+      {/* <Model position={[0, 1.25, 0]}/> */}
+      <NFTModel/>
       <Ground />
     </>
   )
