@@ -1,61 +1,21 @@
 import React, { Suspense } from "react";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useLoader } from "@react-three/fiber";
 import {
   OrbitControls,
   PerspectiveCamera,
 } from "@react-three/drei";
 import Ground from "./3D/Ground.js";
 import { useGLTF } from "@react-three/drei";
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import axios from "axios";
 
-function getCookie(cookieName) {
-  let cookieValue = document.cookie
-  .split('; ')
-  .find((row) => row.startsWith(`${cookieName}=`))
-  ?.split('=')[1];
-  console.log(cookieValue)
-
-  return cookieValue;
-}
-
-
-function NFT (props) {
-  const { nodes, materials } = useGLTF(`https://yourmetaworld.mypinata.cloud/ipfs/QmbqbZ32qXUuLdVoMY7EeKqQPDHWaSCnQet25ndog3TJ4K`);
-  return (
-    <group {...props} dispose={null}>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes[`${props.Name}`].geometry}
-        material={materials.Material_MR}
-        rotation={[Math.PI / 2, 0, 0]}
-        position={[0,1,0]}
-      />
-    </group>
-  );
-}
-
+// GLTF HELMET - https://yourmetaworld.mypinata.cloud/ipfs/QmbqbZ32qXUuLdVoMY7EeKqQPDHWaSCnQet25ndog3TJ4K
+// GLB TROLLEY - https://yourmetaworld.mypinata.cloud/ipfs/QmfGcoY5KehXkUjNsQTEApFnNLAkwqLF9S2PntcokW2RvF 
 
 function NFTModel() {
-  async function retrieveModel() {
-    const modelData = await axios.get('https://yourmetaworld.mypinata.cloud/ipfs/QmbqbZ32qXUuLdVoMY7EeKqQPDHWaSCnQet25ndog3TJ4K')
-
-    let nodeName = modelData.data.nodes[0].name
-    let objectJson = JSON.stringify(modelData.data)
-    
-    localStorage.setItem('modelJSON', objectJson);
-    localStorage.setItem('modelName', nodeName);
-  }
-  retrieveModel()
-
-  let modelJSON = localStorage.getItem('modelJSON')
-  let modelName = localStorage.getItem('modelName')
-
-  return (
-    <NFT Json = {modelJSON} Name = {modelName} />
-  )
+  const gltf = useLoader(GLTFLoader, `https://yourmetaworld.mypinata.cloud/ipfs/QmbqbZ32qXUuLdVoMY7EeKqQPDHWaSCnQet25ndog3TJ4K`)
+  return <primitive object={gltf.scene} position={[0, 1, 0]} />
 }
-
 
 function CarShow() {
 
@@ -84,7 +44,6 @@ function CarShow() {
         castShadow
         shadow-bias={-0.0001}
       />
-      {/* <Model position={[0, 1.25, 0]}/> */}
       <NFTModel/>
       <Ground />
     </>
