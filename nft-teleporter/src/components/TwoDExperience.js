@@ -1,7 +1,10 @@
+import TwoDBG from '../assets/twod-bg.svg'
+import PlaceHolder from '../assets/placeholder.png'
+
 function TwoDExperience () {
     return (
-        <div>
-            <h1 style={{color: 'white'}}>HELLO WORLD</h1>
+        <div className='twod-experience-container' style={{backgroundImage: `url(${TwoDBG})`, backgroundSize: 'cover', height: '100vh', backgroundRepeat: 'no-repeat'}}>
+            <img id='imageTag' src={PlaceHolder}/>
         </div>
     )
 }
