@@ -50,13 +50,8 @@ function CarShow() {
 function ThreeDScene() {
   return (
     <div style={{height: '100vh'}}>
-      <VRButton />
       <Canvas shadows>
-        <XR>
-          <Controllers />
-          <Hands />
-          <CarShow />
-        </XR>
+        <CarShow />
       </Canvas>
     <div style={{color: 'white', background: 'transparent', position: 'fixed', bottom: '250px', paddingLeft: '50px'}}>
       <h2>NFT STATS</h2>
