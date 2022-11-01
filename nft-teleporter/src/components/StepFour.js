@@ -250,6 +250,11 @@ function StepFour () {
             </div>
             <div className='step-four-chain-selection-container'>
                 <div className='step-four-input-label'>Which Chain Would You Like to Deploy With?</div>
+                <div>Testnet/Mainnet</div>
+                <label class="switch">
+                    <input type="checkbox" defaultChecked/>
+                    <span class="slider round"></span>
+                </label>
                 <div className='step-four-chain-selection-button-container'>
                 <div id='eth-btn' className='step-four-chain-selection-button-bg--active chain-button' onClick={(event) => {switchChain('ETH'); activateChainBtn(event)}}>
                     <div className='step-four-chain-selection-button'>
