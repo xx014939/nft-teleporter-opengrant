@@ -96,7 +96,7 @@ async function deployContract() {
 
     let hash = getCookie('collectionURIHash')
 
-    mintNFT(ABI, _address, account, hash)
+    // mintNFT(ABI, _address, account, hash)
 
 }
   
@@ -164,6 +164,31 @@ function mintNFT(contract_abi, contract_address, account, hash) {
     console.log('done', collectionBaseURI)
 }
 
+async function getUserBalance() {
+    // Retrieve username
+    let currentUsername = getCookie("currentUsername")
+    // Ask for password
+    let currentPassword = prompt("Please re-enter your password")
+
+    let keysResponse = await axios.post(`http://localhost:5000/users/keys`, {username: currentUsername, password: currentPassword})
+    // Sign wallet in (if it's not already)
+    connectNewWallet(`${keysResponse.data.private_key[0]}`)
+    // Sign wallet in (if it's not already)
+    connectNewWallet(`${keysResponse.data.private_key[0]}`)
+
+    // Deploy contract using ABI + BYTECODE recieved from compile method 
+    let accountList = await web3.eth.accounts.wallet;
+    let walletAddress = accountList[0].address
+
+
+    let balance = await web3.eth.getBalance(walletAddress)
+    balance = (balance / 1000000000000000000).toFixed(2)
+    console.log('THE WALLET BALANCE IS -->', balance)
+
+    return balance
+}
+
+
 async function switchChain (chain, net) {
     console.log(`switch to the ${chain} chain`)
     if (net === 'TEST') {
@@ -197,6 +222,9 @@ async function switchChain (chain, net) {
             ));
         }
     }
+
+
+    // getUserBalance()
 
     document.getElementById('deploy-button').classList.add('inactive-button')
     deployAllowed = false
@@ -252,6 +280,8 @@ function SuccessfulDeploy () {
 function StepFour () {
 
     const [net, setNet] = useState('TEST');
+    const [currentBalance, setCurrentBalance] = useState(0)
+    const [currentChain, setCurrentChain] = useState('ETH')
 
     return (
         <div className='page-container--255 step-four-container'>
@@ -271,31 +301,37 @@ function StepFour () {
                 </div>
             </div>
             <div className='step-four-input-label'>Choose Your Net</div>
-            <div style={{marginBottom: '20px'}}>
-                <div>Mainnet/Testnet</div>
-                <label class="switch">
-                    <input type="checkbox" defaultChecked onClick={() => {console.log('triggering'); if (net === 'TEST'){setNet('MAIN')} else {setNet('TEST')}}}/>
-                    <span class="slider round"></span>
-                </label>
+            <div className='net-balance-container'>
+                <div style={{marginBottom: '20px'}}>
+                    <div>Mainnet/Testnet</div>
+                    <label class="switch">
+                        <input type="checkbox" defaultChecked onClick={() => {console.log('triggering'); if (net === 'TEST'){setNet('MAIN')} else {setNet('TEST')}}}/>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div className='current-balance-container'>
+                    <span>Current Balance</span>
+                    <div><span>{currentBalance}</span><span> {currentChain}</span></div>
+                </div>
             </div>
             <div className='step-four-chain-selection-container'>
                 <div className='step-four-input-label'>Which Chain Would You Like to Deploy With?</div>
                 <div className='step-four-chain-selection-button-container'>
-                <div id='eth-btn' className='step-four-chain-selection-button-bg--active chain-button' onClick={(event) => {switchChain('ETH', net); activateChainBtn(event)}}>
+                <div id='eth-btn' className='step-four-chain-selection-button-bg--active chain-button' onClick={async (event) => {switchChain('ETH', net); activateChainBtn(event); let balance = await getUserBalance(); setCurrentBalance(balance); setCurrentChain('ETH')}}>
                     <div className='step-four-chain-selection-button'>
                         <div className='active-icon'><img src={ETHIcon}/></div>
                         <div className='inactive-icon'><img src={ETHGreyIcon}/></div>
                         <div>ETH</div>
                     </div>
                 </div>
-                <div id='bsc-btn' className='step-four-chain-selection-button-bg--inactive chain-button' onClick={(event) => {switchChain('BSC', net); activateChainBtn(event)}}>
+                <div id='bsc-btn' className='step-four-chain-selection-button-bg--inactive chain-button' onClick={async (event) => {switchChain('BSC', net); activateChainBtn(event); let balance = await getUserBalance(); setCurrentBalance(balance); setCurrentChain('BSC')}}>
                     <div className='step-four-chain-selection-button'>
                         <div className='active-icon'><img src={BSCIcon}/></div>
                         <div className='inactive-icon'><img src={BSCGreyIcon}/></div>
                         <div>BSC</div>
                     </div>
                 </div>
-                <div id='poly-btn' className='step-four-chain-selection-button-bg--inactive chain-button' onClick={(event) => {switchChain('POLY', net); activateChainBtn(event)}}>
+                <div id='poly-btn' className='step-four-chain-selection-button-bg--inactive chain-button' onClick={async (event) => {switchChain('POLY', net); activateChainBtn(event); let balance = await getUserBalance(); setCurrentBalance(balance); setCurrentChain('MATIC')}}>
                     <div className='step-four-chain-selection-button'>
                         <div className='active-icon'><img src={POLYIcon} style={{minWidth: '60px', marginRight: '0px'}}/></div>
                         <div className='inactive-icon'>< img src={POLYGreyIcon} style={{minWidth: '60px', marginRight: '0px'}}/></div>
