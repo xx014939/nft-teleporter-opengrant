@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import '../index.css';
 import '../styles/StepFour.css';
 import completedBadge from '../assets/completedBadge.svg';
@@ -163,20 +164,38 @@ function mintNFT(contract_abi, contract_address, account, hash) {
     console.log('done', collectionBaseURI)
 }
 
-async function switchChain (chain) {
+async function switchChain (chain, net) {
     console.log(`switch to the ${chain} chain`)
-    if (chain === 'ETH') {
-        web3 = await new Web3(new Web3.providers.HttpProvider(
-            'https://goerli.infura.io/v3/f6ea9a5670444f3b8f2221aa4d57149b'
-        ));
-    } else if (chain === 'BSC') {
-        web3 = await new Web3(new Web3.providers.HttpProvider(
-            'https://orbital-palpable-patina.bsc-testnet.discover.quiknode.pro/b313e9db5a5c399e10e42eb9ec68cf182f20de01/'
-        ));
-    } else if (chain === 'POLY') {
-        web3 = await new Web3(new Web3.providers.HttpProvider(
-            'https://polygon-mumbai.infura.io/v3/f6ea9a5670444f3b8f2221aa4d57149b'
-        ));
+    if (net === 'TEST') {
+        console.log('SWITCHED TO THE TESTNET')
+        if (chain === 'ETH') {
+            web3 = await new Web3(new Web3.providers.HttpProvider(
+                'https://goerli.infura.io/v3/f6ea9a5670444f3b8f2221aa4d57149b'
+            ));
+        } else if (chain === 'BSC') {
+            web3 = await new Web3(new Web3.providers.HttpProvider(
+                'https://orbital-palpable-patina.bsc-testnet.discover.quiknode.pro/b313e9db5a5c399e10e42eb9ec68cf182f20de01/'
+            ));
+        } else if (chain === 'POLY') {
+            web3 = await new Web3(new Web3.providers.HttpProvider(
+                'https://polygon-mumbai.infura.io/v3/f6ea9a5670444f3b8f2221aa4d57149b'
+            ));
+        }
+    } else {
+        console.log('SWITCHED TO THE MAINNET')
+        if (chain === 'ETH') {
+            web3 = await new Web3(new Web3.providers.HttpProvider(
+                'https://goerli.infura.io/v3/f6ea9a5670444f3b8f2221aa4d57149b'
+            ));
+        } else if (chain === 'BSC') {
+            web3 = await new Web3(new Web3.providers.HttpProvider(
+                'https://orbital-palpable-patina.bsc-testnet.discover.quiknode.pro/b313e9db5a5c399e10e42eb9ec68cf182f20de01/'
+            ));
+        } else if (chain === 'POLY') {
+            web3 = await new Web3(new Web3.providers.HttpProvider(
+                'https://polygon-mumbai.infura.io/v3/f6ea9a5670444f3b8f2221aa4d57149b'
+            ));
+        }
     }
 
     document.getElementById('deploy-button').classList.add('inactive-button')
@@ -231,6 +250,9 @@ function SuccessfulDeploy () {
 }
 
 function StepFour () {
+
+    const [net, setNet] = useState('TEST');
+
     return (
         <div className='page-container--255 step-four-container'>
             <div className='step-four-title'><h2>Smart Contract</h2></div>
@@ -248,29 +270,32 @@ function StepFour () {
                     <input type="text" placeholder='Private Wallet Address'></input>
                 </div>
             </div>
-            <div className='step-four-chain-selection-container'>
-                <div className='step-four-input-label'>Which Chain Would You Like to Deploy With?</div>
-                <div>Testnet/Mainnet</div>
+            <div className='step-four-input-label'>Choose Your Net</div>
+            <div style={{marginBottom: '20px'}}>
+                <div>Mainnet/Testnet</div>
                 <label class="switch">
-                    <input type="checkbox" defaultChecked/>
+                    <input type="checkbox" defaultChecked onClick={() => {console.log('triggering'); if (net === 'TEST'){setNet('MAIN')} else {setNet('TEST')}}}/>
                     <span class="slider round"></span>
                 </label>
+            </div>
+            <div className='step-four-chain-selection-container'>
+                <div className='step-four-input-label'>Which Chain Would You Like to Deploy With?</div>
                 <div className='step-four-chain-selection-button-container'>
-                <div id='eth-btn' className='step-four-chain-selection-button-bg--active chain-button' onClick={(event) => {switchChain('ETH'); activateChainBtn(event)}}>
+                <div id='eth-btn' className='step-four-chain-selection-button-bg--active chain-button' onClick={(event) => {switchChain('ETH', net); activateChainBtn(event)}}>
                     <div className='step-four-chain-selection-button'>
                         <div className='active-icon'><img src={ETHIcon}/></div>
                         <div className='inactive-icon'><img src={ETHGreyIcon}/></div>
                         <div>ETH</div>
                     </div>
                 </div>
-                <div id='bsc-btn' className='step-four-chain-selection-button-bg--inactive chain-button' onClick={(event) => {switchChain('BSC'); activateChainBtn(event)}}>
+                <div id='bsc-btn' className='step-four-chain-selection-button-bg--inactive chain-button' onClick={(event) => {switchChain('BSC', net); activateChainBtn(event)}}>
                     <div className='step-four-chain-selection-button'>
                         <div className='active-icon'><img src={BSCIcon}/></div>
                         <div className='inactive-icon'><img src={BSCGreyIcon}/></div>
                         <div>BSC</div>
                     </div>
                 </div>
-                <div id='poly-btn' className='step-four-chain-selection-button-bg--inactive chain-button' onClick={(event) => {switchChain('POLY'); activateChainBtn(event)}}>
+                <div id='poly-btn' className='step-four-chain-selection-button-bg--inactive chain-button' onClick={(event) => {switchChain('POLY', net); activateChainBtn(event)}}>
                     <div className='step-four-chain-selection-button'>
                         <div className='active-icon'><img src={POLYIcon} style={{minWidth: '60px', marginRight: '0px'}}/></div>
                         <div className='inactive-icon'>< img src={POLYGreyIcon} style={{minWidth: '60px', marginRight: '0px'}}/></div>
