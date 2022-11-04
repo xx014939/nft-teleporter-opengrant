@@ -87,6 +87,17 @@ const getKeys = asyncHandler( async (req, res) => {
 
 })
 
+const getImageURL = asyncHandler( async (req, res) => {
+  const {username} = req.body
+  // Locate user
+  const user = await User.findOne({username})
+
+  res.json({
+    message: "URL Found",
+    imageURL: user.collection_assets[(collection_assets.length -1)][1]
+  })
+})
+
 const getUser = asyncHandler(async (req, res, next) => {
     let user
     try {
@@ -304,5 +315,6 @@ module.exports = {
     getUser,
     compileContract,
     createAndPinDirectory,
-    getKeys
+    getKeys,
+    getImageURL
 }
