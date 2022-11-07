@@ -1,15 +1,33 @@
-import React, { Suspense } from "react";
+import React, { useEffect } from "react";
 import { Canvas, useLoader } from "@react-three/fiber";
 import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import Ground from "./3D/Ground.js";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
-import { VRButton, XR, Controllers, Hands } from '@react-three/xr'
+import axios from 'axios';
 
 // GLTF HELMET - https://yourmetaworld.mypinata.cloud/ipfs/QmbqbZ32qXUuLdVoMY7EeKqQPDHWaSCnQet25ndog3TJ4K
 // GLB TROLLEY - https://yourmetaworld.mypinata.cloud/ipfs/QmfGcoY5KehXkUjNsQTEApFnNLAkwqLF9S2PntcokW2RvF 
 
-function NFTModel() {
-  const gltf = useLoader(GLTFLoader, `https://yourmetaworld.mypinata.cloud/ipfs/QmbqbZ32qXUuLdVoMY7EeKqQPDHWaSCnQet25ndog3TJ4K`)
+async function getModel() {
+  let imageHash = await axios.post('http://localhost:5000/users/image', {username: "44"}) // TODO - Pass in users actual username
+  return imageHash.data.imageHash
+}
+
+function NFTModel(props) {
+  // console.log(getModel())
+  // useEffect(() => {
+  //   async function getData() {
+  //     let data = await getModle()
+  //     console.log(data)
+  //     return data
+  //   }
+
+  //   const result = getData().catch(console.error);
+  // }, [])
+
+  let hash = prompt('ENTER HASH')
+
+  const gltf = useLoader(GLTFLoader, `https://yourmetaworld.mypinata.cloud/ipfs/${props.Hash}`)
   return <primitive object={gltf.scene} position={[0, 1, 0]} />
 }
 
@@ -40,7 +58,7 @@ function CarShow() {
         castShadow
         shadow-bias={-0.0001}
       />
-      <NFTModel/>
+      <NFTModel Hash = ''/>
       <Ground />
     </>
   )

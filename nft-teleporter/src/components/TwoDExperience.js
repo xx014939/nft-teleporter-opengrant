@@ -1,7 +1,7 @@
 import TwoDBG from '../assets/twod-bg.svg'
 import PlaceHolder from '../assets/placeholder.png'
 import axios from 'axios';
-import React, { useState, useEffect  } from 'react';
+import React, { useEffect  } from 'react';
 
 function TwoDExperience () {
     async function retrieveImage() {
