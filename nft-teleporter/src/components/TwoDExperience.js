@@ -5,8 +5,8 @@ import axios from 'axios';
 function TwoDExperience () {
     async function retrieveImage() {
 
-        let imageURL = await axios.post('http://localhost:5000/users/image', {username: "44"})
-        console.log('IMAGE URL -->',imageURL)
+        let imageHash = await axios.post('http://localhost:5000/users/image', {username: "44"})
+        console.log('IMAGE HASH -->',imageHash)
     }
 
     retrieveImage()
