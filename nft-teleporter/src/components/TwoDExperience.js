@@ -5,7 +5,7 @@ import React, { useState, useEffect  } from 'react';
 
 function TwoDExperience () {
     async function retrieveImage() {
-        let imageHash = await axios.post('http://localhost:5000/users/image', {username: "44"})
+        let imageHash = await axios.post('http://localhost:5000/users/image', {username: "44"}) // TODO - Pass in users actual username
         return imageHash
     }
 
