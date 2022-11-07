@@ -25,7 +25,7 @@ function TwoDExperience () {
 
         console.log('THE JWT TOKEN IS -->', jwtToken)
 
-        let imageURL = await axios.get('http://localhost:5000/users/image', {'username': '44'}, config)
+        let imageURL = await axios.post('http://localhost:5000/users/image', {username: "44"})
         console.log('IMAGE URL -->',imageURL)
     }
 

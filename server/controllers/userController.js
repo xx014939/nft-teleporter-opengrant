@@ -94,7 +94,7 @@ const getImageURL = asyncHandler( async (req, res) => {
 
   res.json({
     message: "URL Found",
-    imageURL: user.collection_assets[(collection_assets.length -1)][1]
+    imageURL: user.collection_assets
   })
 })
 

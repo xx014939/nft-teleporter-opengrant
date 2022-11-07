@@ -33,7 +33,7 @@ router.post('/keys', getKeys, (req,res) => {
 })
 
 // Get 2D Image URL From Latest Collection
-router.get('/image', getImageURL)
+router.post('/image', getImageURL)
 
 // Creating one
 router.post('/register', registerUser)
