@@ -93,8 +93,8 @@ const getImageURL = asyncHandler( async (req, res) => {
   const user = await User.findOne({username})
 
   res.json({
-    message: "URL Found",
-    imageURL: user.collection_assets
+    message: "Hash Found",
+    imageHash: user.collection_assets[user.collection_assets.length - 1][1][(user.collection_assets[user.collection_assets.length - 1][1].length) - 1][1]
   })
 })
 
