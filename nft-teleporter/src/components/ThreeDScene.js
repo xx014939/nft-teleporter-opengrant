@@ -5,6 +5,7 @@ import Ground from "./3D/Ground.js";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import axios from 'axios';
 
+// GLB BEE - https://yourmetaworld.mypinata.cloud/ipfs/QmQPx8kUf99uNC88Hu7sk5w15YmzAs9ARfKGpdVQLR7tGZ
 // GLTF HELMET - https://yourmetaworld.mypinata.cloud/ipfs/QmbqbZ32qXUuLdVoMY7EeKqQPDHWaSCnQet25ndog3TJ4K
 // GLB TROLLEY - https://yourmetaworld.mypinata.cloud/ipfs/QmfGcoY5KehXkUjNsQTEApFnNLAkwqLF9S2PntcokW2RvF 
 
@@ -18,7 +19,7 @@ function NFTModel(props) {
 
 function CarShow() {
 
-  const [hash, setHash] = useState('QmQPx8kUf99uNC88Hu7sk5w15YmzAs9ARfKGpdVQLR7tGZ');
+  const [hash, setHash] = useState('QmbqbZ32qXUuLdVoMY7EeKqQPDHWaSCnQet25ndog3TJ4K');
 
   async function getObjectHash() {
     let response = await axios.post('http://localhost:5000/users/object', {username: "44"})
