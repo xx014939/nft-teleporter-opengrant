@@ -98,6 +98,17 @@ const getImageURL = asyncHandler( async (req, res) => {
   })
 })
 
+const getObjectURL = asyncHandler( async (req, res) => {
+  const {username} = req.body
+  // Locate user
+  const user = await User.findOne({username})
+
+  res.json({
+    message: "Hash Found",
+    imageHash: user.collection_assets[user.collection_assets.length - 1][0][1][1] //[0][(user.collection_assets[user.collection_assets.length - 1][1].length) - 1][1]
+  })
+})
+
 const getUser = asyncHandler(async (req, res, next) => {
     let user
     try {
@@ -316,5 +327,6 @@ module.exports = {
     compileContract,
     createAndPinDirectory,
     getKeys,
-    getImageURL
+    getImageURL,
+    getObjectURL
 }

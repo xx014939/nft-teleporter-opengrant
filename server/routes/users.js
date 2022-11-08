@@ -1,7 +1,7 @@
 const express = require("express");
 const User = require('../models/userModel')
 const cors = require('cors'); 
-const { registerUser, getUser, loginUser, compileContract, createAndPinDirectory, getKeys, getImageURL } = require("../controllers/userController");
+const { registerUser, getUser, loginUser, compileContract, createAndPinDirectory, getKeys, getImageURL, getObjectURL } = require("../controllers/userController");
 const router = express.Router();
 const {protect} = require('../middleware/authMiddleware')
  
@@ -34,6 +34,9 @@ router.post('/keys', getKeys, (req,res) => {
 
 // Get 2D Image URL From Latest Collection
 router.post('/image', getImageURL)
+
+// Get 3D Object URL From Latest Collection
+router.post('/object', getObjectURL)
 
 // Creating one
 router.post('/register', registerUser)

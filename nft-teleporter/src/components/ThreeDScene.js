@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Canvas, useLoader } from "@react-three/fiber";
 import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import Ground from "./3D/Ground.js";
@@ -8,30 +8,38 @@ import axios from 'axios';
 // GLTF HELMET - https://yourmetaworld.mypinata.cloud/ipfs/QmbqbZ32qXUuLdVoMY7EeKqQPDHWaSCnQet25ndog3TJ4K
 // GLB TROLLEY - https://yourmetaworld.mypinata.cloud/ipfs/QmfGcoY5KehXkUjNsQTEApFnNLAkwqLF9S2PntcokW2RvF 
 
-async function getModel() {
-  let imageHash = await axios.post('http://localhost:5000/users/image', {username: "44"}) // TODO - Pass in users actual username
-  return imageHash.data.imageHash
-}
 
 function NFTModel(props) {
-  // console.log(getModel())
-  // useEffect(() => {
-  //   async function getData() {
-  //     let data = await getModle()
-  //     console.log(data)
-  //     return data
-  //   }
-
-  //   const result = getData().catch(console.error);
-  // }, [])
-
-  let hash = prompt('ENTER HASH')
+  console.log('COMPONENT STARTING')
 
   const gltf = useLoader(GLTFLoader, `https://yourmetaworld.mypinata.cloud/ipfs/${props.Hash}`)
   return <primitive object={gltf.scene} position={[0, 1, 0]} />
 }
 
 function CarShow() {
+
+  const [hash, setHash] = useState('QmQPx8kUf99uNC88Hu7sk5w15YmzAs9ARfKGpdVQLR7tGZ');
+
+  async function getObjectHash() {
+    let response = await axios.post('http://localhost:5000/users/object', {username: "44"})
+    return response.data.imageHash
+  }
+
+  useEffect(() => {
+    async function getData() {
+      let data = await getObjectHash()
+      console.log(data)
+      setHash(data)
+      return data
+    }
+
+    getData()
+    // objectHash = getData().catch(console.error)
+    // objectReady = true
+    console.log(hash, 'NEW HASH VALUE')
+  }, [])
+
+  //const objectHash = getObjectHash().catch(console.error);
 
   return (
     <>
@@ -58,7 +66,7 @@ function CarShow() {
         castShadow
         shadow-bias={-0.0001}
       />
-      <NFTModel Hash = ''/>
+      <NFTModel Hash = {hash}/>
       <Ground />
     </>
   )
