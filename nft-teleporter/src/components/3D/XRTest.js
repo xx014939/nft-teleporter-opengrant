@@ -1,4 +1,7 @@
-import { VRButton, ARButton, XR, Controllers, Hands, RayGrab } from '@react-three/xr'
+import {BufferGeometry, Controllers} from '@react-three/xr/dist/Controllers.js'
+import {Hands} from '@react-three/xr/dist/Hands.js'
+import {RayGrab} from '@react-three/xr/dist/Interactions.js'
+import {VRButton, XR} from '@react-three/xr/dist/XR.js'
 import { Canvas, useLoader } from "@react-three/fiber";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { Sky, Text } from '@react-three/drei'
