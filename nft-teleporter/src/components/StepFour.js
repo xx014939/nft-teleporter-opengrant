@@ -386,3 +386,52 @@ function StepFour () {
 }
 
 export default StepFour;
+
+let moralisMintingPortal = `
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vanilla Boilerplate</title>
+    <script src="https://unpkg.com/moralis-v1/dist/moralis.js"></script>
+  </head>
+
+  <body>
+    <h1>Moralis Hello World!</h1>
+
+    <button id="btn-login">Moralis Metamask Login</button>
+    <button id="btn-logout">Logout</button>
+
+  </body>
+  <script>
+    /* Moralis init code */
+    const serverUrl = "https://xxxxx/server";
+    const appId = "YOUR_APP_ID";
+    Moralis.start({ serverUrl, appId });
+    
+    /* Authentication code */
+    async function login() {
+        let user = Moralis.User.current();
+        if (!user) {
+        user = await Moralis.authenticate({
+            signingMessage: "Log in using Moralis",
+        })
+            .then(function (user) {
+            console.log("logged in user:", user);
+            console.log(user.get("ethAddress"));
+            })
+            .catch(function (error) {
+            console.log(error);
+            });
+        }
+    }
+    
+    async function logOut() {
+        await Moralis.User.logOut();
+        console.log("logged out");
+    }
+    
+    document.getElementById("btn-login").onclick = login;
+    document.getElementById("btn-logout").onclick = logOut;
+  </script>
+</html>
+`
