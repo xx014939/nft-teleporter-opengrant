@@ -466,6 +466,14 @@ function StepFour () {
                         Mint An NFT
                     </div>
                 </div>
+                <div>
+                    <div style={{marginTop: '40px'}} className='step-four-input-label'>Embedd Minting Portal Onto Your Own Site?</div>
+                    <div onClick={() => {copyToClipboard(generateMintingPortal())}}>
+                    <div className='view-experiences-button' style={{padding: '17px 27px', textAlign: 'center', maxWidth: '560px'}} >
+                        Copy Minting Portal Code
+                    </div>
+                </div>
+                </div>
             </div>
         </div>
     ) 
