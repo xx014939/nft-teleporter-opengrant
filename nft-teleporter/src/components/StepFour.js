@@ -277,6 +277,92 @@ function SuccessfulDeploy () {
     )
 }
 
+function generateMintingPortal() {
+    
+let moralisMintingPortal = `
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vanilla Boilerplate</title>
+    <script src="https://unpkg.com/moralis-v1/dist/moralis.js"></script>
+    <script src="https://www.jsdelivr.com/package/gh/ethereum/web3.js"></script>
+  </head>
+
+  <body>
+    <h1>Moralis Hello World!</h1>
+
+    <button id="btn-login">Moralis Metamask Login</button>
+    <button id="btn-logout">Logout</button>
+    <button onclick="contractCall()">Mint</button>
+	<button onclick="donate()">Mint</button>
+
+  </body>
+  <script>
+    /* Moralis init code */
+    const serverUrl = "https://hpz4yq50hr8y.usemoralis.com:2053/server";
+    const appId = "FaLY0U96izeaTHPkmvxHUq87YIejSYU0KMBiHS5M";
+    Moralis.start({ serverUrl, appId });
+
+    const ABI = ${getCookie('currentABI')}
+    
+    /* Authentication code */
+    async function login() {
+        let user = Moralis.User.current();
+        if (!user) {
+        user = await Moralis.authenticate({
+            signingMessage: "Log in using Moralis",
+        })
+            .then(function (user) {
+            console.log("logged in user:", user);
+            console.log(user.get("ethAddress"));
+            })
+            .catch(function (error) {
+            console.log(error);
+            });
+        }
+    }
+    
+    async function logOut() {
+        await Moralis.User.logOut();
+        console.log("logged out");
+    }
+
+    async function contractCall() {
+
+	let user = Moralis.User.current();
+	
+    const options = {
+        chain: "goerli",
+        address: "0x25Fa344Db801ebA431daC074f85BfaA6bBfA953b",
+        function_name: "balanceOf",
+        abi: ABI,
+        params: { owner: user.get("ethAddress") },
+        };
+        const allowance = await Moralis.Web3API.native.runContractFunction(options);
+        console.log(allowance)
+    }
+    
+    document.getElementById("btn-login").onclick = login;
+    document.getElementById("btn-logout").onclick = logOut;
+
+	async function donate() {
+        let options = {
+          contractAddress: "0x25Fa344Db801ebA431daC074f85BfaA6bBfA953b",
+          functionName: "createToken",
+          abi: ABI,
+          params: {
+            tokenURI: '1',
+          }
+        };
+        await Moralis.executeFunction(options)
+      }
+  </script>
+</html>
+`
+
+return (moralisMintingPortal)
+}
+
 function StepFour () {
 
     const [net, setNet] = useState('TEST');
@@ -386,52 +472,3 @@ function StepFour () {
 }
 
 export default StepFour;
-
-let moralisMintingPortal = `
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Vanilla Boilerplate</title>
-    <script src="https://unpkg.com/moralis-v1/dist/moralis.js"></script>
-  </head>
-
-  <body>
-    <h1>Moralis Hello World!</h1>
-
-    <button id="btn-login">Moralis Metamask Login</button>
-    <button id="btn-logout">Logout</button>
-
-  </body>
-  <script>
-    /* Moralis init code */
-    const serverUrl = "https://xxxxx/server";
-    const appId = "YOUR_APP_ID";
-    Moralis.start({ serverUrl, appId });
-    
-    /* Authentication code */
-    async function login() {
-        let user = Moralis.User.current();
-        if (!user) {
-        user = await Moralis.authenticate({
-            signingMessage: "Log in using Moralis",
-        })
-            .then(function (user) {
-            console.log("logged in user:", user);
-            console.log(user.get("ethAddress"));
-            })
-            .catch(function (error) {
-            console.log(error);
-            });
-        }
-    }
-    
-    async function logOut() {
-        await Moralis.User.logOut();
-        console.log("logged out");
-    }
-    
-    document.getElementById("btn-login").onclick = login;
-    document.getElementById("btn-logout").onclick = logOut;
-  </script>
-</html>
-`
