@@ -15,9 +15,10 @@ let counter = 1;
 function checkFormCompleted() {
     let nameInput = document.querySelector('.input-name')
     let sizeInput = document.querySelector('.collectionNumber')
+    let confirmationValue = document.querySelector('.step-one-single-button-container-active')
 
     if (sizeInput) {
-        if (sizeInput.value > 0 && nameInput.value.length > 0) {
+        if (sizeInput.value > 1 && nameInput.value.length > 0 && confirmationValue !== null) {
             document.cookie = 'collectionSize=' + sizeInput.value
             return true
         } else {
@@ -82,7 +83,7 @@ function ProgressBar () {
                         updateElement(); 
                         setStep(`${counter}`)
                     } else if (formFilled === false){
-                        alert('Fill out all fields')
+                        alert('Fill out all fields and ensure collection size is at least 2')
                     } else if (counter > 1) {
                         updateCount(); 
                         updateElement(); 

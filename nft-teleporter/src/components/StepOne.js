@@ -46,7 +46,7 @@ return (
             </div>
         </div>
         <div className='step-one-input-container'>
-            <div className='step-one-input-label' style={{marginBottom: '14px'}}>Do you want to Randomised Metada?</div>
+            <div className='step-one-input-label' style={{marginBottom: '14px'}}>Confirm Values?</div>
             <div className='step-one-buttons-container'>
                 <div className='step-one-single-button-container' onClick={selectButton} style={{marginRight: '15px'}}>
                     <div className='step-one-single-button' onClick={() => {
@@ -63,7 +63,7 @@ return (
                         <div>Yes</div>
                     </div>
                 </div>
-                <div className='step-one-single-button-container' onClick={selectButton}>
+                {/* <div className='step-one-single-button-container' onClick={selectButton}>
                     <div className='step-one-single-button' onClick={() => {
                          setCookie("randomdata", false) // Metadata 
                          setCookie("currentCollectionName", document.querySelector('.input-name').value) // Collection Name
@@ -76,7 +76,7 @@ return (
                         </div>
                         <div>No</div>
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     </div>

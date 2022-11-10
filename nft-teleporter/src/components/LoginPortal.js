@@ -99,7 +99,7 @@ bcrypt.compare(passwordEnteredByUser, `${hash}`, function(error, isMatch) {
               <div className='lhs-inner-two-text'>
                   <div><h2>Login</h2></div>
                   <div><input id='usernameLogin' className='input-field' placeholder='Username' label="Username"></input></div>
-                  <div><input id='passwordLogin' className='input-field' placeholder='Password' label="Password"></input></div>
+                  <div><input id='passwordLogin' className='input-field' placeholder='Password' label="Password" type="password"></input></div>
                   <div><a className='button' onClick={loginUser}>Login</a></div>
               </div>
           </div>

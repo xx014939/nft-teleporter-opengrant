@@ -9,7 +9,7 @@ import Ground from "./Ground.js";
 
 
 function NFTModel() {
-    const gltf = useLoader(GLTFLoader, `https://yourmetaworld.mypinata.cloud/ipfs/QmbqbZ32qXUuLdVoMY7EeKqQPDHWaSCnQet25ndog3TJ4K`)
+    const gltf = useLoader(GLTFLoader, `https://yourmetaworld.mypinata.cloud/ipfs/QmfGcoY5KehXkUjNsQTEApFnNLAkwqLF9S2PntcokW2RvF`)
     return <primitive object={gltf.scene} position={[-1.5, 1, 0]} />
   }
 

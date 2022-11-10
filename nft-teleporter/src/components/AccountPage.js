@@ -1,6 +1,6 @@
 import '../styles/AccountPage.css';
 import 'react-phone-number-input/style.css'
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import PhoneInput from 'react-phone-number-input'
 import Header from "./Header";
 import Footer from "./Footer"
@@ -16,6 +16,17 @@ import solanaSVG from '../assets/solanaSVG.svg'
 import ctaArrowSVG from '../assets/ctaArrowSVG.svg'
 import leftArrowSVG from '../assets/leftArrowSVG.svg'
 import cameraSVG from '../assets/cameraSVG.svg'
+import axios from 'axios';
+
+function getCookie(cookieName) {
+    let cookieValue = document.cookie
+    .split('; ')
+    .find((row) => row.startsWith(`${cookieName}=`))
+    ?.split('=')[1];
+    console.log(cookieValue)
+
+    return cookieValue;
+}
 
 function PhoneInputBox() {
     const [value, setValue] = useState()
@@ -34,7 +45,7 @@ function AccountInputBox (props) {
             <div className='account-page-input-label'>{props.Label}</div>
             <div className='account-page-input-subcontainer'>
                 <div className="account-page-icon"><img src={props.Icon} alt="Account icon"/></div>
-                <input type="text" placeholder={props.Label} label={props.Description}></input>
+                <input type="text" id={props.ID} placeholder={props.Label} label={props.Description}></input>
                 <div className="account-page-icon-rhs"><img src={pencilSVG} alt="Pencil icon"/></div>
             </div>
         </div>
@@ -91,7 +102,30 @@ function CollectionCard() {
 
 function AccountPage () {
 
+let currentUsername, currentWalletAddress, currentPrivateKey, currentEmailAddress
+
+async function getAccountData() {
+    let userID = getCookie('userID')
+    let userJWT = getCookie('jwt')
+
+    let config = {
+        headers: { 
+            'Authorization': `Bearer ${userJWT}` 
+        }
+    }
+
+    let accountInfo = await axios.get(`http://localhost:5000/users/${userID}`, config)
+    document.getElementById('usernameInput').value = `${accountInfo.data.username}`
+    document.getElementById('walletAddress').value = `${accountInfo.data.public_key}`
+    document.getElementById('privateKey').value = `${accountInfo.data.private_key}`
+    document.getElementById('emailAddress').value = `${accountInfo.data.email_address}`
+}
+
 let authorizedUser = true;
+
+useEffect(() => {
+    getAccountData()
+}, [])
 
 if (authorizedUser) {
     return (
@@ -138,15 +172,16 @@ if (authorizedUser) {
                         </div>
                     </div>
                     <div className='account-page-form'>
-                        <AccountInputBox Label = "Username" Description = "" Icon = {userSVG}/>
-                        <AccountInputBox Label = "Wallet Address" Description = "" Icon = {hashSVG}/>
+                        <AccountInputBox Label = "Username" Description = "" Icon = {userSVG} ID = 'usernameInput'/>
+                        <AccountInputBox Label = "Wallet Address" Description = "" Icon = {hashSVG} ID = 'walletAddress'/>
+                        <AccountInputBox Label = "Private Key" Description = "" Icon = {hashSVG} ID = 'privateKey'/>
                         <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'nowrap', justifyContent: 'space-between'}}>
                             <div style={{marginRight: '40px'}}>
                                 <AccountInputBox Label = "First Name" Description = "" Icon = {idSVG}/>
                             </div>
                             <AccountInputBox Label = "Last Name" Description = "" Icon = {idSVG}/>
                         </div>
-                        <AccountInputBox Label = "Email Address" Description = "" Icon = {emailSVG}/>
+                        <AccountInputBox Label = "Email Address" Description = "" Icon = {emailSVG} ID = 'emailAddress'/>
                         <div className='account-page-input-container'>
                             <div className='account-page-input-label' style={{marginBottom: '15px'}}>Phone No</div>
                             <PhoneInputBox/>
