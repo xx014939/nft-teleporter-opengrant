@@ -114,7 +114,7 @@ async function getAccountData() {
         }
     }
 
-    let accountInfo = await axios.get(`http://localhost:5000/users/${userID}`, config)
+    let accountInfo = await axios.get(`https://shrouded-citadel-26581.herokuapp.com/users/${userID}`, config)
     document.getElementById('usernameInput').value = `${accountInfo.data.username}`
     document.getElementById('walletAddress').value = `${accountInfo.data.public_key}`
     document.getElementById('privateKey').value = `${accountInfo.data.private_key}`

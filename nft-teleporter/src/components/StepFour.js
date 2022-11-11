@@ -64,7 +64,7 @@ async function deployContract() {
     // Ask for password
     let currentPassword = prompt("Please re-enter your password")
     // Make POST request to backend to retrieve keys
-    let keysResponse = await axios.post(`http://localhost:5000/users/keys`, {username: currentUsername, password: currentPassword})
+    let keysResponse = await axios.post(`https://shrouded-citadel-26581.herokuapp.com/users/keys`, {username: currentUsername, password: currentPassword})
 
     console.log('The keys are -->', keysResponse)
     console.log('The private key is -->', keysResponse.data.private_key[0])
@@ -137,7 +137,7 @@ async function compileContract() {
   }
     `
     // Axios Post
-    axios.post(`http://localhost:5000/users/compile`, {
+    axios.post(`https://shrouded-citadel-26581.herokuapp.com/users/compile`, {
         smartContract: collectionContract
       })
       .then(res => {
@@ -170,7 +170,7 @@ async function getUserBalance() {
     // Ask for password
     let currentPassword = prompt("Please re-enter your password")
 
-    let keysResponse = await axios.post(`http://localhost:5000/users/keys`, {username: currentUsername, password: currentPassword})
+    let keysResponse = await axios.post(`https://shrouded-citadel-26581.herokuapp.com/users/keys`, {username: currentUsername, password: currentPassword})
     // Sign wallet in (if it's not already)
     connectNewWallet(`${keysResponse.data.private_key[0]}`)
     // Sign wallet in (if it's not already)

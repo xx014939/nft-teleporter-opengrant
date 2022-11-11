@@ -169,7 +169,7 @@ function AssetsConnectionList() {
 
     async function retrieveFileList() {
         let userID = getCookie('userID')
-        let patchUrl = `http://localhost:5000/users/${userID}` // Our backend server
+        let patchUrl = `https://shrouded-citadel-26581.herokuapp.com/users/${userID}` // Our backend server
         let jwtToken = getCookie('jwt')
         const config = {
             maxContentLength: "Infinity",
@@ -409,7 +409,7 @@ async function generateMetadata() {
     }
 
     // Host metadata on IPFS 
-    let baseURI = await axios.post('http://localhost:5000/users/metadata-creation', {metadata: metadataArray})
+    let baseURI = await axios.post('https://shrouded-citadel-26581.herokuapp.com/users/metadata-creation', {metadata: metadataArray})
     let responseObject = JSON.parse(baseURI.data.response)
     document.cookie = 'collectionURIHash=' + responseObject.IpfsHash
 

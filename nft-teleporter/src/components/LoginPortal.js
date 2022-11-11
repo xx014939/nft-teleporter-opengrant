@@ -73,7 +73,7 @@ bcrypt.compare(passwordEnteredByUser, `${hash}`, function(error, isMatch) {
         const userName = document.getElementById('usernameLogin').value
         const userPassword = document.getElementById('passwordLogin').value
 
-        axios.post(`http://localhost:5000/users/login`, {
+        axios.post(`https://shrouded-citadel-26581.herokuapp.com/users/login`, {
           username: userName,
           password: userPassword
         })
@@ -135,7 +135,7 @@ bcrypt.compare(passwordEnteredByUser, `${hash}`, function(error, isMatch) {
 
         console.log('Final info is -->',emailAddress, userName, password, publicKey, privateKey)
 
-        axios.post(`http://localhost:5000/users/register`, {
+        axios.post(`https://shrouded-citadel-26581.herokuapp.com/users/register`, {
           username: userName,
           password: password,
           email_address: emailAddress,

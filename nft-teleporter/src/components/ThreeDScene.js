@@ -22,7 +22,7 @@ function CarShow() {
   const [hash, setHash] = useState('QmbqbZ32qXUuLdVoMY7EeKqQPDHWaSCnQet25ndog3TJ4K');
 
   async function getObjectHash() {
-    let response = await axios.post('http://localhost:5000/users/object', {username: "44"})
+    let response = await axios.post('https://shrouded-citadel-26581.herokuapp.com/users/object', {username: "44"})
     return response.data.imageHash
   }
 

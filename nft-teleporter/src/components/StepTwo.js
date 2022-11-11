@@ -139,7 +139,7 @@ function StepTwo () {
         let currentIPFSHash = response.data.IpfsHash // Save file hash in response
 
         let userID = getCookie('userID')
-        let patchUrl = `http://localhost:5000/users/${userID}` // Our backend server
+        let patchUrl = `https://shrouded-citadel-26581.herokuapp.com/users/${userID}` // Our backend server
         let jwtToken = getCookie('jwt')
         let body = {}
         let container
