@@ -9,6 +9,16 @@ import axios from 'axios';
 // GLTF HELMET - https://yourmetaworld.mypinata.cloud/ipfs/QmbqbZ32qXUuLdVoMY7EeKqQPDHWaSCnQet25ndog3TJ4K
 // GLB TROLLEY - https://yourmetaworld.mypinata.cloud/ipfs/QmfGcoY5KehXkUjNsQTEApFnNLAkwqLF9S2PntcokW2RvF 
 
+function getCookie(cookieName) {
+  let cookieValue = document.cookie
+  .split('; ')
+  .find((row) => row.startsWith(`${cookieName}=`))
+  ?.split('=')[1];
+  console.log(cookieValue)
+
+  return cookieValue;
+}
+
 
 function NFTModel(props) {
   console.log('COMPONENT STARTING')
@@ -22,7 +32,7 @@ function CarShow() {
   const [hash, setHash] = useState('QmbqbZ32qXUuLdVoMY7EeKqQPDHWaSCnQet25ndog3TJ4K');
 
   async function getObjectHash() {
-    let response = await axios.post('https://shrouded-citadel-26581.herokuapp.com/users/object', {username: "44"})
+    let response = await axios.post('https://shrouded-citadel-26581.herokuapp.com/users/object', {username: `${getCookie('currentUsername')}`})
     return response.data.imageHash
   }
 

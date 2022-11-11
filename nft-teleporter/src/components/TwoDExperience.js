@@ -3,9 +3,20 @@ import PlaceHolder from '../assets/placeholder.png'
 import axios from 'axios';
 import React, { useEffect  } from 'react';
 
+function getCookie(cookieName) {
+    let cookieValue = document.cookie
+    .split('; ')
+    .find((row) => row.startsWith(`${cookieName}=`))
+    ?.split('=')[1];
+    console.log(cookieValue)
+  
+    return cookieValue;
+  }
+  
+
 function TwoDExperience () {
     async function retrieveImage() {
-        let imageHash = await axios.post('https://shrouded-citadel-26581.herokuapp.com/users/image', {username: "44"}) // TODO - Pass in users actual username
+        let imageHash = await axios.post('https://shrouded-citadel-26581.herokuapp.com/users/image', {username: `${getCookie('currentUsername')}`}) // TODO - Pass in users actual username
         return imageHash
     }
 
