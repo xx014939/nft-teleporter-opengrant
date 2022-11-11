@@ -11,13 +11,15 @@ web based interactive experiences in VR, AR and other mediums. We also offer a s
 
 New Figma Designs - https://www.figma.com/file/GMRl7mPcXB3yUJxfRwci9g/NFT-Teleporter?node-id=0%3A1
 
-Current UI Deployment (Netlify) - https://nft-teleporter-ui.netlify.app/
+Current Deployment (Netlify) - https://nft-teleporter-ui.netlify.app/
 
-Open Grant - https://github.com/filecoin-project/devgrants/issues/596 
+Hackathon Demo - https://youtu.be/zSNDyzTp3nA
 
-## Important Info
+## Important Info!!!
 
-Currently the login/register function portal on the Netlify URL in the previous section will not work properly. This is because it is currently making API calls to our localhost sever. You can bypass the login portal, but visiting https://nft-teleporter-ui.netlify.app/account
+Upon creating a new account your wallet balance will be zero. Because of this you won't be able to deploy a smart contract or mint an NFT through the UI. We are working on a dynamic faucet to automatically give new users Goerli ETH, however in the meantime please take your wallets public address from the account section after logging in and send some test ETH to it.
 
-You may also run the app locally with your own config.env file inside of the server folder.
+A good faucet is - https://goerlifaucet.com/
+
+Alternatively you may import your wallet into Metamask by copying the private key inside your account section, however this isn't necessary unless you also want to view your NFT's on OpenSea. 
 
