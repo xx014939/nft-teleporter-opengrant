@@ -13,6 +13,8 @@ New Figma Designs - https://www.figma.com/file/GMRl7mPcXB3yUJxfRwci9g/NFT-Telepo
 
 Current Deployment (Netlify) - https://nft-teleporter-ui.netlify.app/
 
+Hackathon Demo - https://youtu.be/zSNDyzTp3nA
+
 ## Important Info!!!
 
 Upon creating a new account your wallet balance will be zero. Because of this you won't be able to deploy a smart contract or mint an NFT through the UI. We are working on a dynamic faucet to automatically give new users Goerli ETH, however in the meantime please take your wallets public address from the account section after logging in and send some test ETH to it.
