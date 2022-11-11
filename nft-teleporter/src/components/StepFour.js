@@ -369,6 +369,10 @@ function StepFour () {
     const [currentBalance, setCurrentBalance] = useState(0)
     const [currentChain, setCurrentChain] = useState('ETH')
 
+    function makeCompileActive() {
+        document.getElementById('compileButton').classList.remove('inactive-button')
+    }
+
     return (
         <div className='page-container--255 step-four-container'>
             <div className='step-four-title'><h2>Smart Contract</h2></div>
@@ -403,21 +407,21 @@ function StepFour () {
             <div className='step-four-chain-selection-container'>
                 <div className='step-four-input-label'>Which Chain Would You Like to Deploy With?</div>
                 <div className='step-four-chain-selection-button-container'>
-                <div id='eth-btn' className='step-four-chain-selection-button-bg--inactive chain-button' onClick={async (event) => {switchChain('ETH', net); activateChainBtn(event); let balance = await getUserBalance(); setCurrentBalance(balance); setCurrentChain('ETH')}}>
+                <div id='eth-btn' className='step-four-chain-selection-button-bg--inactive chain-button' onClick={async (event) => {switchChain('ETH', net); activateChainBtn(event); let balance = await getUserBalance(); setCurrentBalance(balance); setCurrentChain('ETH'); makeCompileActive()}}>
                     <div className='step-four-chain-selection-button'>
                         <div className='active-icon'><img src={ETHIcon}/></div>
                         <div className='inactive-icon'><img src={ETHGreyIcon}/></div>
                         <div>ETH</div>
                     </div>
                 </div>
-                <div id='bsc-btn' className='step-four-chain-selection-button-bg--inactive chain-button' onClick={async (event) => {switchChain('BSC', net); activateChainBtn(event); let balance = await getUserBalance(); setCurrentBalance(balance); setCurrentChain('BSC')}}>
+                <div id='bsc-btn' className='step-four-chain-selection-button-bg--inactive chain-button' onClick={async (event) => {switchChain('BSC', net); activateChainBtn(event); let balance = await getUserBalance(); setCurrentBalance(balance); setCurrentChain('BSC'); makeCompileActive()}}>
                     <div className='step-four-chain-selection-button'>
                         <div className='active-icon'><img src={BSCIcon}/></div>
                         <div className='inactive-icon'><img src={BSCGreyIcon}/></div>
                         <div>BSC</div>
                     </div>
                 </div>
-                <div id='poly-btn' className='step-four-chain-selection-button-bg--inactive chain-button' onClick={async (event) => {switchChain('POLY', net); activateChainBtn(event); let balance = await getUserBalance(); setCurrentBalance(balance); setCurrentChain('MATIC')}}>
+                <div id='poly-btn' className='step-four-chain-selection-button-bg--inactive chain-button' onClick={async (event) => {switchChain('POLY', net); activateChainBtn(event); let balance = await getUserBalance(); setCurrentBalance(balance); setCurrentChain('MATIC'); makeCompileActive()}}>
                     <div className='step-four-chain-selection-button'>
                         <div className='active-icon'><img src={POLYIcon} style={{minWidth: '60px', marginRight: '0px'}}/></div>
                         <div className='inactive-icon'>< img src={POLYGreyIcon} style={{minWidth: '60px', marginRight: '0px'}}/></div>
@@ -428,7 +432,7 @@ function StepFour () {
             </div>
             <div style={{marginTop: '40px'}} className='step-four-input-label'>Compile &amp; Deploy Your Smart Contract</div>
             <div onClick={() => {compileContract()}}>
-                <div className='view-experiences-button' style={{padding: '17px 27px', textAlign: 'center', maxWidth: '560px'}} >
+                <div id='compileButton' className='view-experiences-button inactive-button' style={{padding: '17px 27px', textAlign: 'center', maxWidth: '560px'}} >
                     Compile Smart Contract
                 </div>
             </div>
