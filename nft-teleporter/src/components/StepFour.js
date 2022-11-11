@@ -353,7 +353,7 @@ let moralisMintingPortal = `
         params: { owner: user.get("ethAddress") },
         };
         const allowance = await Moralis.Web3API.native.runContractFunction(options);
-        console.log(allowance)
+        alert(allowance)
     }
     
     document.getElementById("btn-login").onclick = login;
