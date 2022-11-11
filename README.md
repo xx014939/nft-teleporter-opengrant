@@ -13,6 +13,8 @@ New Figma Designs - https://www.figma.com/file/GMRl7mPcXB3yUJxfRwci9g/NFT-Telepo
 
 Current Deployment (Netlify) - https://nft-teleporter-ui.netlify.app/
 
+Landing Page (for application use the deployment link above) - https://nftteleporter.com/
+
 Hackathon Demo - https://youtu.be/zSNDyzTp3nA
 
 ## Important Info!!!
