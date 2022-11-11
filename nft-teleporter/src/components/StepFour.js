@@ -164,7 +164,7 @@ function mintNFT(contract_abi, contract_address, account, hash) {
     console.log('done', collectionBaseURI)
 }
 
-async function getUserBalance() {
+async function getUserBalance(chainID) {
     // Retrieve username
     let currentUsername = getCookie("currentUsername")
     // Ask for password
@@ -181,9 +181,20 @@ async function getUserBalance() {
     let walletAddress = accountList[0].address
 
 
-    let balance = await web3.eth.getBalance(walletAddress)
-    balance = (balance / 1000000000000000000).toFixed(2)
-    console.log('THE WALLET BALANCE IS -->', balance)
+    // let balance = await web3.eth.getBalance(walletAddress)
+    // balance = (balance / 1000000000000000000).toFixed(2)
+    // console.log('THE WALLET BALANCE IS -->', balance)
+
+    const APIKEY = 'ckey_87d806dd3003422a8db15ca359d';
+    const baseURL = 'https://api.covalenthq.com/v1'
+    const blockchainChainId = `${chainID}` // Main net as test net is currently not supported
+
+    const url = new URL(`${baseURL}/${blockchainChainId}/address/${walletAddress}/balances_v2/?key=${APIKEY}`);
+    const response = await fetch(url);
+    const result = await response.json();
+    const data = result.data;
+    console.log('WALLET BALANCE 2 IS -->', data)
+    let balance = ((data.items[0].balance) / 1000000000000000000).toFixed(2)
 
     return balance
 }
@@ -407,21 +418,21 @@ function StepFour () {
             <div className='step-four-chain-selection-container'>
                 <div className='step-four-input-label'>Which Chain Would You Like to Deploy With?</div>
                 <div className='step-four-chain-selection-button-container'>
-                <div id='eth-btn' className='step-four-chain-selection-button-bg--inactive chain-button' onClick={async (event) => {switchChain('ETH', net); activateChainBtn(event); let balance = await getUserBalance(); setCurrentBalance(balance); setCurrentChain('ETH'); makeCompileActive()}}>
+                <div id='eth-btn' className='step-four-chain-selection-button-bg--inactive chain-button' onClick={async (event) => {switchChain('ETH', net); activateChainBtn(event); let balance = await getUserBalance('5'); setCurrentBalance(balance); setCurrentChain('ETH'); makeCompileActive()}}>
                     <div className='step-four-chain-selection-button'>
                         <div className='active-icon'><img src={ETHIcon}/></div>
                         <div className='inactive-icon'><img src={ETHGreyIcon}/></div>
                         <div>ETH</div>
                     </div>
                 </div>
-                <div id='bsc-btn' className='step-four-chain-selection-button-bg--inactive chain-button' onClick={async (event) => {switchChain('BSC', net); activateChainBtn(event); let balance = await getUserBalance(); setCurrentBalance(balance); setCurrentChain('BSC'); makeCompileActive()}}>
+                <div id='bsc-btn' className='step-four-chain-selection-button-bg--inactive chain-button' onClick={async (event) => {switchChain('BSC', net); activateChainBtn(event); let balance = await getUserBalance('97'); setCurrentBalance(balance); setCurrentChain('BSC'); makeCompileActive()}}>
                     <div className='step-four-chain-selection-button'>
                         <div className='active-icon'><img src={BSCIcon}/></div>
                         <div className='inactive-icon'><img src={BSCGreyIcon}/></div>
                         <div>BSC</div>
                     </div>
                 </div>
-                <div id='poly-btn' className='step-four-chain-selection-button-bg--inactive chain-button' onClick={async (event) => {switchChain('POLY', net); activateChainBtn(event); let balance = await getUserBalance(); setCurrentBalance(balance); setCurrentChain('MATIC'); makeCompileActive()}}>
+                <div id='poly-btn' className='step-four-chain-selection-button-bg--inactive chain-button' onClick={async (event) => {switchChain('POLY', net); activateChainBtn(event); let balance = await getUserBalance('80001'); setCurrentBalance(balance); setCurrentChain('MATIC'); makeCompileActive()}}>
                     <div className='step-four-chain-selection-button'>
                         <div className='active-icon'><img src={POLYIcon} style={{minWidth: '60px', marginRight: '0px'}}/></div>
                         <div className='inactive-icon'>< img src={POLYGreyIcon} style={{minWidth: '60px', marginRight: '0px'}}/></div>
