@@ -289,6 +289,9 @@ function SuccessfulDeploy () {
 }
 
 function generateMintingPortal() {
+
+let currentContractHash = getCookie('currentContractHash')
+let currentMetadataHash = getCookie('collectionURIHash')
     
 let moralisMintingPortal = `
 <!DOCTYPE html>
@@ -304,7 +307,7 @@ let moralisMintingPortal = `
 
     <button id="btn-login">Moralis Metamask Login</button>
     <button id="btn-logout">Logout</button>
-    <button onclick="contractCall()">Mint</button>
+    <button onclick="contractCall()">How Many NFT's do I have?</button>
 	<button onclick="donate()">Mint</button>
 
   </body>
@@ -344,7 +347,7 @@ let moralisMintingPortal = `
 	
     const options = {
         chain: "goerli",
-        address: "0x25Fa344Db801ebA431daC074f85BfaA6bBfA953b",
+        address: ${currentContractHash},
         function_name: "balanceOf",
         abi: ABI,
         params: { owner: user.get("ethAddress") },
@@ -358,11 +361,11 @@ let moralisMintingPortal = `
 
 	async function donate() {
         let options = {
-          contractAddress: "0x25Fa344Db801ebA431daC074f85BfaA6bBfA953b",
+          contractAddress: ${currentContractHash},
           functionName: "createToken",
           abi: ABI,
           params: {
-            tokenURI: '1',
+            tokenURI: https://yourmetaworld.mypinata.cloud/ipfs/${currentMetadataHash}/{id}.json,
           }
         };
         await Moralis.executeFunction(options)
