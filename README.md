@@ -11,9 +11,7 @@ web based interactive experiences in VR, AR and other mediums. We also offer a s
 
 New Figma Designs - https://www.figma.com/file/GMRl7mPcXB3yUJxfRwci9g/NFT-Teleporter?node-id=0%3A1
 
-Current UI Deployment (Netlify) - https://nft-teleporter-ui.netlify.app/
-
-Open Grant - https://github.com/filecoin-project/devgrants/issues/596 
+Current Deployment (Netlify) - https://nft-teleporter-ui.netlify.app/
 
 ## Important Info!!!
 
