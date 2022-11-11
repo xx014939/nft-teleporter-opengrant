@@ -403,7 +403,7 @@ function StepFour () {
             <div className='step-four-chain-selection-container'>
                 <div className='step-four-input-label'>Which Chain Would You Like to Deploy With?</div>
                 <div className='step-four-chain-selection-button-container'>
-                <div id='eth-btn' className='step-four-chain-selection-button-bg--active chain-button' onClick={async (event) => {switchChain('ETH', net); activateChainBtn(event); let balance = await getUserBalance(); setCurrentBalance(balance); setCurrentChain('ETH')}}>
+                <div id='eth-btn' className='step-four-chain-selection-button-bg--inactive chain-button' onClick={async (event) => {switchChain('ETH', net); activateChainBtn(event); let balance = await getUserBalance(); setCurrentBalance(balance); setCurrentChain('ETH')}}>
                     <div className='step-four-chain-selection-button'>
                         <div className='active-icon'><img src={ETHIcon}/></div>
                         <div className='inactive-icon'><img src={ETHGreyIcon}/></div>
