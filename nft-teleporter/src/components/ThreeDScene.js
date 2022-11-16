@@ -85,6 +85,32 @@ function CarShow() {
 
 
 function ThreeDScene() {
+
+  async function getMetadata() {
+    let response = await axios.get('https://yourmetaworld.mypinata.cloud/ipfs/QmNuEj2r4yo72nXyTvYUgtWj8dhYL2c77cEMw5UmZnqMFb/1.json')
+    let attributes = response.data.attributes
+    let attributeContainer = document.querySelectorAll('.attribute-container')
+
+    if (attributes.length > 0) {
+      for (let i = 0; i < attributes.length; i++) {
+        let nameSpan = document.createElement('span')
+        nameSpan.innerHTML = `${attributes[i].trait_type} - `
+
+        let valueSpan = document.createElement('span')
+        valueSpan.innerHTML = ` ${attributes[i].value}`
+
+        attributeContainer[i].append(nameSpan)
+        attributeContainer[i].append(valueSpan)
+
+      }
+    }
+  }
+
+  useEffect(() => {
+    
+    getMetadata()
+  }, [])
+  
   return (
     <div style={{height: '100vh'}}>
       <Canvas shadows>
@@ -92,9 +118,12 @@ function ThreeDScene() {
       </Canvas>
     <div style={{color: 'white', background: 'transparent', position: 'fixed', bottom: '250px', paddingLeft: '50px'}}>
       <h2>NFT STATS</h2>
-      <div>Example Attribute One - Value</div>
-      <div>Example Attribute Two - Value</div>
-      <div>Example Attribute Three - Value</div>
+      <div className="attribute-container"></div>
+      <div className="attribute-container"></div>
+      <div className="attribute-container"></div>
+      <div className="attribute-container"></div>
+      <div className="attribute-container"></div>
+      <div className="attribute-container"></div>
     </div>
     </div>
   )
