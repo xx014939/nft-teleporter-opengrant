@@ -164,6 +164,39 @@ function mintNFT(contract_abi, contract_address, account, hash) {
     console.log('done', collectionBaseURI)
 }
 
+async function chainlinkPriceFeed() {
+    let contractAddress = '0xcfEd520ac45F7162F6cD3C532D1e8e45deb08949'
+    let contractABI = [
+        {
+            "inputs": [],
+            "stateMutability": "nonpayable",
+            "type": "constructor"
+        },
+        {
+            "inputs": [],
+            "name": "getLatestPrice",
+            "outputs": [
+                {
+                    "internalType": "int256",
+                    "name": "",
+                    "type": "int256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        }
+    ]
+
+    let accountList = await web3.eth.accounts.wallet;
+    account = accountList[0].address
+
+    const chainlinkContract = new web3.eth.Contract(contractABI, contractAddress);
+    let price = await chainlinkContract.methods.getLatestPrice().call({from: account, gas: 5000000 })
+    console.log('THE CURRENT PRICE FEED IS -->', price)
+    let decimalPrice = (price / 100000000)
+    //alert(decimalPrice)
+}
+
 async function getUserBalance(chainID) {
     // Retrieve username
     let currentUsername = getCookie("currentUsername")
@@ -421,7 +454,7 @@ function StepFour () {
             <div className='step-four-chain-selection-container'>
                 <div className='step-four-input-label'>Which Chain Would You Like to Deploy With?</div>
                 <div className='step-four-chain-selection-button-container'>
-                <div id='eth-btn' className='step-four-chain-selection-button-bg--inactive chain-button' onClick={async (event) => {switchChain('ETH', net); activateChainBtn(event); let balance = await getUserBalance('5'); setCurrentBalance(balance); setCurrentChain('ETH'); makeCompileActive()}}>
+                <div id='eth-btn' className='step-four-chain-selection-button-bg--inactive chain-button' onClick={async (event) => {switchChain('ETH', net); activateChainBtn(event); let balance = await getUserBalance('5'); setCurrentBalance(balance); setCurrentChain('ETH'); makeCompileActive(); chainlinkPriceFeed()}}>
                     <div className='step-four-chain-selection-button'>
                         <div className='active-icon'><img src={ETHIcon}/></div>
                         <div className='inactive-icon'><img src={ETHGreyIcon}/></div>
