@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../index.css';
 import '../styles/StepFour.css';
 import completedBadge from '../assets/completedBadge.svg';
@@ -164,7 +164,7 @@ function mintNFT(contract_abi, contract_address, account, hash) {
     console.log('done', collectionBaseURI)
 }
 
-async function chainlinkPriceFeed() {
+async function chainlinkPriceFeed(account) {
     let contractAddress = '0xcfEd520ac45F7162F6cD3C532D1e8e45deb08949'
     let contractABI = [
         {
@@ -187,14 +187,11 @@ async function chainlinkPriceFeed() {
         }
     ]
 
-    let accountList = await web3.eth.accounts.wallet;
-    account = accountList[0].address
-
     const chainlinkContract = new web3.eth.Contract(contractABI, contractAddress);
     let price = await chainlinkContract.methods.getLatestPrice().call({from: account, gas: 5000000 })
     console.log('THE CURRENT PRICE FEED IS -->', price)
-    let decimalPrice = (price / 100000000)
-    //alert(decimalPrice)
+    let decimalPrice = (price / 100000000).toFixed(2)
+    document.querySelector('.eth-price').innerHTML = `$${decimalPrice} / `
 }
 
 async function getUserBalance(chainID) {
@@ -228,6 +225,8 @@ async function getUserBalance(chainID) {
     const data = result.data;
     console.log('WALLET BALANCE 2 IS -->', data)
     let balance = ((data.items[0].balance) / 1000000000000000000).toFixed(2)
+
+    chainlinkPriceFeed(walletAddress)
 
     return balance
 }
@@ -449,6 +448,10 @@ function StepFour () {
                 <div className='current-balance-container'>
                     <span>Current Balance</span>
                     <div><span>{currentBalance}</span><span> {currentChain}</span></div>
+                </div>
+                <div className='current-balance-container'>
+                    <span>Current Price</span>
+                    <div><span className='eth-price'></span><span>ETH</span></div>
                 </div>
             </div>
             <div className='step-four-chain-selection-container'>
