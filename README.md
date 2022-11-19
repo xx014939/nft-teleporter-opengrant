@@ -11,11 +11,11 @@ web based interactive experiences in VR, AR and other mediums. We also offer a s
 
 New Figma Designs - https://www.figma.com/file/GMRl7mPcXB3yUJxfRwci9g/NFT-Teleporter?node-id=0%3A1
 
-Current Deployment (Netlify) - https://nft-teleporter-ui.netlify.app/
+Current Deployment (Netlify) - https://chainlink-hackathon--nft-teleporter-ui.netlify.app/
 
 Landing Page (for application use the deployment link above) - https://nftteleporter.com/
 
-Hackathon Demo - https://youtu.be/zSNDyzTp3nA
+Hackathon Demo - https://www.youtube.com/watch?v=Fcu0puGgqfQ
 
 ## Important Info!!!
 
